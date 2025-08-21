@@ -13,9 +13,10 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
-header {
+.header {
   position: absolute;
   top: 0;
   left: 0;
@@ -23,8 +24,12 @@ header {
   padding: 40px 65px;
 }
 
-header > img {
+.header > img {
   margin-top: 12px;
+}
+
+.header .logo {
+  width: 201px;
 }
 
 /* global label */
@@ -86,8 +91,8 @@ header > img {
 }
 
 .banner p {
-  max-width: 514px;
-  font-size: 14px;
+  max-width: 568px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -204,10 +209,13 @@ header > img {
   margin-top: 24px;
 }
 
+.feature.reverse {
+  flex-direction: row-reverse;
+}
+
 .feature .feature-image {
   width: 500px;
   min-width: 500px;
-  height: 350px;
   background-color: rgba(255, 255, 255, 0.03);
   border-radius: 16px;
 }
@@ -270,16 +278,10 @@ header > img {
 /* footer */
 
 .footer {
-  max-width: 1200px;
   margin: 0 auto;
 }
 
 .footer .content {
-  display: flex;
-  justify-content: space-between;
-}
-
-.footer > .context {
   display: flex;
   justify-content: space-between;
 }
