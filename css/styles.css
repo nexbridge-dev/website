@@ -202,6 +202,7 @@ body {
 
 .features .feature {
   display: flex;
+  align-items: center;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.20);
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 0%, rgba(255, 255, 255, 0.04) 100%);
@@ -258,21 +259,6 @@ body {
 .feature .feature-content ul li strong {
   color: #fff;
   font-weight: 500;
-}
-
-.feature1 {
-  background: url('../images/feature1.png') no-repeat center center;
-  background-size: cover;
-}
-
-.feature2 {
-  background: url('../images/feature2.png') no-repeat center center;
-  background-size: cover;
-}
-
-.feature3 {
-  background: url('../images/feature3.png') no-repeat center center;
-  background-size: cover;
 }
 
 /* footer */

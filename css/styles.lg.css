@@ -52,7 +52,11 @@
   .feature .feature-image {
     width: 440px;
     min-width: 440px;
-    margin: 26px;
+    margin: 26px 0 26px 26px;
+  }
+
+  .feature.reverse .feature-image {
+    margin: 26px 26px 26px 0;
   }
 
   .feature .feature-content {
