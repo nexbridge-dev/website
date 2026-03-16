@@ -19,8 +19,11 @@
   --purple:#E5E5E5;
   --green:#FFFFFF;
   --amber:#A3A3A3;
-  --accent:#C8C8C8;
-  --accent-dim:rgba(255,255,255,0.12);
+  --accent:#C8A96E;
+  --gold:#C8A96E;
+  --gold-light:#E0C992;
+  --gold-dim:rgba(200,169,110,0.15);
+  --accent-dim:rgba(200,169,110,0.12);
   --white:#FFFFFF;
   --gray-50:#F9FAFB;
   --gray-100:#F3F4F6;
@@ -34,7 +37,7 @@
   --text-lighter:rgba(255,255,255,0.4);
   --grad-blue:linear-gradient(135deg,#FFFFFF,#A0A0A0);
   --grad-cyan:linear-gradient(135deg,#D4D4D4,#FFFFFF);
-  --grad-hero:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,255,255,0.04),transparent 60%);
+  --grad-hero:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(200,169,110,0.06),transparent 60%);
   --font:'Inter',system-ui,-apple-system,sans-serif;
   --mono:'JetBrains Mono',monospace;
   --max-w:1200px;
@@ -46,7 +49,7 @@ a{text-decoration:none;color:inherit;transition:var(--transition)}
 img{max-width:100%;display:block}
 .container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
 .mono{font-family:var(--mono)}
-.grad-text{background:linear-gradient(135deg,#FFFFFF,#888888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-text{background:linear-gradient(135deg,#E0C992,#C8A96E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* ============ NAVIGATION ============ */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:var(--transition)}
@@ -56,14 +59,14 @@ img{max-width:100%;display:block}
 .nav-logo .logo-img{height:32px;width:auto}
 .nav-links{display:flex;align-items:center;gap:32px}
 .nav-links a{font-size:14px;font-weight:500;color:var(--text-light);transition:var(--transition)}
-.nav-links a:hover{color:var(--white)}
+.nav-links a:hover{color:var(--gold-light)}
 .nav-actions{display:flex;align-items:center;gap:12px}
 .lang-switch{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,0.06);border-radius:8px;padding:2px;font-size:13px}
 .lang-switch button{background:none;border:none;color:var(--text-lighter);padding:6px 12px;border-radius:6px;cursor:pointer;font-family:var(--font);font-weight:500;transition:var(--transition)}
 .lang-switch button.active{background:rgba(255,255,255,0.1);color:var(--white)}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:var(--transition);border:none;font-family:var(--font)}
-.btn-primary{background:#FFFFFF;color:#000000}
-.btn-primary:hover{background:#E5E5E5;transform:translateY(-1px);box-shadow:0 8px 25px rgba(255,255,255,0.1)}
+.btn-primary{background:var(--gold);color:#000000;border-color:var(--gold)}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 8px 25px rgba(200,169,110,0.2)}
 .btn-ghost{background:rgba(255,255,255,0.06);color:var(--white);border:1px solid rgba(255,255,255,0.1)}
 .btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2)}
 .btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}
@@ -73,6 +76,7 @@ img{max-width:100%;display:block}
 
 /* Mobile menu */
 .nav-mobile-toggle{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px}
+.mobile-close{display:none}
 @media(max-width:768px){
   .nav-links,.nav-actions .btn{display:none}
   .nav-mobile-toggle{display:block}
@@ -120,8 +124,8 @@ img{max-width:100%;display:block}
 
 /* ============ SECTIONS SHARED ============ */
 section{padding:100px 0}
-.section-label{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.5);margin-bottom:16px}
-.section-label .line{width:24px;height:1px;background:rgba(255,255,255,0.3);border-radius:1px}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:16px}
+.section-label .line{width:24px;height:1px;background:var(--gold);border-radius:1px}
 .section-title{font-size:clamp(28px,3.5vw,44px);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:16px}
 .section-desc{font-size:17px;color:var(--text-light);max-width:600px;line-height:1.7}
 .section-header{margin-bottom:60px}
@@ -132,7 +136,7 @@ section{padding:100px 0}
 .problems{background:var(--navy)}
 .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .problem-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px;transition:var(--transition)}
-.problem-card:hover{border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.02);transform:translateY(-4px)}
+.problem-card:hover{border-color:rgba(200,169,110,0.25);background:rgba(200,169,110,0.03);transform:translateY(-4px)}
 .problem-card .icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px}
 .problem-card:nth-child(1) .icon{background:rgba(255,255,255,0.06)}
 .problem-card:nth-child(2) .icon{background:rgba(255,255,255,0.06)}
@@ -146,8 +150,8 @@ section{padding:100px 0}
 .solution::before{content:'';position:absolute;top:0;left:50%;width:600px;height:600px;transform:translate(-50%,-30%);background:radial-gradient(circle,rgba(255,255,255,0.015),transparent 70%);pointer-events:none}
 .module-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .module-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:var(--transition)}
-.module-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-2px)}
-.module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);opacity:0;transition:var(--transition)}
+.module-card:hover{border-color:rgba(200,169,110,0.25);transform:translateY(-2px)}
+.module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(200,169,110,0.4),transparent);opacity:0;transition:var(--transition)}
 .module-card:hover::before{opacity:1}
 .module-num{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--white);background:rgba(255,255,255,0.08);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
 .module-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
@@ -163,10 +167,8 @@ section{padding:100px 0}
 .security-features{display:flex;flex-direction:column;gap:24px}
 .sec-feature{display:flex;gap:16px}
 .sec-feature .sec-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.sec-feature:nth-child(1) .sec-icon{background:rgba(255,255,255,0.06)}
-.sec-feature:nth-child(2) .sec-icon{background:rgba(255,255,255,0.06)}
-.sec-feature:nth-child(3) .sec-icon{background:rgba(255,255,255,0.06)}
-.sec-feature:nth-child(4) .sec-icon{background:rgba(255,255,255,0.06)}
+.sec-feature:nth-child(1) .sec-icon{background:rgba(200,169,110,0.08)}
+.sec-feature:nth-child(2) .sec-icon{background:rgba(200,169,110,0.08)}
 .sec-feature h4{font-size:16px;font-weight:600;margin-bottom:4px}
 .sec-feature p{font-size:14px;color:var(--text-light);line-height:1.6}
 .security-visual{background:var(--navy-light);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:24px;min-height:560px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;overflow:hidden}
@@ -201,10 +203,10 @@ section{padding:100px 0}
 .usecases{background:var(--navy)}
 .usecase-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .usecase-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:40px 36px;transition:var(--transition);position:relative;overflow:hidden}
-.usecase-card:hover{border-color:rgba(255,255,255,0.18);transform:translateY(-3px)}
-.usecase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);opacity:0;transition:opacity 0.3s}
+.usecase-card:hover{border-color:rgba(200,169,110,0.25);transform:translateY(-3px)}
+.usecase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(200,169,110,0.3),transparent);opacity:0;transition:opacity 0.3s}
 .usecase-card:hover::before{opacity:1}
-.usecase-icon{width:72px;height:72px;border:1px solid rgba(255,255,255,0.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;background:rgba(255,255,255,0.02)}
+.usecase-icon{width:72px;height:72px;border:1px solid rgba(200,169,110,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;background:rgba(200,169,110,0.04)}
 .usecase-icon svg{width:40px;height:40px}
 .usecase-card h3{font-size:22px;font-weight:700;margin-bottom:12px;letter-spacing:-0.3px}
 .usecase-card p{font-size:14px;color:var(--text-light);line-height:1.7}
@@ -215,7 +217,7 @@ section{padding:100px 0}
 .news-list{display:flex;flex-direction:column;gap:0}
 .news-item{display:grid;grid-template-columns:160px 1fr auto;align-items:center;gap:24px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:var(--transition)}
 .news-item:first-child{border-top:1px solid rgba(255,255,255,0.06)}
-.news-item:hover{background:rgba(255,255,255,0.015);padding-left:12px;padding-right:12px;margin-left:-12px;margin-right:-12px;border-radius:8px}
+.news-item:hover{background:rgba(200,169,110,0.03);padding-left:12px;padding-right:12px;margin-left:-12px;margin-right:-12px;border-radius:8px}
 .news-source{font-size:13px;color:rgba(255,255,255,0.3);font-weight:500;white-space:nowrap}
 .news-title{font-size:17px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.5;transition:color 0.2s}
 .news-item:hover .news-title{color:#fff}
@@ -246,10 +248,10 @@ section{padding:100px 0}
 
 /* ============ CTA SECTION ============ */
 .cta-section{background:var(--navy-light);position:relative;overflow:hidden}
-.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,255,255,0.02),transparent 70%);pointer-events:none}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(200,169,110,0.04),transparent 70%);pointer-events:none}
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;position:relative;z-index:1}
 .cta-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:48px;transition:var(--transition)}
-.cta-card:hover{border-color:rgba(255,255,255,0.2)}
+.cta-card:hover{border-color:rgba(200,169,110,0.25)}
 .cta-card .cta-icon{font-size:32px;margin-bottom:16px}
 .cta-card h3{font-size:22px;font-weight:700;margin-bottom:8px}
 .cta-card p{font-size:15px;color:var(--text-light);margin-bottom:24px;line-height:1.6}
@@ -303,7 +305,7 @@ section{padding:100px 0}
 .scale-in.visible{opacity:1;transform:scale(1)}
 
 /* ============ HERO TYPING CURSOR ============ */
-.typing-cursor{display:inline-block;width:3px;height:1em;background:rgba(255,255,255,0.6);margin-left:4px;animation:blink 1s step-end infinite;vertical-align:text-bottom}
+.typing-cursor{display:inline-block;width:3px;height:1em;background:var(--gold);margin-left:4px;animation:blink 1s step-end infinite;vertical-align:text-bottom}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
 /* ============ ANIMATED COUNTER ============ */
@@ -311,7 +313,7 @@ section{padding:100px 0}
 
 /* ============ CARD GLOW ON HOVER ============ */
 .problem-card,.module-card,.cta-card{position:relative;overflow:hidden}
-.problem-card::after,.module-card::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:radial-gradient(circle,rgba(255,255,255,0.03),transparent 70%);border-radius:50%;transform:translate(-50%,-50%);transition:width 0.6s ease,height 0.6s ease;pointer-events:none;z-index:0}
+.problem-card::after,.module-card::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:radial-gradient(circle,rgba(200,169,110,0.04),transparent 70%);border-radius:50%;transform:translate(-50%,-50%);transition:width 0.6s ease,height 0.6s ease;pointer-events:none;z-index:0}
 .problem-card:hover::after,.module-card:hover::after{width:400px;height:400px}
 .problem-card>*,.module-card>*{position:relative;z-index:1}
 
@@ -333,8 +335,8 @@ section{padding:100px 0}
 @keyframes drawLine{to{stroke-dashoffset:0}}
 
 /* ============ PARALLAX SECTION DIVIDERS ============ */
-.section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08) 20%,rgba(255,255,255,0.08) 80%,transparent);margin:0 auto;max-width:800px;position:relative;overflow:hidden}
-.section-divider::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:rgba(255,255,255,0.3);border-radius:50%;box-shadow:0 0 8px rgba(255,255,255,0.15);z-index:2}
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(200,169,110,0.15) 20%,rgba(200,169,110,0.15) 80%,transparent);margin:0 auto;max-width:800px;position:relative;overflow:hidden}
+.section-divider::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:var(--gold);border-radius:50%;box-shadow:0 0 8px rgba(200,169,110,0.3);z-index:2}
 
 /* ============ MARQUEE FOR STATS ============ */
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -506,6 +508,203 @@ section{padding:100px 0}
   .cookie-btn{width:100%;text-align:center}
   .cookie-tabs{overflow-x:auto}
 }
+
+/* ============================================================
+   COMPREHENSIVE MOBILE RESPONSIVE — iPhone 14 Pro (393px),
+   Samsung Galaxy S23 (360px), Pixel 7 (412px), etc.
+   ============================================================ */
+
+/* ---- Tablet breakpoint ---- */
+@media(max-width:1024px){
+  .hero-grid{gap:40px}
+  .security-grid{gap:40px}
+  .market-highlight{gap:28px;padding:36px}
+  .cta-card{padding:36px}
+}
+
+/* ---- Mobile breakpoint (≤768px) ---- */
+@media(max-width:768px){
+  /* -- Global -- */
+  section{padding:64px 0}
+  .container{padding:0 20px}
+  .section-header{margin-bottom:40px}
+  .section-title{margin-bottom:12px}
+  .section-desc{font-size:15px}
+
+  /* -- Navigation (mobile drawer) -- */
+  .nav{padding:12px 0}
+  .nav-inner{padding:0 16px}
+  .nav-links{
+    display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.97);backdrop-filter:blur(20px);
+    flex-direction:column;align-items:center;justify-content:center;
+    gap:28px;z-index:9999;padding:20px
+  }
+  .nav-links.mobile-open{display:flex}
+  .nav-links a{font-size:20px;font-weight:600;color:rgba(255,255,255,0.85)}
+  .nav-actions .btn{display:none}
+  .nav-mobile-toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:22px}
+  .lang-switch{margin-right:4px}
+  .lang-switch button{padding:6px 10px;font-size:12px}
+
+  /* Close button inside mobile menu */
+  .nav-links .mobile-close{
+    position:absolute;top:20px;right:20px;
+    background:none;border:none;color:#fff;font-size:28px;cursor:pointer;
+    width:44px;height:44px;display:flex;align-items:center;justify-content:center
+  }
+
+  /* -- Hero -- */
+  .hero{min-height:auto;padding:100px 0 60px}
+  .hero-grid{grid-template-columns:1fr;gap:32px;text-align:center}
+  .hero p{margin-left:auto;margin-right:auto;font-size:15px;margin-bottom:28px}
+  .hero-ctas{justify-content:center}
+  .hero-ctas .btn-lg{padding:12px 24px;font-size:14px}
+  .hero-visual{order:-1;max-width:100%}
+  .hero-dashboard{padding:16px;border-radius:14px}
+  .dash-stats{grid-template-columns:repeat(3,1fr);gap:8px}
+  .dash-stat{padding:12px 8px}
+  .dash-stat .value{font-size:16px}
+  .dash-stat .label{font-size:10px}
+  .dash-chart{height:80px}
+
+  /* -- Stats bar -- */
+  .stats-bar{padding:32px 0}
+  .stats-bar .container{grid-template-columns:repeat(2,1fr);gap:20px}
+  .stat-item .stat-number{font-size:24px}
+  .stat-item .stat-label{font-size:12px}
+
+  /* -- Problem grid -- */
+  .problem-grid{grid-template-columns:1fr;gap:16px}
+  .problem-card{padding:24px}
+
+  /* -- Solution / Module grid -- */
+  .module-grid{grid-template-columns:1fr;gap:16px}
+  .module-card{padding:24px}
+
+  /* -- Security -- */
+  .security-grid{grid-template-columns:1fr;gap:32px}
+  .security-visual{min-height:360px;padding:16px}
+  .arch-svg-container{min-height:340px}
+
+  /* -- Market -- */
+  .market-highlight{grid-template-columns:1fr;padding:24px}
+  .market-stats{grid-template-columns:repeat(2,1fr);gap:12px}
+  .market-stat .ms-value{font-size:22px}
+  .market-players{grid-template-columns:repeat(2,1fr);gap:12px}
+  .player-card{padding:16px}
+
+  /* -- Use Cases -- */
+  .usecase-grid{grid-template-columns:1fr;gap:16px}
+  .usecase-card{padding:24px 20px}
+  .usecase-card h3{font-size:19px}
+
+  /* -- News -- */
+  .news-item{grid-template-columns:1fr;gap:6px;padding:16px 0}
+  .news-date{order:-1}
+
+  /* -- Partners -- */
+  .partner-logos{gap:24px}
+  .partner-logos .partner-logo{font-size:14px}
+
+  /* -- Team -- */
+  .team-grid{grid-template-columns:1fr;gap:16px}
+
+  /* -- CTA -- */
+  .cta-grid{grid-template-columns:1fr;gap:16px}
+  .cta-card{padding:28px 24px}
+
+  /* -- Footer -- */
+  .footer{padding:40px 0 24px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+  .footer-brand p{max-width:100%}
+  .footer-company-info{flex-direction:column;gap:20px !important}
+  .footer-bottom{flex-direction:column;gap:12px;align-items:flex-start}
+  .footer-bottom .disclaimer{max-width:100%}
+}
+
+/* ---- Small mobile (≤480px) — iPhone SE, small Android ---- */
+@media(max-width:480px){
+  .container{padding:0 16px}
+  section{padding:52px 0}
+
+  /* Hero */
+  .hero{padding:88px 0 48px}
+  .hero h1{font-size:28px;letter-spacing:-1px;line-height:1.15}
+  .hero p{font-size:14px;line-height:1.65}
+  .hero-badge{font-size:11px;padding:5px 12px}
+  .hero-ctas{flex-direction:column;gap:10px;align-items:center}
+  .hero-ctas .btn-lg{width:100%;justify-content:center;padding:14px 20px}
+  .hero-dashboard{padding:12px}
+  .dash-stat .value{font-size:14px}
+  .dash-stat .label{font-size:9px}
+  .dash-chart{height:60px}
+
+  /* Stats bar */
+  .stats-bar .container{gap:16px}
+  .stat-item .stat-number{font-size:20px}
+
+  /* Section headers */
+  .section-header{margin-bottom:32px}
+  .section-desc{font-size:14px}
+
+  /* Cards */
+  .problem-card{padding:20px}
+  .module-card{padding:20px}
+  .usecase-card{padding:20px 16px}
+  .cta-card{padding:24px 20px}
+
+  /* Security SVG */
+  .security-visual{min-height:300px;padding:12px}
+  .arch-svg-container{min-height:280px}
+
+  /* Use case SVG containers */
+  .usecase-card svg{max-width:100%;height:auto}
+
+  /* Market */
+  .market-stat .ms-value{font-size:18px}
+  .market-stat .ms-label{font-size:11px}
+  .market-stat{padding:14px 10px}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+
+  /* Floating orbs: tone down on small screens */
+  .floating-orb{opacity:0.3;transform:scale(0.6)}
+}
+
+/* ---- iPhone 14 Pro specific (393px viewport) ---- */
+@media(max-width:393px){
+  .hero h1{font-size:26px}
+  .dash-stats{grid-template-columns:repeat(3,1fr);gap:6px}
+  .dash-stat{padding:10px 6px}
+}
+
+/* ---- Very small (≤360px) — Galaxy S series, older iPhones ---- */
+@media(max-width:360px){
+  .container{padding:0 12px}
+  .hero h1{font-size:24px}
+  .hero p{font-size:13px}
+  .section-title{font-size:22px}
+  .problem-card{padding:16px}
+  .module-card{padding:16px}
+  .usecase-card{padding:16px 14px}
+}
+
+/* ---- Safe area support (iPhone notch/dynamic island) ---- */
+@supports(padding: env(safe-area-inset-top)){
+  .nav{padding-top:max(12px, env(safe-area-inset-top))}
+  .footer{padding-bottom:max(24px, env(safe-area-inset-bottom))}
+  .cookie-banner{padding-bottom:env(safe-area-inset-bottom)}
+}
+
+/* ---- Touch target sizing ---- */
+@media(hover:none) and (pointer:coarse){
+  .btn{min-height:44px}
+  .nav-links a{min-height:44px;display:flex;align-items:center}
+  .footer ul li a{min-height:40px;display:inline-flex;align-items:center}
+  .lang-switch button{min-height:36px}
+}
 </style>
 </head>
 <body>
@@ -566,15 +765,15 @@ section{padding:100px 0}
           </div>
           <div class="dash-stats">
             <div class="dash-stat">
-              <div class="label">Total Supply</div>
+              <div class="label" data-en="Total Supply" data-jp="総供給量">Total Supply</div>
               <div class="value" style="color:var(--blue-light)">¥12.8B</div>
             </div>
             <div class="dash-stat">
-              <div class="label">Reserve Ratio</div>
+              <div class="label" data-en="Reserve Ratio" data-jp="準備率">Reserve Ratio</div>
               <div class="value" style="color:var(--green)">100.2%</div>
             </div>
             <div class="dash-stat">
-              <div class="label">DeFi TVL</div>
+              <div class="label" data-en="DeFi TVL" data-jp="DeFi TVL">DeFi TVL</div>
               <div class="value" style="color:var(--purple)">¥2.8B</div>
             </div>
           </div>
@@ -619,15 +818,15 @@ section{padding:100px 0}
       <div class="stat-label" data-en="Global SC Market Cap (2025)" data-jp="グローバルSC時価総額（2025）">Global SC Market Cap (2025)</div>
     </div>
     <div class="stat-item fade-up d1">
-      <div class="stat-number" style="color:var(--cyan)">$1.9T+</div>
+      <div class="stat-number grad-text">$1.9T+</div>
       <div class="stat-label" data-en="Projected by 2030" data-jp="2030年予測">Projected by 2030</div>
     </div>
     <div class="stat-item fade-up d2">
-      <div class="stat-number" style="color:var(--purple)">¥300T+</div>
+      <div class="stat-number grad-text">¥300T+</div>
       <div class="stat-label" data-en="Japan Domestic Payment Market" data-jp="日本国内決済市場">Japan Domestic Payment Market</div>
     </div>
     <div class="stat-item fade-up d3">
-      <div class="stat-number" style="color:var(--green)">15+</div>
+      <div class="stat-number grad-text">15+</div>
       <div class="stat-label" data-en="Team Members" data-jp="チーム規模">Team Members</div>
     </div>
   </div>
@@ -1371,7 +1570,7 @@ section{padding:100px 0}
       <div class="news-item fade-up">
         <span class="news-source">AWAJ / JFIIP</span>
         <span class="news-title"><a href="https://x.com/AWAJ_official/status/2023896951557943304" target="_blank" rel="noopener" data-en="NexBridge Selected for JFIIP Best Innovative Startup Award — TOP 10" data-jp="NexBridge、JFIIP Best Innovative Startup Award TOP 10 に選出">NexBridge Selected for JFIIP Best Innovative Startup Award — TOP 10</a></span>
-        <span class="news-date">Feb 24, 2026</span>
+        <span class="news-date" data-en="Feb 24, 2026" data-jp="2026年2月24日">Feb 24, 2026</span>
       </div>
 
     </div>
@@ -1435,7 +1634,7 @@ section{padding:100px 0}
       <div class="security-visual fade-right d2">
         <div class="arch-title" data-en="Custody Architecture" data-jp="カストディアーキテクチャ">Custody Architecture</div>
         <div class="arch-svg-container">
-          <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:480px">
             <defs>
               <linearGradient id="gLayer" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.1"/><stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.03"/></linearGradient>
               <filter id="glowS"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -1607,8 +1806,22 @@ section{padding:100px 0}
         </ul>
       </div>
     </div>
+    <div class="footer-company-info" style="border-top:1px solid rgba(255,255,255,0.06);padding-top:24px;margin-bottom:24px;display:flex;flex-wrap:wrap;gap:40px;font-size:13px;color:var(--gray-500);line-height:1.8">
+      <div>
+        <span style="color:var(--gray-400);font-weight:600" data-en="Company Name" data-jp="商号">Company Name</span><br>
+        <span data-en="NexBridge Inc." data-jp="ネクスブリッジ株式会社">NexBridge Inc.</span>
+      </div>
+      <div>
+        <span style="color:var(--gray-400);font-weight:600" data-en="Representative Director" data-jp="代表取締役">Representative Director</span><br>
+        <span data-en="Li Jia" data-jp="李　嘉">李　嘉</span>
+      </div>
+      <div>
+        <span style="color:var(--gray-400);font-weight:600" data-en="Address" data-jp="所在地">Address</span><br>
+        <span data-en="Shibuya Dogenzaka Tokyu Bldg. 2F-C, 1-10-8 Dogenzaka, Shibuya-ku, Tokyo, Japan" data-jp="東京都渋谷区道玄坂１丁目１０番８号渋谷道玄坂東急ビル２Ｆ－Ｃ">東京都渋谷区道玄坂１丁目１０番８号渋谷道玄坂東急ビル２Ｆ－Ｃ</span>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <span>© 2026 NexBridge Inc. All rights reserved.</span>
+      <span data-en="© 2026 NexBridge Inc. All rights reserved." data-jp="© 2026 NexBridge Inc. All rights reserved.">© 2026 NexBridge Inc. All rights reserved.</span>
       <div class="disclaimer" data-en="Software from NexBridge Inc. This is not a regulated financial service. Information provided as-is without warranty." data-jp="ネクスブリッジ株式会社のソフトウェアです。規制された金融サービスではありません。情報は現状有姿で提供されます。">Software from NexBridge Inc. This is not a regulated financial service. Information provided as-is without warranty.</div>
     </div>
   </div>
@@ -1770,18 +1983,30 @@ function switchLang(lang) {
 }
 
 // ===== MOBILE MENU =====
+(function(){
+  const navLinks = document.querySelector('.nav-links');
+  // Inject close button into mobile menu
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'mobile-close';
+  closeBtn.innerHTML = '✕';
+  closeBtn.addEventListener('click', closeMobileMenu);
+  navLinks.insertBefore(closeBtn, navLinks.firstChild);
+
+  // Close menu when clicking a nav link
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMobileMenu);
+  });
+})();
+
 function toggleMobileMenu() {
-  const links = document.querySelector('.nav-links');
-  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
-  links.style.position = 'absolute';
-  links.style.top = '60px';
-  links.style.left = '0';
-  links.style.right = '0';
-  links.style.background = 'rgba(0,0,0,0.98)';
-  links.style.flexDirection = 'column';
-  links.style.padding = '20px';
-  links.style.gap = '16px';
-  links.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.toggle('mobile-open');
+  document.body.style.overflow = navLinks.classList.contains('mobile-open') ? 'hidden' : '';
+}
+function closeMobileMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  navLinks.classList.remove('mobile-open');
+  document.body.style.overflow = '';
 }
 
 // ===== SMOOTH SCROLL =====
@@ -1875,14 +2100,14 @@ document.querySelectorAll('.section-divider').forEach(div => {
   <div class="cookie-banner-inner">
     <!-- Tabs -->
     <div class="cookie-tabs">
-      <button class="cookie-tab active" data-tab="consent">Consent</button>
-      <button class="cookie-tab" data-tab="details">Details</button>
-      <button class="cookie-tab" data-tab="about">About</button>
+      <button class="cookie-tab active" data-tab="consent" data-en="Consent" data-jp="同意">Consent</button>
+      <button class="cookie-tab" data-tab="details" data-en="Details" data-jp="詳細">Details</button>
+      <button class="cookie-tab" data-tab="about" data-en="About" data-jp="概要">About</button>
     </div>
 
     <!-- Consent Tab -->
     <div class="cookie-tab-content active" id="tab-consent">
-      <p class="cookie-consent-text">
+      <p class="cookie-consent-text" data-en="This website uses cookies to enhance user experience, analyze site traffic, and assist with marketing efforts. Some cookies are necessary for the website to function properly, while others help us understand how you interact with the site. You can choose which categories of cookies to allow below. For more information, please review our <a href='https://www.cookiebot.com/en/privacy-policy/' target='_blank' rel='noopener'>Cookie Policy</a>." data-jp="本ウェブサイトでは、ユーザー体験の向上、サイトトラフィックの分析、マーケティング活動の支援のためにCookieを使用しています。一部のCookieはウェブサイトの正常な動作に必要であり、その他のCookieはお客様のサイト利用状況を理解するために使用されます。以下のカテゴリーから許可するCookieを選択できます。詳しくは<a href='https://www.cookiebot.com/en/privacy-policy/' target='_blank' rel='noopener'>Cookieポリシー</a>をご覧ください。">
         This website uses cookies to enhance user experience, analyze site traffic, and assist with marketing efforts. Some cookies are necessary for the website to function properly, while others help us understand how you interact with the site. You can choose which categories of cookies to allow below. For more information, please review our
         <a href="https://www.cookiebot.com/en/privacy-policy/" target="_blank" rel="noopener">Cookie Policy</a>.
       </p>
@@ -1895,7 +2120,7 @@ document.querySelectorAll('.section-divider').forEach(div => {
         <div class="cookie-category-header" onclick="toggleCookieCategory('cat-necessary')">
           <div class="cookie-category-left">
             <span class="cookie-category-arrow">▼</span>
-            <span class="cookie-category-name">Necessary <span class="cookie-category-count">(6)</span></span>
+            <span class="cookie-category-name" data-en="Necessary (6)" data-jp="必須 (6)">Necessary <span class="cookie-category-count">(6)</span></span>
           </div>
           <label class="cookie-toggle">
             <input type="checkbox" checked disabled>
@@ -1925,7 +2150,7 @@ document.querySelectorAll('.section-divider').forEach(div => {
         <div class="cookie-category-header" onclick="toggleCookieCategory('cat-preferences')">
           <div class="cookie-category-left">
             <span class="cookie-category-arrow">▼</span>
-            <span class="cookie-category-name">Preferences <span class="cookie-category-count">(0)</span></span>
+            <span class="cookie-category-name" data-en="Preferences (0)" data-jp="設定 (0)">Preferences <span class="cookie-category-count">(0)</span></span>
           </div>
           <label class="cookie-toggle">
             <input type="checkbox" id="toggle-preferences">
@@ -1944,7 +2169,7 @@ document.querySelectorAll('.section-divider').forEach(div => {
         <div class="cookie-category-header" onclick="toggleCookieCategory('cat-statistics')">
           <div class="cookie-category-left">
             <span class="cookie-category-arrow">▼</span>
-            <span class="cookie-category-name">Statistics <span class="cookie-category-count">(7)</span></span>
+            <span class="cookie-category-name" data-en="Statistics (7)" data-jp="統計 (7)">Statistics <span class="cookie-category-count">(7)</span></span>
           </div>
           <label class="cookie-toggle">
             <input type="checkbox" id="toggle-statistics">
@@ -1974,7 +2199,7 @@ document.querySelectorAll('.section-divider').forEach(div => {
         <div class="cookie-category-header" onclick="toggleCookieCategory('cat-marketing')">
           <div class="cookie-category-left">
             <span class="cookie-category-arrow">▼</span>
-            <span class="cookie-category-name">Marketing <span class="cookie-category-count">(1)</span></span>
+            <span class="cookie-category-name" data-en="Marketing (1)" data-jp="マーケティング (1)">Marketing <span class="cookie-category-count">(1)</span></span>
           </div>
           <label class="cookie-toggle">
             <input type="checkbox" id="toggle-marketing">
@@ -1995,7 +2220,7 @@ document.querySelectorAll('.section-divider').forEach(div => {
         <div class="cookie-category-header" onclick="toggleCookieCategory('cat-unclassified')">
           <div class="cookie-category-left">
             <span class="cookie-category-arrow">▼</span>
-            <span class="cookie-category-name">Unclassified <span class="cookie-category-count">(1)</span></span>
+            <span class="cookie-category-name" data-en="Unclassified (1)" data-jp="未分類 (1)">Unclassified <span class="cookie-category-count">(1)</span></span>
           </div>
           <label class="cookie-toggle">
             <input type="checkbox" id="toggle-unclassified">
@@ -2014,7 +2239,7 @@ document.querySelectorAll('.section-divider').forEach(div => {
 
     <!-- About Tab -->
     <div class="cookie-tab-content" id="tab-about">
-      <div class="cookie-about-text">
+      <div class="cookie-about-text" data-en="<p style='margin-bottom:14px'>This website uses cookies. Cookies are small text files that are placed on your computer by websites that you visit. They are widely used to make websites work more efficiently, as well as to provide information to the owners of the site.</p><p style='margin-bottom:14px'>We use cookies to personalise content, to provide social media features, and to analyse our traffic. We also share information about your use of our site with our analytics and advertising partners.</p><p>Cookie consent is managed by <a href='https://www.cookiebot.com/en/privacy-policy/' target='_blank' rel='noopener'>Cookiebot</a>. You can change or withdraw your consent at any time by clicking the cookie icon in the bottom left corner of the website.</p>" data-jp="<p style='margin-bottom:14px'>本ウェブサイトではCookieを使用しています。Cookieとは、訪問したウェブサイトによってお使いのコンピューターに保存される小さなテキストファイルです。ウェブサイトの効率的な運営や、サイト所有者への情報提供に広く利用されています。</p><p style='margin-bottom:14px'>当社では、コンテンツのパーソナライズ、ソーシャルメディア機能の提供、トラフィックの分析のためにCookieを使用しています。また、サイトの利用状況に関する情報を分析・広告パートナーと共有しています。</p><p>Cookieの同意は<a href='https://www.cookiebot.com/en/privacy-policy/' target='_blank' rel='noopener'>Cookiebot</a>により管理されています。ウェブサイト左下のCookieアイコンをクリックすることで、いつでも同意の変更・撤回が可能です。</p>">
         <p style="margin-bottom:14px">This website uses cookies. Cookies are small text files that are placed on your computer by websites that you visit. They are widely used to make websites work more efficiently, as well as to provide information to the owners of the site.</p>
         <p style="margin-bottom:14px">We use cookies to personalise content, to provide social media features, and to analyse our traffic. We also share information about your use of our site with our analytics and advertising partners.</p>
         <p>Cookie consent is managed by <a href="https://www.cookiebot.com/en/privacy-policy/" target="_blank" rel="noopener">Cookiebot</a>. You can change or withdraw your consent at any time by clicking the cookie icon in the bottom left corner of the website.</p>
@@ -2023,9 +2248,9 @@ document.querySelectorAll('.section-divider').forEach(div => {
 
     <!-- Action Buttons -->
     <div class="cookie-actions">
-      <button class="cookie-btn cookie-btn-deny" onclick="cookieDenyAll()">Deny</button>
-      <button class="cookie-btn cookie-btn-allow-selection" onclick="cookieAllowSelection()">Allow selection</button>
-      <button class="cookie-btn cookie-btn-allow-all" onclick="cookieAllowAll()">Allow all</button>
+      <button class="cookie-btn cookie-btn-deny" onclick="cookieDenyAll()" data-en="Deny" data-jp="拒否">Deny</button>
+      <button class="cookie-btn cookie-btn-allow-selection" onclick="cookieAllowSelection()" data-en="Allow selection" data-jp="選択を許可">Allow selection</button>
+      <button class="cookie-btn cookie-btn-allow-all" onclick="cookieAllowAll()" data-en="Allow all" data-jp="すべて許可">Allow all</button>
     </div>
 
     <!-- Powered by -->
