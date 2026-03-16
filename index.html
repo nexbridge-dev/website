@@ -1,111 +1,2108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NexBridge</title>
-    <link rel="icon" href="./images/favicon.svg" />
-    <link rel="stylesheet" href="./css/satoshi.css" />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <link rel="stylesheet" href="./css/styles.lg.css" />
-    <link rel="stylesheet" href="./css/styles.md.css" />
-    <link rel="stylesheet" href="./css/styles.sm.css" />
-  </head>
-  <body>
-    <header class="header">
-      <img src="./images/logo.png" class="logo" alt="logo" />
-      <nav class="navbar">
-        <a href="/" class="active">English</a>
-        <span>/</span>
-        <a href="/jp">日本語</a>
-      </nav>
-    </header>
-    <div class="main container">
-      <div class="banner">
-        <div class="light"></div>
-        <h1>Enterprise Stablecoin Infrastructure</h1>
-        <p>An infrastructure layer for the full stablecoin lifecycle—from design and issuance to distribution, use, and management.</p>
-        <a href="#">Read the litepaper</a>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexBridge — Enterprise Stablecoin Infrastructure</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#000000;
+  --navy-light:#060606;
+  --navy-mid:#0e0e0e;
+  --blue:#FFFFFF;
+  --blue-light:#D4D4D4;
+  --cyan:#A3A3A3;
+  --purple:#E5E5E5;
+  --green:#FFFFFF;
+  --amber:#A3A3A3;
+  --accent:#C8C8C8;
+  --accent-dim:rgba(255,255,255,0.12);
+  --white:#FFFFFF;
+  --gray-50:#F9FAFB;
+  --gray-100:#F3F4F6;
+  --gray-200:#E5E7EB;
+  --gray-300:#D1D5DB;
+  --gray-400:#8A8A8A;
+  --gray-500:#5A5A5A;
+  --gray-600:#3A3A3A;
+  --gray-700:#2A2A2A;
+  --text-light:rgba(255,255,255,0.6);
+  --text-lighter:rgba(255,255,255,0.4);
+  --grad-blue:linear-gradient(135deg,#FFFFFF,#A0A0A0);
+  --grad-cyan:linear-gradient(135deg,#D4D4D4,#FFFFFF);
+  --grad-hero:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,255,255,0.04),transparent 60%);
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --max-w:1200px;
+  --transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:var(--navy);color:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit;transition:var(--transition)}
+img{max-width:100%;display:block}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.grad-text{background:linear-gradient(135deg,#FFFFFF,#888888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* ============ NAVIGATION ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:var(--transition)}
+.nav.scrolled{background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:0;font-weight:800;font-size:20px;letter-spacing:-0.5px}
+.nav-logo .logo-img{height:32px;width:auto}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text-light);transition:var(--transition)}
+.nav-links a:hover{color:var(--white)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.lang-switch{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,0.06);border-radius:8px;padding:2px;font-size:13px}
+.lang-switch button{background:none;border:none;color:var(--text-lighter);padding:6px 12px;border-radius:6px;cursor:pointer;font-family:var(--font);font-weight:500;transition:var(--transition)}
+.lang-switch button.active{background:rgba(255,255,255,0.1);color:var(--white)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:var(--transition);border:none;font-family:var(--font)}
+.btn-primary{background:#FFFFFF;color:#000000}
+.btn-primary:hover{background:#E5E5E5;transform:translateY(-1px);box-shadow:0 8px 25px rgba(255,255,255,0.1)}
+.btn-ghost{background:rgba(255,255,255,0.06);color:var(--white);border:1px solid rgba(255,255,255,0.1)}
+.btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2)}
+.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}
+.btn-outline:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.4)}
+.btn-lg{padding:14px 32px;font-size:16px;border-radius:12px}
+.btn-sm{padding:8px 16px;font-size:13px;border-radius:8px}
+
+/* Mobile menu */
+.nav-mobile-toggle{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px}
+@media(max-width:768px){
+  .nav-links,.nav-actions .btn{display:none}
+  .nav-mobile-toggle{display:block}
+}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 0 100px;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:var(--grad-hero);pointer-events:none}
+.hero::after{content:'';position:absolute;top:50%;left:50%;width:800px;height:800px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,0.02),transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:100px;font-size:13px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:24px}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:#FFFFFF;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(36px,5vw,56px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:20px}
+.hero p{font-size:18px;color:var(--text-light);line-height:1.7;margin-bottom:36px;max-width:520px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-visual{position:relative}
+.hero-dashboard{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:24px;box-shadow:0 40px 80px rgba(0,0,0,0.6)}
+.hero-dashboard-header{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.hero-dashboard-header .dots{display:flex;gap:6px}
+.hero-dashboard-header .dots span{width:10px;height:10px;border-radius:50%}
+.hero-dashboard-header .dots span:nth-child(1){background:#666}
+.hero-dashboard-header .dots span:nth-child(2){background:#888}
+.hero-dashboard-header .dots span:nth-child(3){background:#AAA}
+.dash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.dash-stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:16px}
+.dash-stat .label{font-size:11px;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.dash-stat .value{font-family:var(--mono);font-size:20px;font-weight:700}
+.dash-chart{height:120px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;position:relative;overflow:hidden}
+.dash-chart svg{width:100%;height:100%}
+
+@media(max-width:768px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero p{margin-left:auto;margin-right:auto}
+  .hero-ctas{justify-content:center}
+  .hero-visual{order:-1;max-width:500px;margin:0 auto}
+}
+
+/* ============ STATS BAR ============ */
+.stats-bar{border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:48px 0;background:rgba(255,255,255,0.01)}
+.stats-bar .container{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.stat-item .stat-number{font-family:var(--mono);font-size:clamp(28px,3vw,40px);font-weight:800;margin-bottom:4px}
+.stat-item .stat-label{font-size:14px;color:var(--gray-400)}
+@media(max-width:768px){.stats-bar .container{grid-template-columns:repeat(2,1fr);gap:24px}}
+
+/* ============ SECTIONS SHARED ============ */
+section{padding:100px 0}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.5);margin-bottom:16px}
+.section-label .line{width:24px;height:1px;background:rgba(255,255,255,0.3);border-radius:1px}
+.section-title{font-size:clamp(28px,3.5vw,44px);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:16px}
+.section-desc{font-size:17px;color:var(--text-light);max-width:600px;line-height:1.7}
+.section-header{margin-bottom:60px}
+.section-header.center{text-align:center}
+.section-header.center .section-desc{margin:0 auto}
+
+/* ============ PROBLEMS ============ */
+.problems{background:var(--navy)}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.problem-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px;transition:var(--transition)}
+.problem-card:hover{border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.02);transform:translateY(-4px)}
+.problem-card .icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px}
+.problem-card:nth-child(1) .icon{background:rgba(255,255,255,0.06)}
+.problem-card:nth-child(2) .icon{background:rgba(255,255,255,0.06)}
+.problem-card:nth-child(3) .icon{background:rgba(255,255,255,0.06)}
+.problem-card h3{font-size:18px;font-weight:700;margin-bottom:10px}
+.problem-card p{font-size:14px;color:var(--text-light);line-height:1.6}
+@media(max-width:768px){.problem-grid{grid-template-columns:1fr}}
+
+/* ============ SOLUTION ============ */
+.solution{background:var(--navy-light);position:relative}
+.solution::before{content:'';position:absolute;top:0;left:50%;width:600px;height:600px;transform:translate(-50%,-30%);background:radial-gradient(circle,rgba(255,255,255,0.015),transparent 70%);pointer-events:none}
+.module-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.module-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:var(--transition)}
+.module-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-2px)}
+.module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);opacity:0;transition:var(--transition)}
+.module-card:hover::before{opacity:1}
+.module-num{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--white);background:rgba(255,255,255,0.08);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.module-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.module-card p{font-size:14px;color:var(--text-light);margin-bottom:16px;line-height:1.6}
+.module-features{display:flex;flex-direction:column;gap:6px}
+.module-features span{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-400)}
+.module-features span::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.3);flex-shrink:0}
+@media(max-width:768px){.module-grid{grid-template-columns:1fr}}
+
+/* ============ SECURITY ============ */
+.security{background:var(--navy)}
+.security-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.security-features{display:flex;flex-direction:column;gap:24px}
+.sec-feature{display:flex;gap:16px}
+.sec-feature .sec-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.sec-feature:nth-child(1) .sec-icon{background:rgba(255,255,255,0.06)}
+.sec-feature:nth-child(2) .sec-icon{background:rgba(255,255,255,0.06)}
+.sec-feature:nth-child(3) .sec-icon{background:rgba(255,255,255,0.06)}
+.sec-feature:nth-child(4) .sec-icon{background:rgba(255,255,255,0.06)}
+.sec-feature h4{font-size:16px;font-weight:600;margin-bottom:4px}
+.sec-feature p{font-size:14px;color:var(--text-light);line-height:1.6}
+.security-visual{background:var(--navy-light);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:24px;min-height:560px;display:flex;flex-direction:column;justify-content:flex-start;position:relative;overflow:hidden}
+.security-visual::before{content:'';position:absolute;top:50%;left:50%;width:400px;height:400px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,0.015),transparent 70%);pointer-events:none}
+.arch-title{font-size:12px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px}
+.arch-svg-container{position:relative;flex:1;min-height:480px}
+.arch-svg-container svg{width:100%;height:100%}
+@media(max-width:768px){.security-grid{grid-template-columns:1fr}}
+
+/* ============ MARKET ============ */
+.market{background:var(--navy-light)}
+.market-highlight{display:grid;grid-template-columns:1fr 1fr;gap:40px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:20px;padding:48px;margin-bottom:40px}
+.market-highlight .mh-left h3{font-size:clamp(22px,2.5vw,32px);font-weight:800;margin-bottom:12px}
+.market-highlight .mh-left p{font-size:15px;color:var(--text-light);line-height:1.7}
+.market-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.market-stat{text-align:center;padding:20px;background:rgba(255,255,255,0.03);border-radius:12px;border:1px solid rgba(255,255,255,0.06)}
+.market-stat .ms-value{font-family:var(--mono);font-size:28px;font-weight:800;margin-bottom:4px}
+.market-stat .ms-label{font-size:12px;color:var(--gray-400)}
+.market-stat:nth-child(1) .ms-value{color:var(--white)}
+.market-stat:nth-child(2) .ms-value{color:var(--white)}
+.market-stat:nth-child(3) .ms-value{color:var(--white)}
+.market-stat:nth-child(4) .ms-value{color:var(--white)}
+.market-players{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.player-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;text-align:center;transition:var(--transition)}
+.player-card:hover{border-color:rgba(255,255,255,0.1)}
+.player-card .player-name{font-size:14px;font-weight:600;margin-bottom:4px}
+.player-card .player-desc{font-size:12px;color:var(--gray-500)}
+@media(max-width:768px){.market-highlight{grid-template-columns:1fr;padding:28px}.market-players{grid-template-columns:repeat(2,1fr)}}
+
+
+/* ============ USE CASES ============ */
+.usecases{background:var(--navy)}
+.usecase-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.usecase-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:40px 36px;transition:var(--transition);position:relative;overflow:hidden}
+.usecase-card:hover{border-color:rgba(255,255,255,0.18);transform:translateY(-3px)}
+.usecase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);opacity:0;transition:opacity 0.3s}
+.usecase-card:hover::before{opacity:1}
+.usecase-icon{width:72px;height:72px;border:1px solid rgba(255,255,255,0.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;background:rgba(255,255,255,0.02)}
+.usecase-icon svg{width:40px;height:40px}
+.usecase-card h3{font-size:22px;font-weight:700;margin-bottom:12px;letter-spacing:-0.3px}
+.usecase-card p{font-size:14px;color:var(--text-light);line-height:1.7}
+@media(max-width:768px){.usecase-grid{grid-template-columns:1fr}.usecase-card{padding:28px 24px}}
+
+/* ============ NEWS ============ */
+.news{background:var(--navy-light)}
+.news-list{display:flex;flex-direction:column;gap:0}
+.news-item{display:grid;grid-template-columns:160px 1fr auto;align-items:center;gap:24px;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:var(--transition)}
+.news-item:first-child{border-top:1px solid rgba(255,255,255,0.06)}
+.news-item:hover{background:rgba(255,255,255,0.015);padding-left:12px;padding-right:12px;margin-left:-12px;margin-right:-12px;border-radius:8px}
+.news-source{font-size:13px;color:rgba(255,255,255,0.3);font-weight:500;white-space:nowrap}
+.news-title{font-size:17px;font-weight:600;color:rgba(255,255,255,0.85);line-height:1.5;transition:color 0.2s}
+.news-item:hover .news-title{color:#fff}
+.news-title a{color:inherit;text-decoration:none}
+.news-title a:hover{text-decoration:underline;text-underline-offset:3px}
+.news-date{font-size:13px;color:rgba(255,255,255,0.25);font-weight:400;white-space:nowrap;font-family:var(--mono)}
+@media(max-width:768px){
+  .news-item{grid-template-columns:1fr;gap:6px;padding:20px 0}
+  .news-date{order:-1}
+}
+
+/* ============ PARTNERS ============ */
+.partners{background:var(--navy-light);border-top:1px solid rgba(255,255,255,0.04)}
+.partner-logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;opacity:0.5}
+.partner-logos .partner-logo{font-size:18px;font-weight:700;color:var(--gray-400);letter-spacing:-0.5px;white-space:nowrap}
+@media(max-width:768px){.partner-logos{gap:28px}.partner-logos .partner-logo{font-size:15px}}
+
+/* ============ TEAM ============ */
+.team{background:var(--navy)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.team-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px;text-align:center;transition:var(--transition)}
+.team-card:hover{border-color:rgba(255,255,255,0.1);transform:translateY(-4px)}
+.team-avatar{width:80px;height:80px;border-radius:50%;background:var(--grad-blue);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700}
+.team-card h3{font-size:18px;font-weight:700;margin-bottom:2px}
+.team-card .role{font-size:13px;color:var(--blue-light);font-weight:600;margin-bottom:12px}
+.team-card .bio{font-size:13px;color:var(--text-light);line-height:1.6}
+@media(max-width:768px){.team-grid{grid-template-columns:1fr}}
+
+/* ============ CTA SECTION ============ */
+.cta-section{background:var(--navy-light);position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,255,255,0.02),transparent 70%);pointer-events:none}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;position:relative;z-index:1}
+.cta-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:48px;transition:var(--transition)}
+.cta-card:hover{border-color:rgba(255,255,255,0.2)}
+.cta-card .cta-icon{font-size:32px;margin-bottom:16px}
+.cta-card h3{font-size:22px;font-weight:700;margin-bottom:8px}
+.cta-card p{font-size:15px;color:var(--text-light);margin-bottom:24px;line-height:1.6}
+@media(max-width:768px){.cta-grid{grid-template-columns:1fr}}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);padding:60px 0 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-brand .footer-logo{display:flex;align-items:center;gap:0;font-weight:800;font-size:18px;margin-bottom:12px}
+.footer-brand .footer-logo .logo-img{height:26px;width:auto}
+.footer-brand p{font-size:14px;color:var(--gray-500);line-height:1.6;max-width:280px}
+.footer h4{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--gray-400);margin-bottom:16px}
+.footer ul{list-style:none}
+.footer ul li{margin-bottom:10px}
+.footer ul li a{font-size:14px;color:var(--gray-500);transition:var(--transition)}
+.footer ul li a:hover{color:var(--white)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);font-size:13px;color:var(--gray-600)}
+.footer-bottom .disclaimer{max-width:600px;font-size:11px;line-height:1.5}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:24px}}
+
+/* ============ ANIMATIONS ============ */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:0.1s}
+.d2{transition-delay:0.2s}
+.d3{transition-delay:0.3s}
+.d4{transition-delay:0.4s}
+
+/* ============ PARTICLE CANVAS ============ */
+#particleCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.6}
+
+/* ============ FLOATING ORBS ============ */
+.floating-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:floatOrb 8s ease-in-out infinite}
+.orb-1{width:400px;height:400px;background:rgba(255,255,255,0.02);top:10%;left:-5%;animation-delay:0s}
+.orb-2{width:300px;height:300px;background:rgba(255,255,255,0.015);top:60%;right:-5%;animation-delay:3s}
+.orb-3{width:350px;height:350px;background:rgba(255,255,255,0.012);top:30%;right:20%;animation-delay:5s}
+@keyframes floatOrb{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(20px,-30px) scale(1.05)}50%{transform:translate(-15px,20px) scale(0.95)}75%{transform:translate(25px,10px) scale(1.02)}}
+
+/* ============ GLOW EFFECTS ============ */
+.glow-line{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);animation:glowMove 4s linear infinite}
+@keyframes glowMove{0%{left:-30%;width:30%}100%{left:100%;width:30%}}
+
+/* ============ ENHANCED ANIMATIONS ============ */
+.fade-up{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-left{opacity:0;transform:translateX(-40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.fade-left.visible{opacity:1;transform:translateX(0)}
+.fade-right{opacity:0;transform:translateX(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+.fade-right.visible{opacity:1;transform:translateX(0)}
+.scale-in{opacity:0;transform:scale(0.9);transition:opacity 0.8s ease,transform 0.8s ease}
+.scale-in.visible{opacity:1;transform:scale(1)}
+
+/* ============ HERO TYPING CURSOR ============ */
+.typing-cursor{display:inline-block;width:3px;height:1em;background:rgba(255,255,255,0.6);margin-left:4px;animation:blink 1s step-end infinite;vertical-align:text-bottom}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ============ ANIMATED COUNTER ============ */
+.counter-animated{display:inline-block}
+
+/* ============ CARD GLOW ON HOVER ============ */
+.problem-card,.module-card,.cta-card{position:relative;overflow:hidden}
+.problem-card::after,.module-card::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:radial-gradient(circle,rgba(255,255,255,0.03),transparent 70%);border-radius:50%;transform:translate(-50%,-50%);transition:width 0.6s ease,height 0.6s ease;pointer-events:none;z-index:0}
+.problem-card:hover::after,.module-card:hover::after{width:400px;height:400px}
+.problem-card>*,.module-card>*{position:relative;z-index:1}
+
+/* ============ ANIMATED GRADIENT BORDER ============ */
+.hero-dashboard{position:relative;overflow:hidden}
+.hero-dashboard::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:conic-gradient(from 0deg,transparent,rgba(255,255,255,0.15),transparent,rgba(255,255,255,0.08),transparent);border-radius:22px;animation:rotateBorder 6s linear infinite;z-index:-1}
+@keyframes rotateBorder{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+/* ============ FLOWING LINES ============ */
+.flow-line{position:absolute;width:200%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.1) 30%,rgba(255,255,255,0.1) 70%,transparent 100%);animation:flowLine 3s linear infinite;pointer-events:none}
+@keyframes flowLine{0%{transform:translateX(-50%)}100%{transform:translateX(0%)}}
+
+/* ============ NETWORK NODES ANIMATION ============ */
+.network-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.network-bg svg{width:100%;height:100%;opacity:0.15}
+.node-pulse{animation:nodePulse 3s ease-in-out infinite}
+@keyframes nodePulse{0%,100%{r:3;opacity:0.6}50%{r:5;opacity:1}}
+.line-draw{stroke-dasharray:200;stroke-dashoffset:200;animation:drawLine 2s ease forwards}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+
+/* ============ PARALLAX SECTION DIVIDERS ============ */
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08) 20%,rgba(255,255,255,0.08) 80%,transparent);margin:0 auto;max-width:800px;position:relative;overflow:hidden}
+.section-divider::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:rgba(255,255,255,0.3);border-radius:50%;box-shadow:0 0 8px rgba(255,255,255,0.15);z-index:2}
+
+/* ============ MARQUEE FOR STATS ============ */
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* Counter animation */
+@keyframes countUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ============ MODULE DIAGRAMS ============ */
+.module-diagram{margin-top:20px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.05);border-radius:12px;padding:20px;position:relative;overflow:hidden}
+
+/* Issuance Flow Diagram */
+.issuance-flow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.flow-node{display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0}
+.flow-node-circle{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative}
+.flow-node-circle svg{width:20px;height:20px}
+.flow-node-label{font-size:10px;color:var(--gray-400);text-align:center;white-space:nowrap}
+.flow-arrow{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.15),rgba(255,255,255,0.25));position:relative;min-width:20px}
+.flow-arrow::after{content:'';position:absolute;right:-1px;top:-3px;width:0;height:0;border-left:6px solid rgba(255,255,255,0.3);border-top:4px solid transparent;border-bottom:4px solid transparent}
+.flow-pulse{position:absolute;top:-2px;width:6px;height:6px;border-radius:50%;background:#FFFFFF;animation:flowPulseMove 2s ease-in-out infinite;box-shadow:0 0 8px rgba(255,255,255,0.3)}
+@keyframes flowPulseMove{0%{left:0;opacity:1}80%{left:calc(100% - 6px);opacity:1}100%{left:calc(100% - 6px);opacity:0}}
+
+/* Custody Shield Diagram */
+.custody-shield{display:flex;justify-content:center;align-items:center;height:120px;position:relative}
+.shield-ring{position:absolute;border-radius:50%;border:1.5px solid;animation:shieldPulse 3s ease-in-out infinite}
+.shield-ring-1{width:100px;height:100px;border-color:rgba(255,255,255,0.15);animation-delay:0s}
+.shield-ring-2{width:72px;height:72px;border-color:rgba(255,255,255,0.2);animation-delay:0.5s}
+.shield-ring-3{width:44px;height:44px;border-color:rgba(255,255,255,0.3);animation-delay:1s}
+.shield-core{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 0 20px rgba(255,255,255,0.15)}
+.shield-core svg{width:12px;height:12px}
+@keyframes shieldPulse{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.08);opacity:1}}
+.shield-labels{position:absolute;width:100%;height:100%;top:0;left:0}
+.shield-label{position:absolute;font-size:9px;color:var(--gray-500);white-space:nowrap}
+.shield-label-hsm{top:8px;right:10px}
+.shield-label-msig{bottom:8px;left:10px}
+.shield-label-policy{top:50%;right:5px;transform:translateY(-50%)}
+
+/* Transfer Network Diagram */
+.transfer-net{position:relative;height:120px}
+.transfer-node{position:absolute;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1.5px solid}
+.transfer-node svg{width:14px;height:14px}
+.tn-1{top:10px;left:10%;border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04)}
+.tn-2{top:50px;left:42%;border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04)}
+.tn-3{top:10px;right:10%;border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04)}
+.tn-4{top:80px;left:20%;border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04)}
+.tn-5{top:80px;right:20%;border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.04)}
+.transfer-line{position:absolute;height:1px;background:rgba(255,255,255,0.06);transform-origin:left center}
+.transfer-dot{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.7);box-shadow:0 0 6px rgba(255,255,255,0.3);animation:transferMove 3s linear infinite}
+@keyframes transferMove{0%{offset-distance:0%}100%{offset-distance:100%}}
+
+/* DeFi Connection Graph */
+.defi-graph{position:relative;height:120px;display:flex;align-items:center;justify-content:center}
+.defi-hub{width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;position:relative;z-index:2}
+.defi-hub svg{width:20px;height:20px}
+.defi-spoke{position:absolute;display:flex;align-items:center;justify-content:center}
+.defi-protocol{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--gray-400)}
+.defi-line{position:absolute;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.08),rgba(255,255,255,0.12));transform-origin:left center}
+.defi-orbit{position:absolute;width:200px;height:200px;border:1px dashed rgba(255,255,255,0.06);border-radius:50%;animation:defiRotate 20s linear infinite}
+@keyframes defiRotate{0%{transform:translate(-50%,-50%) rotate(0deg)}100%{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* Architecture Data Flow */
+.arch-layer{position:relative;overflow:hidden}
+.arch-data-flow{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:hidden}
+.arch-flow-dot{position:absolute;width:4px;height:4px;border-radius:50%;animation:archFlowDot 2s ease-in-out infinite}
+@keyframes archFlowDot{0%{left:-4px;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:100%;opacity:0}}
+
+/* Hero Live Feed */
+.dash-feed{margin-top:12px;display:flex;flex-direction:column;gap:6px;max-height:80px;overflow:hidden}
+.feed-item{display:flex;align-items:center;gap:8px;padding:6px 10px;background:rgba(255,255,255,0.02);border-radius:8px;font-size:11px;animation:feedSlide 0.5s ease}
+.feed-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.feed-time{color:var(--gray-600);margin-left:auto;font-family:var(--mono);font-size:10px}
+@keyframes feedSlide{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Comparison Radar */
+
+/* Animated arch connectors */
+.arch-connector{position:relative;overflow:hidden}
+.arch-connector::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.5);animation:connectorPulse 1.5s ease-in-out infinite;box-shadow:0 0 8px rgba(255,255,255,0.2)}
+@keyframes connectorPulse{0%{top:0;opacity:0}50%{opacity:1}100%{top:100%;opacity:0}}
+
+/* Problem animated icons */
+.problem-icon-anim{position:relative}
+.icon-ring{position:absolute;inset:-4px;border-radius:16px;border:1px solid;animation:iconRing 3s ease-in-out infinite}
+@keyframes iconRing{0%,100%{opacity:0.3;transform:scale(1)}50%{opacity:0.8;transform:scale(1.1)}}
+
+/* ============ COOKIE CONSENT BANNER ============ */
+.cookie-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.cookie-overlay.active{opacity:1;pointer-events:auto}
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#111111;border-top:1px solid rgba(255,255,255,0.1);padding:0;transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);font-family:var(--font)}
+.cookie-banner.active{transform:translateY(0)}
+.cookie-banner-inner{max-width:960px;margin:0 auto;padding:28px 24px}
+
+/* Tabs */
+.cookie-tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.cookie-tab{background:none;border:none;color:rgba(255,255,255,0.4);font-family:var(--font);font-size:14px;font-weight:600;padding:10px 20px;cursor:pointer;position:relative;transition:color 0.2s}
+.cookie-tab:hover{color:rgba(255,255,255,0.7)}
+.cookie-tab.active{color:#fff}
+.cookie-tab.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:#fff}
+
+/* Tab Content */
+.cookie-tab-content{display:none;max-height:360px;overflow-y:auto}
+.cookie-tab-content.active{display:block}
+.cookie-tab-content::-webkit-scrollbar{width:4px}
+.cookie-tab-content::-webkit-scrollbar-track{background:transparent}
+.cookie-tab-content::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:2px}
+
+/* Consent Tab */
+.cookie-consent-text{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:20px}
+.cookie-consent-text a{color:rgba(255,255,255,0.8);text-decoration:underline;text-underline-offset:2px}
+.cookie-consent-text a:hover{color:#fff}
+
+/* Details Tab - Categories */
+.cookie-category{border:1px solid rgba(255,255,255,0.08);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.cookie-category-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;transition:background 0.2s}
+.cookie-category-header:hover{background:rgba(255,255,255,0.03)}
+.cookie-category-left{display:flex;align-items:center;gap:12px}
+.cookie-category-name{font-size:14px;font-weight:600;color:#fff}
+.cookie-category-count{font-size:12px;color:rgba(255,255,255,0.35);font-weight:400}
+.cookie-category-arrow{color:rgba(255,255,255,0.3);font-size:12px;transition:transform 0.2s;margin-right:12px}
+.cookie-category.open .cookie-category-arrow{transform:rotate(180deg)}
+
+/* Toggle Switch */
+.cookie-toggle{position:relative;width:40px;height:22px;flex-shrink:0}
+.cookie-toggle input{opacity:0;width:0;height:0}
+.cookie-toggle-slider{position:absolute;inset:0;background:rgba(255,255,255,0.12);border-radius:11px;cursor:pointer;transition:background 0.2s}
+.cookie-toggle-slider::before{content:'';position:absolute;width:16px;height:16px;border-radius:50%;background:#666;left:3px;top:3px;transition:transform 0.2s,background 0.2s}
+.cookie-toggle input:checked+.cookie-toggle-slider{background:rgba(255,255,255,0.25)}
+.cookie-toggle input:checked+.cookie-toggle-slider::before{transform:translateX(18px);background:#fff}
+.cookie-toggle input:disabled+.cookie-toggle-slider{opacity:0.5;cursor:not-allowed}
+
+/* Category Details (expanded) */
+.cookie-category-details{display:none;border-top:1px solid rgba(255,255,255,0.06);padding:0}
+.cookie-category.open .cookie-category-details{display:block}
+.cookie-provider{padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.04)}
+.cookie-provider:last-child{border-bottom:none}
+.cookie-provider-name{font-size:13px;font-weight:600;color:rgba(255,255,255,0.8);margin-bottom:4px}
+.cookie-provider-desc{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.5;margin-bottom:6px}
+.cookie-provider-link{font-size:11px}
+.cookie-provider-link a{color:rgba(255,255,255,0.5);text-decoration:underline;text-underline-offset:2px}
+.cookie-provider-link a:hover{color:#fff}
+
+/* About Tab */
+.cookie-about-text{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7}
+.cookie-about-text a{color:rgba(255,255,255,0.8);text-decoration:underline;text-underline-offset:2px}
+.cookie-about-text a:hover{color:#fff}
+
+/* Buttons */
+.cookie-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
+.cookie-btn{padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font);border:none;transition:all 0.2s}
+.cookie-btn-allow-selection{background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.15)}
+.cookie-btn-allow-selection:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25)}
+.cookie-btn-allow-all{background:#fff;color:#000;font-weight:700}
+.cookie-btn-allow-all:hover{background:#e5e5e5}
+.cookie-btn-deny{background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.08)}
+.cookie-btn-deny:hover{color:#fff;border-color:rgba(255,255,255,0.2)}
+
+/* Powered by */
+.cookie-powered{text-align:center;padding-top:14px;margin-top:14px;border-top:1px solid rgba(255,255,255,0.06);font-size:11px;color:rgba(255,255,255,0.25)}
+.cookie-powered a{color:rgba(255,255,255,0.4);text-decoration:none;font-weight:600}
+.cookie-powered a:hover{color:rgba(255,255,255,0.7)}
+
+/* Small reopen button */
+.cookie-reopen{position:fixed;bottom:16px;left:16px;z-index:9997;width:36px;height:36px;border-radius:8px;background:#111;border:1px solid rgba(255,255,255,0.1);display:none;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all 0.2s}
+.cookie-reopen:hover{background:#222;border-color:rgba(255,255,255,0.2)}
+.cookie-reopen.visible{display:flex}
+
+@media(max-width:600px){
+  .cookie-banner-inner{padding:20px 16px}
+  .cookie-actions{flex-direction:column}
+  .cookie-btn{width:100%;text-align:center}
+  .cookie-tabs{overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== PARTICLE CANVAS ===== -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABncAAAGtCAYAAADEXiE0AAAmJElEQVR4nO3dSXbbyBIFULKO979l/IGtL1kmRYLMJpp751UCMiPbJ8iXCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPVdd/3g4ziOXT+bea7X67aaAgAAAACADoQ7LCH0AQAAAACAMYQ7bCPwAQAAAACA84Q7hCHsAQAAAACAx4Q7hCToAQAAAACA24Q7hCfoAQAAAACAT8IdUhH0AAAAAADQ3X+7HwDOOP7Y/RwAAAAAALCLL3dIz9c8AAAAAAB04ssd0vM1DwAAAAAAnQh3KEPIAwAAAABAB8IdyhHyAAAAAABQmXCHsoQ8AAAAAABUJNyhPAEPAAAAAACVCHdowVc8AAAAAABUIdyhFSEPAAAAAADZCXdoScADAAAAAEBWwh3a8hUPAAAAAAAZCXdoT8ADAAAAAEAmwh24+IoHAAAAAIA8hDvwhYAHAAAAAIDohDvwjYAHAAAAAIDIhDtwg4AHAAAAAICohDtwh3+HBwAAAACAiIQ78ICABwAAAACASIQ78AQBDwAAAAAAUQh34EkCHgAAAAAAIhDuwAkCHgAAAAAAdhPuwEkCHgAAAAAAdhLuwAsEPAAAAAAA7CLcgRcJeAAAAAAA2EG4A28Q8AAAAAAAsJpwB94k4AEAAAAAYCXhDgwg4AEAAAAAYBXhDgwi4AEAAAAAYAXhDgwk4AEAAAAAYDbhDgwm4AEAAAAAYCbhDkwg4AEAAAAAYBbhDgAAAAAAQCLCHZjE1zsAAAAAAMwg3IGJBDwAAAAAAIwm3IHJBDwAAAAAAIwk3AEAAAAAAEhEuAML+HoHAAAAAIBRhDuwiIAHAAAAAIARhDuwkIAHAAAAAIB3CXcAAAAAAAASEe7AYr7eAQAAAADgHcIdAAAAAACARIQ7sIGvdwAAAAAAeJVwBzYR8AAAAAAA8ArhDgAAAAAAQCLCHdjI1zsAAAAAAJwl3AEAAAAAAEjkuusHV/1i4Xq9bmvTkar2T1RV6gYAAAAAgPl8ucNNwgYAAAAAAIhJuMNdAp51fCkFAAAAAMCzhDv8SMADAAAAAACxCHcgCF/vAAAAAADwDOEOD/l6BwAAAAAA4hDu8BQBzxq+3gEAAAAA4BHhDk8T8AAAAAAAwH7CHQjG1zsAAAAAAPxEuMMpvt4BAAAAAIC9hDucJuCZz9c7AAAAAADcI9zhJQIeAAAAAADYQ7gDAAAAAACQiHCHl/l6Zy5/mg0AAAAAgFuEO7xFwAMAAAAAAGsJd3ibgGceX+8AAAAAAPCdcIchBDwAAAAAALCGcAcAAAAAACAR4Q7D+HpnDn+aDQAAAACAr4Q7DCXgAQAAAACAuYQ7DCfgAQAAAACAeYQ7AAAAAAAAiQh3mMLXO2P5d3cAAAAAAPgg3GEaAQ8AAAAAAIwn3GEqAQ8AAAAAAIwl3AEAAAAAAEhEuMN0vt4Zw7+7AwAAAADA5SLcYREBDwAAAAAAjCHcYRkBDwAAAAAAvE+4AwAAAAAAkIhwh6V8vQMAAAAAAO8R7rCcgOd1x3Ecu58BAAAAAIC9hDtsIeABAAAAAIDXCHcAAAAAAAASEe6wja93AAAAAADgPOEOWwl4AAAAAADgHOEO2wl4AAAAAADgecIdAAAAAACARIQ7hODrnecdx3HsfgYAAAAAAPYR7hCGgAcAAAAAAB4T7hCKgAcAAAAAAH4m3AEAAAAAAEhEuEM4vt4BAAAAAID7hDuEJOABAAAAAIDbhDuEJeABAAAAAIB/CXcAAAAAAAASEe4Qmq93AAAAAADgb8IdwhPwAAAAAADAJ+EOKQh4AAAAAADgN+EOAAAAAABAIsId0vD1DgAAAAAACHdIRsADAAAAAEB3wh3SEfAAAAAAANCZcAcAAAAAACAR4Q4p+XoHAAAAAICuhDukJeABAAAAAKAj4Q6pCXgAAAAAAOhGuEN6Ah4AAAAAADoR7gAAAAAAACQi3KEEX+8AAAAAANCFcIcyBDwAAAAAAHQg3KEUAQ8AAAAAANUJdwAAAAAAABIR7lCOr3fyOP7Y/RwAAAAAAJn82v0AMMP1er0KDfL46CvBXE4ZxpraOi96v+pTIJLoc2ZX1goiiDg/GBv1qTuAHoQ7lCXgyec4jsOGjxnUFgD0c+8sYE8AAEAF/iwbNwlF2MWfamMWdQUAXC6f+037TgAAMhPuUJrfysvLYRsAgBUEPQAAZCTc4a4qhxsBT25V6pAY1BMA8BNBDwAAWQh3+FGVQ42AJ7cqdQgAQB5CHgAAIhPu8JADDRE4XDOKOgIAzrAPBQAgIuEObfh6pwYHa0ZQRwDAWUIeAAAiEe7wlCqHGAFPDVXqEQCAfOxFAQCIQLjD06ocYgQ8NfjNSd6lfgCAV9mLAgCwm3CHUxxgiEZNAgCwi5AHAIBdhDu05OudWhyoeZXaAQBGsKcAAGA14Q6nVTm4CHhqqVKXAADkZD8KAMBKwh1eUuXgIuCppUpdspa6AQBGsa8AAGAV4Q4vc3AhInXJK9QNADCKf4cHAIAVhDu05+udehymAQDYzZ4UAICZhDu8pcqBRcBTT5XaZB01AwCMZn8BAMAswh3eVuXAIuCpp0ptAgCQlz0pAAAzCHcYwoGFqNQmZ6gXAAAAADIQ7sAXvt6pyYU9AAA72Y8CADCacIdhqhxYBDw1ValP5lMrAMAM9hgAAIwk3GGoKgcWAU9NVeqT+dQKADCDPQYAAKMIdxjOgYXI1CcAADvZjwIAMIJwB+7w9U5dDtQ8Q50AAAAAEJVwhymqXIoKeOqqUqMAAORjLwoAwLuEO0xT5cAi4IG+qsxjAEA89hkAALxDuMNUDixEpj55hjoBAAAAIBrhDjzB1zt1ubgHAGAXe1EAAF4l3GG6KgcWAU9dVWqUedQIAAAAAJEId1iiysWogAcAABipylkJAIC1hDss49BCZOqTR9QIAAAAAFEId+AkX+/U5fIeAIAd7EMBADhLuMNSVQ4tAh7oqcocBgAAAEBuv3Y/AP0cx3FUCEeu1+vVRW89VeqTedQIANlUXLcq7sPtMQAAOMOXO2xR5TDm8FVTlfoEAKjq+s3u5wEAgNWEOwBwkgAQAGIR9AAA0I1wh22qXI46QNZUpT4BALrJHPLYgwIA8Cz/5g5bVfm70v79HeinyvwFAFXZoxOB/SIAMIsvd9iuyoHLpr2eKrXJPGoEAGLL/BUPAAD8RLhDCC5IiUptAgDklyngsf8EAOAZwh0YKNOhERjDBQwA5GCvDgBAJcIdwqhyQerQWE+V2gQA6M5eHQCAKoQ7hFLlEt2hEXqpMncBAAAAkINwh3BckhKRugQAqMEvYgEAUIFwByZxaIReBIAAkEf0vbp9BQAAjwh3CKnKYSb6oZFzqtQl86gRAAAAAFYQ7hBWlUtSAQ8AAAAAACMJdwitSsBDHWqSR9QIAOTgl7AAAMhMuAMLODgCAAAAADCKcIfwqvwWvIAH+qgybwEAAAAQ06/dDwDPOI7jqBCOXK/Xq0vf/KrUI3OpE6J6ZR2qVMvZ1uHMba+tycD+vI8R/fzKPBGxvsx3r+u+j2KPs3W3o+bMdbWY6/IQ7pCGi1IAeGzGweqn/6e1ea6s+5+IB3ygPnMP77KPYofRdffo/6fuWD3XXS7qbhbhDizmtwNryHrZxlrqhBV2rym3fn7kurcOc0vkmgVuM5czwu46yraPYgx1x2q7a+7WM6i5MYQ7pFLlotTFEgCvyrB+fH3GCuv2btn2Pxlq9KtMbQvdZZtfiCdDDdlH1aPuWC1bzV0u6u5Vwh3SyXbBcY+AB3qoMmexV+b1IuJB0RoMkIf5mndlrqGI+yieo+5YLXPNXS6fz6/mzhHukJLLUiJQh8Bs2Tfo30U6KGYLeLKsOZna9HLZX4fAbdnmEmKqVkeR9lHcp+5YTc31JtyBjbJdLAGvyXIpSxwd1ga/mVVPtrpVexBPtnmEmDrUkX1UPOqO1dQcl4twh8SqXJYKeKCHKnMW83RdC3Zu2LOtweYRoKpMczExda0hF597qTt1t0PHulNz9/23+wHgHVUmNJNTXlVqENjLXPK7DXa0Q7Y1OGqtRH2ue7L1O/10qdFdcz91qKHftMNa2vs37bCW9tYGt/hyh/T8FiuQhfmK72xM/+W3sphNbcF+1j9GUEf/0ibzaeN/aZO5tO+/nBk/CXcgiGx/GgaA15nvH1u5Yc+2BkcLijO1HXynftfS3oygjthB3bGamntMyOPPslFElQmv82SUWZX6qyrauFIvvfmM/LxV7RVtrmAO/Qz7WP94l30UO6g7VlNz53VuL+EOZVQZyC4dYLxo46rKfMU5+v11Djj/itIeUZ7jGdHWAujCHM4Iaogd1B2rqbnXdd1vCHcopeMgBiC2rpvMGWa3o8t/6CXq3FxpLoraxuRhH8UO6o7V1Nw43dpRuAMBVTrQQRTRxlW3DUdX+nm82QefaHPFT3bX1+6ff0amfoUKXFIxghpiB3XHampuvE77EOEO5VQZvC4hcqlSd8A45oW5tC/PsqfiFnPIPNqWEdQRO6g7VlNzc3VoX+EOJVUZvC4jYKxoY6rKXMXfOv2W0G6z2jnaXPGTXbWmxmGOTPPPLeYG3mUfxQ7qjh3U3BrV21m4Q1nVBy/wmuyXJsRm7VlPwMNP9CO3mKvn0K68Sw2xg7pjNWHiepXbXLgDwbmUgNqqbjA60pf7VN6sP2P1u3dua/KLXL9Z9/3d52DGUEPsoO5YTc3tVbH9hTuUVmXQZj3odVOl3jqINqbUTn76MIbR/RBtruAc/cd35urxtCkjqCN2UHespuZiqNYPwh3KqzJoXVAAxFRlnamia8Czqg6z1HuWfmOd6LWbsWajtyk5qCN2UHespuZiqdQfwh1aqDRogTGiXaKYp3LSbzF17ZfZ7921XclP7Y6nTRlBHbGDumM1NRdTlX4R7kAi0S6jATqrshmsamT/WH9z0V98lWGuzlazGdqU+NQRO6g7VlNzsVXoH+EObVQYsJdLvsMfRBZtPFWZpzrQVzl0DHhm1WaWms/ST8x3/LH7OR7JVrMZ2pT41BE7qDtWU3M5ZO8n4Q6tZB+wwHjRLlXMU/Hpo1z0F/SSJdSBroxPdlB3rKbmcsncX8Id2sk8YIlPfUFtxnhv0cLge0bXaZa6z9I/jHd8sftZzshWs9nal3jUEDuoO1ZTczll7TfhDgDtRbtcybqpqE6/5NXxz7N1o196Ob7Z/TyvyFazWduZONQQO6g7oLpfux8AdjiO48h2oAIAXtdt7R/1vi5FatCPsWSbi9QPADzHmplbxjOjL3doy4QLfBVtATdHxaI/ahjVj9Hmi+70B5lkq1frHyOoI3ZQd6ym5mrI1o/CHVrLNmCBubJduLCGtaKWTgHPu++aofYz9AN8UK90lGEtoR51x2pqrpZM/Sncob1MAxboxfy0nz4AYISMwY41kHepIXZQd0Anwh0A+CLa5YvDCYzn6515/91KGdofLpectZphDgCACKyZNWXpV+EOXPIMWADWsTbU1ingqUi7k4VapSv7KHZQd6ym5mrL0L/CHfgjw4AF1oh2EWN+Wk+bU8nZelb/MEa0/cSzzAG8Sw2xg7oDOvq1+wEgkuM4jqyHMAA445n1rvohedS6f71er9HbqtIep8p7UFfmGo0+lwFAFB3WTGfG+Oco4Q4A3BDtsjb6hqKSSP0+yqu1c+u/q9g+I0SbM14V/R3Mg0SnRuku+jpCTeqO1SrWnDPjfZHvY4Q78E3kAQusFe2y1vzEGbNq5ev/N9L4eFWncfXoXSv0J+yUfS4xB8BrPsa+McRK6o4RnBnzE+7ADZ0uegD4lH3juXrtqrJp7/Tn2TKzNyMqtZmPPpuj8hr4TM34BYo9Kretuospe7s6M74m6l2xcAfuiDpoiU/t1BLtslZ9cUuEmvDbgzncm0Oi91uEGodbqtRm9DngHVX6KLqKNTSydr7/vyq21w4V21HdMUuE9dCZcTzhDgDAJecGM8IG/busG3Zf7wBnRJx/+aR/eNWq2sm6X2IOdZdHxraLuCZmrcWIv2z73+4HgMiyTTLAHNEWb3MTl0u8uvwu+vPNFP3dv88h0eeU6O1JP9VqMvoccMb1j93P0U2FGtpVO9cvVv/s7NRdvp/LetH7OfrzZeDLHXggYioLwFiZDoeZ1qRsv5FlzY9HfwDPMFfwqki14+vfPqLUXba9+m6Z2ilKjT0jWx1GOzP6cgeekGWCIYZIkzzjROtX81JP0erwWVmf+x3R3/ljDjGXwHnHH7ufY4Ts7+G3z3lHxNpR0/VF7F91V0vWvsz63LsJdwDgSdE2G9kvZKLI0o7R6u+sLM8/sh6iv3P02o/eflAp5MnGRWQcGcdAhvqJ/ny7qbs5oj/fTllqLnsfZnn+SPUg3IEnRRq4APSSZZP7SJX3YD61QiZZzwlZn9v8wDsy1U+GMIDnZOpHdZdXlX6r8h6rCHfghKwHIGCcaBsN89J7MrRftJp7V7X3eaTb+0JXvuJZw5waS7aaz1o/WZ97FnW3RtbnniFDzVXrr2rvM5NwB07KMKkDUEPVTW309xq91kd/32i0F5llOStkec6vzA28I3v9ZH/+rrL3W/bn76JqP0V/ryh7KeEOAJwUbZMRZVPBWNHqbLTq78dr1AUVWJfHMzfEk6nOq9RPlfd4h7pbr8p7VFW9f6q/3wjCHXhBpg0FMEe0TYZ56bzIbRatvmaJ/J6+3gHe4c+0jWP+5B3V6qfa+1RVrZ+qvc8ZkdfyLv0S+T0j1IdwB14UYQADUE/kzesMnd6307u+QvtQUcQzQ8Rnuse8wDuq1k/V96pC/7BCtzrr9r5nCHfgDZkORsB40TYY5qT8otUUrKL2qcz6/BrzQlwZalr91KPu9qr8btl07Yuu7/2IcAcAaCfD4bCTThv1Tu8KfLLunGOu5B0d6qfDO2bToU86vONX1m6esbtOhDvwpt2DGNgr2gbXnJRXtFpaLeL7zxpPEd91J+1BFxH+HZ7dP/8Z5gR4jrHCDupur+7t3/39bxHuwAAZDkkAxGWTCtCHswPM021P1e19o9IPwC7CHRjEIQ36iraZNx/9TPvEFW0szdTpXX+iHejKWnSbOSG+yLWrfupSd7F0fOcItPtv2uFvwh2AgSwyfUXr+8gHIP4WrXb428yx1L3vu78/WKv/Zk6A1xg77FC97qKt0dXb+6xo7bGzXoQ7MFC0yR8Asom2UQeYyfkBxrB/YAd1B+wm3IHBHNCgr2ibe/NRfNFqhvW61kDX94adIu8LzAnwHmOIHdQd7CfcgQkiH5wAILpuB0XvC705O5BF1Fq1rtSm7uhOrd2mXX4T7gDAQNE2GFEPQ7toDwAisj4B74p2DgFgvl+7HwCqOo7jsLmCnq7X6zXSJY35KK5IdcJe0eaNWcxFe1Rs94rjpet63fGdAaqouIeN9j7Rnofbdu3jhDswUdcDWlf6GqCmVet5xcPxV9ZJRrpXT5XHEPAvaws7qDsgCn+WDSZzwISeom34zUUAdHD9YvezvMJ6Dbwj69wHwGuEOwAAEETVS5mq70VsWYOeGQFP1NAoW98A8C9zOewj3IEFoh6mgLmibXLNRZBDtLnjXdXeh5wyhjzAz4xpdlB3QCTCHVjEpSoAAOyV5VLO2QEAgEeEO7CQQ1pdWS4KWC9abZiHIIdoc8erqrwHtWT5iseaTSTqkR3UHcDPhDsAMFm0CySHJMgh2txxVvbnpz41upf2hzmMLXZQd7CHcAcWc6kKsIf5F4BsrF0AANwj3IENHNJq8RsqPCNanZiHIIdoc8ezsj43/ahVAACyEu7AJi5WAYCKXJaTjZoFACAj4Q5sJOCBXqJdHpmDIIdocwdUFHmcWa8BYoi8VgA9CXcAYKFoBwIXRgAAZBNtTw0AOwh3YDMXq7k5VAAwW7a9QrbnhQ+R93XGFfzNmAAA4Q6EYGMKvUS7PDIHQVzGJwBADPZlQDTCHQjCJgEAqMK+hqyi/QIGAADcI9wBeJHDP++IVj8dLmKjtTk8kn1cZn9+AACAyIQ7EIhLEADgcrEnAP5lXgAgKmsU7CHcgWAsiDn4AoARotWR+QcYzbxCRtHWZ4jAuMjD2gvQh3AHArIZgz6iHZTNP7BftXFY7X0AgDWinZUAohHuAABAEIIQAHiONZMd1B0QiXAHgrJhiMtvDzFatJoy/wCjmVcAAADGEu5AYC5CAKCP6ut+9fcDgN2steyg7mAf4Q4EZ5GMJdoXFtShtqA36z3EYl0GACA64Q4AAPzAJe84Qix4jzEEfzMm2EHdAd/tOjP+2vFDgXOO4zhcLO2nD5jter1eHRTmitbG5hUul34XBPY1ADBet/0EMVSsO2dGMvHlDiQRaWEB5rFxg16s7wBkEXWfai2tTd0B3CfcgURsHvaJuqEEcjOv05XaB4BxrKvsoO7W0M78RLgDAMEIE6GH7ge17u9PbOoTcjFmAehIuAPJ2LSu56IdmMm83pN+BwBGsKfYp3Pbd373HbQ39/za/QDAeSZ1qC/aP+JYibaFOI7jOPwSBQAjWFPYQd3V5MxIFr7cAfiBTRo7qb8+HBx60d9/0x4AedifxtJlDVV3sXSpu2i0O7cIdwAAYBGHMuAdLjjhZ53W2U7vGl2nvuj0rpCBcAfgDodnIlCHfTgo0Zn6JxL1CLkZw+yg7uqJeBZXZ3wn3AG4IeIiDowTdYzbrNemf3+mfQByiLqP6qTjmqnu9utYdxHpB74S7gBAcA4yvdis16RfAWCdyutu5XfLrnLfVH63jPQHH4Q7AN+4SAeAPRxUARil4ppS8Z2qqdhHFd/pWZHvhzr3C5+EOwBfRF646U1tjhe5TW3Ua9Gf52gvdlJ/8JzI+6ivKo3pSu/yKnW3XqV3gYqEOwCQRJbDDGM4SNWgHwFgrwprcYV36KZCn1V4h+r0EcIdgD9cnEM/0ce9zTpdqX12iF530dcsiCz6+P5J5mfvLnPfZX720aKvv/qqN+EOwCX+Yg0f1Go/Nut5Re+76PNJ9PYD6C76OvLd8cfu5zgj2/OuoO7my/a86LPOhDsAAMHZrOcTvc8+LkayXZDALNHHLDBOhvGeMRDgZxn6U93dl2HPrP96Eu4A7WVYpOErNTtWlva0WacjNc8K6gxel2Uf9V3kfVXU54pE3Y0X9bk4T1/2ItwBWsu6KQS125fNenzR++j7/BF9PonenuSmvqC3SHNA5It/xorUz+ruedH3zF/p0z5+7X4AgF0yLczAXNfr9ZppA/zxrJHnsUzt+SFyewLjZZqnzE9Elm0f9d3ufVXmtttJ3Y35+dS1u8aekbEOo7WnL3cAIKlomwrWi7gZzvrbf6PGU/R3v/ee0eeT6O1KPmoK+O74YuXPW/GziGt1Hai790TfM98Ssb+z1mHE/vflDtBSxAkZ2Cvrb/9F+o2sjO03Uvf3n+04jiNCnZObcQpzZN1H3TNrf1WpjSKoVHff32Nk7VVpI17nzFiXcAdoJ8JiBqNUOtDwnq91sHKeq1B/XdaFR+9pPqG6rPXdZY6CiG7NG2fGZNZ5h/3eCXvU3VyZ98zOjK+Luh8T7gCtRJ2MgRgyb9S/mv2bWRXaaLTobfJsLUQfA77e4azI9QzVRF9DRunwjpmoO3jN7KBHza4h3AHacBlEVV0ONKtUas9Rf96hSnvcMmJtqNw+EQl4eKTSmFTrABBPpTPj5TIm6KnUHt9F3o8Jd4AWIk/EMEK1zSVzqJG/dVkbzr6n+YRs1CvEYQ1hB3UH4xhLuQh3gPK6XN4B4zgg8ix1soevd85Rp8BK9lHsoO5YTc31EP3M8d/uBwAAxoi+6chGe9bW5c+xvfqeGeo/Q/vDOzKMQwDozFpdW4b+Fe4ApWWYiAEAACpxDmMHdQd0I9wByrKxoyN1P5b2rMlXO2v++xUy9AO8IsP4g0fUMTuoO1ZTczVl6VfhDlBSlkkYiM98UkuXYKcT/UE11h0AyMXaXUum/hTuAKVc/9j9HLCTMQC3dRobo961U5sBMJ51hB3UHTuouxqy9aNwBygj2wQMMxkPY2lPPvhKJCb9QhXWGypS1+yg7oAOhDtACTZuwGzmmdw6/Tm20bWapfaz9A9AR1nWEmpRd6ym5nLL2H/CHSC9jJMvrGBsjKdNc+rUb7PetVMbwi7GGdWpcXZQd6ym5nLK2m/CHSC1rJMvkJd5J5dR/eWrkBz0E1lZW+hCrbODumM1NZdL5v4S7gBpZZ58YRXjZA7tmkO3YGd2XWap+yz9BQBAXVn2zt1l7yfhDpDO9Y/dzwFZGC9zaNfY9A+QhfmKbtQ8O6g7dlB3sVXoH+EOkEqFiReow5wU08h+yfIVyKpazFLzWfoNsowpGE3ts4O6Ywd1F1OVfhHuAGlUmXhhB+NnHm0bS8dgh9v0H9FZP+jOGGAHdccO6i6WSv0h3AHC82fYgOjMUTF07YfV7921nWEk4wh+c9ZjB3XHDmouhmr9INwBQqs26cJOxtNc2nev0e3vq48a9CNADvZR7KDuWE3N7VWx/YU7QEh+kwbIyLy1R+dgZ1fNZar1TP1Jffa4cJ+xwQ7qjtXU3B5V2124A4RTdcKFCIyv+bTxOi5JgUzMV/CYccIO6o7V1NxaldtbuAOE4ZIO1jDO5jOfzTerfTN95bG7xnb//DMy9Ss1ZRovsJvxwg7qjtWcGefr0MbCHWC7DpMt0JO5bQ7Bjtp6Rab+pRbjFc5zRmQHdccOam6OLu0q3AG26jLZQjTG3jraehwH7nj0B/zMGIH3GEPsoO5YTc2N0+3MKNwBtug22QK9mfPeN7v9Mn3VEa2Woj3PTzL1M/llGhsQmX0UO6g7VlNz7+vYfsIdYCmLFcRhLK6nzc9bsW648O9FfzOb/S7MYVyxg7pjNTV3Xue9l3AHWKLzRAuRGZfrmQ+fp53+FbVNoj4XrGYswFz2Ueyg7lhNzT2vezv92v0AQF3dJ1iAn3zMkb4i+NfK9UP793Qcx2GfwkjqCdayj2IHdcdqau4+e6/fhDvAcCZYyOV6vV5tFvexYf+0ev3I1ubR19dsc4mAhxHUEOxlH/Xp63ykPeZSd5+0xRra+ZO919+EO8AwJliA13XesFs/gGzMWxCLfRQ7qDtWU3N8J9wB3mJyhRqy/cZ9ZZ027DvXkGztm2W9zTaX+HqHs9QLxGYfxQ7qjtXUHB+EO8BpJlaA+apu2COsIdXalPcIeHhEfUA+9lHsoO5YreqfY1RzzxPuAE8xsUJ92X7jvosKG3ZryHuytZ+5hAqyjTvgtgr7qMvFnJRNhbo7U3NZ37GaCuGiue484Q5wkwkVenIpG9v3uTlyX0VdRyK32S1R27EaX+9wuRhvUF2mC3fzUR3qbo9K73KWM2Mvwh3AZAqQVKSNe4a1JPLBphpBMdFlmLOAeSLtoS4Xc1IX6o4dItWdmhtPuANNmECBZ7mUzevWXD+6L60n62Rv62xzia936tGfwLPuzRcz1jFzEx8q1F2mvR6/OTPWoqEBAAAAADglargjXKCL/3Y/AAAAAAAAeUQNdqAT4Q4AAAAAAOn5aodOhDsAAAAAAACJCHcAAAAAAHiKP8kGMQh3AAAAAAB4SLADcQh3AAAAAABIzb+3QzfCHQAAAAAAfuSrHYhFuAMAAAAAwF2CHYhHuAMAAAAAwE2CHYhJuAMAAAAAwD+yBDv+vR06Eu4AAAAAAPCXLMEOdCXcAQAAAADg/zIFO77aoSvhDgAAAAAAl8slV7ADnQl3AAAAAAAQ7EAiwh0AAAAAgOYyBjv+JBud/dr9AAAAAAAA7JEx1AF8uQMAAAAA0FLmYMdXO3Tnyx0AAAAAIJXMocSHneFEhfaD7qSbAAAAAEAqlcKJlSFPlXbz1Q4IdwAAAACAhKoEFV/NCC20E9RkEAAAAAAA6VQMLb56NcDQLtCDgQAAAAAApFQ9yOBfwh347b/dDwAAAAAAAI8IduCTcAcAAAAASMllP9CVcAcAAAAASEvA04N+hr8JdwAAAAAACEuwA/8S7gAAAAAAqbn8B7oR7gAAAAAA6Ql4atKvcJtwBwAAAACAcAQ7cJ9wBwAAAAAoQRhQh76Enwl3AAAAAIAyhAJAB8IdAAAAAKAUAU9u+g8eE+4AAAAAABCCYAeeI9wBAAAAAMoREuSjz+B5wh0AAAAAoCRhQR76Cs4R7gAAAAAAZQkN4tNHcJ5wBwAAAAAoTXgQl76B1wh3AAAAAIDyhAjx6BN4nXAHAAAAAGhBmBCHvoD3CHcAAAAAgDaECvvpA3ifcAcAAAAAaEW4sI+2hzEMJAAAAACgreM4jt3P0IVgB8YxmAAAAACA1gQ8cwl1YDx/lg0AAAAAaE34MI+2hTkMLAAAAACAP3zFM45gB+YxuAAAAAAAvhDwvEeoA/MZZAAAAAAANwh5zhPswBoGGgAAAADAHQKe5wh1YC0DDgAAAADgASHPbUId2MPAAwAAAAB4kpDnN6EO7GUAAgAAAACc1DXkEepADAYiAAAAAMCLuoQ8Qh2IxYAEAAAAABigYtAj1IGYDEwAAAAAgIGyhzwCHYjPIAUAAAAAmCRL0CPQgVwMWAAAAACARaKEPcIcyM0ABgAAAADYaHbgI8gBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/u9/785vWQhGcpgAAAAASUVORK5CYII=" alt="NexBridge" class="logo-img">
+    </a>
+    <div class="nav-links">
+      <a href="#problems">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#usecases">Use Cases</a>
+      <a href="#news">News</a>
+      <a href="#security">Security</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button class="active" onclick="switchLang('en')">EN</button>
+        <button onclick="switchLang('jp')">JP</button>
       </div>
-      <div class="introducing">
-        <div>
-          <p class="label">
-            <i class="icon"></i>
-            <span class="text">Introducing</span>
-          </p>
-          <h2>Stablecoin Infrastructure for the Next Generation of Finance</h2>
-          <p>NexBridge provides a compliant platform and API suite for Japan-regulated stablecoins. Working with Japanese trust banks, we enable secure issuance and seamless fiat-to-stablecoin connectivity. Domestic and overseas issuers use NexBridge to launch, manage, and scale regulated stablecoins—and power the next wave of financial applications.</p>
+      <a href="mailto:support@nexbridge.xyz" class="btn btn-primary btn-sm">Contact Us</a>
+    </div>
+    <button class="nav-mobile-toggle" onclick="toggleMobileMenu()">☰</button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <!-- Floating Orbs -->
+  <div class="floating-orb orb-1"></div>
+  <div class="floating-orb orb-2"></div>
+  <div class="floating-orb orb-3"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Japan's First Full-Stack SC Infrastructure
+        </div>
+        <h1 data-en="Enterprise Stablecoin Infrastructure" data-jp="エンタープライズ・ステーブルコイン基盤">Enterprise<br>Stablecoin<br><span class="grad-text">Infrastructure</span><span class="typing-cursor"></span></h1>
+        <p data-en="Full lifecycle infrastructure for regulated JPY stablecoins — issuance, custody, transfer, and DeFi connectivity. Built for Japanese financial institutions, secured by HSM." data-jp="規制準拠の日本円ステーブルコイン向けフルライフサイクル基盤 — 発行・保管・送金・DeFi接続。日本の金融機関向けに設計、HSMで保護。">Full lifecycle infrastructure for regulated JPY stablecoins — issuance, custody, transfer, and DeFi connectivity. Built for Japanese financial institutions, secured by HSM.</p>
+        <div class="hero-ctas">
+          <a href="#solution" class="btn btn-primary btn-lg">Explore Platform →</a>
+          <a href="#" class="btn btn-ghost btn-lg">Read Litepaper</a>
         </div>
       </div>
-      <div class="features">
-        <p class="label">
-          <i class="icon"></i>
-          <span class="text">Products & Services</span>
-        </p>
-        <h2>Enterprise Regulated Stablecoin Suite</h2>
-        <div class="feature reverse">
-          <div class="feature-image">
-            <img src="images/feature1.png" alt="feature1" />
-            <video src="videos/feature1.mp4" class="feature-video" autoplay muted loop playsinline></video>
+      <div class="hero-visual">
+        <div class="hero-dashboard">
+          <div class="hero-dashboard-header">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span style="font-size:12px;color:var(--gray-500);margin-left:auto">NexBridge Platform</span>
           </div>
-          <div class="feature-content">
-            <h3>Stablecoin Issuance Platform</h3>
-            <p>End-to-end JPY stablecoin issuance service from design to operation.</p>
-            <ul>
-              <li><strong>Compliance & Architecture:</strong> Regulatory engagement and tailored issuance design.</li>
-              <li><strong>System & Banking Integration:</strong> Proprietary issuance platform integrated with core banking.</li>
-              <li><strong>Security & Operations:</strong> Security audits and continuous monitoring for stability.</li>
-            </ul>
+          <div class="dash-stats">
+            <div class="dash-stat">
+              <div class="label">Total Supply</div>
+              <div class="value" style="color:var(--blue-light)">¥12.8B</div>
+            </div>
+            <div class="dash-stat">
+              <div class="label">Reserve Ratio</div>
+              <div class="value" style="color:var(--green)">100.2%</div>
+            </div>
+            <div class="dash-stat">
+              <div class="label">DeFi TVL</div>
+              <div class="value" style="color:var(--purple)">¥2.8B</div>
+            </div>
           </div>
-        </div>
-        <div class="feature">
-          <div class="feature-image">
-            <img src="images/feature2.png" alt="feature2" />
-            <video src="videos/feature2.mp4" class="feature-video" autoplay muted loop playsinline></video>
+          <div class="dash-chart">
+            <svg viewBox="0 0 700 120" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="heroGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.3"/>
+                  <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M0,90 C100,85 150,70 200,60 C250,50 300,55 350,40 C400,25 450,30 500,20 C550,15 600,18 700,10 L700,120 L0,120Z" fill="url(#heroGrad)"/>
+              <path d="M0,90 C100,85 150,70 200,60 C250,50 300,55 350,40 C400,25 450,30 500,20 C550,15 600,18 700,10" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Animated dot following the line -->
+              <circle r="4" fill="rgba(255,255,255,0.7)" filter="url(#heroGrad)">
+                <animateMotion dur="4s" repeatCount="indefinite" path="M0,90 C100,85 150,70 200,60 C250,50 300,55 350,40 C400,25 450,30 500,20 C550,15 600,18 700,10"/>
+              </circle>
+              <circle r="8" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1" opacity="0.3">
+                <animateMotion dur="4s" repeatCount="indefinite" path="M0,90 C100,85 150,70 200,60 C250,50 300,55 350,40 C400,25 450,30 500,20 C550,15 600,18 700,10"/>
+                <animate attributeName="r" values="4;12;4" dur="1s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.5;0;0.5" dur="1s" repeatCount="indefinite"/>
+              </circle>
+            </svg>
           </div>
-          <div class="feature-content">
-            <h3>Liquidity Fragmentation Solution</h3>
-            <p>Unified and efficient liquidity across JPY and USD stablecoin markets.</p>
-            <ul>
-              <li><strong>JPY Interoperability:</strong> Seamless conversion among multiple yen stablecoins.</li>
-              <li><strong>Cross-Currency FX:</strong> Transparent and compliant exchange between JPY and USD stablecoins.</li>
-              <li><strong>Best Price Execution:</strong> Aggregated routing to secure optimal pricing and liquidity.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="feature reverse">
-          <div class="feature-image">
-            <img src="images/feature3.png" alt="feature3" />
-            <video src="videos/feature3.mp4" class="feature-video" autoplay muted loop playsinline></video>
-          </div>
-          <div class="feature-content">
-            <h3>Comprehensive Customization Solutions</h3>
-            <p>Tailored services to expand stablecoin adoption and unlock new opportunities.</p>
-            <ul>
-              <li><strong>Expanded Use Cases:</strong> Extend JPY stablecoin adoption in payments, DeFi, and cross-border trade.</li>
-              <li><strong>Global Issuers & Local Compliance:</strong> Full support for overseas issuers entering Japan.</li>
-              <li><strong>RWA Services:</strong> Enable integration of real-world assets with JPY stablecoin infrastructure.</li>
-            </ul>
+          <!-- Live Transaction Feed -->
+          <div class="dash-feed" id="liveFeed">
+            <div class="feed-item"><span class="feed-dot" style="background:var(--green)"></span><span style="color:var(--text-light)">Mint ¥50M JPYC</span><span class="feed-time">Just now</span></div>
+            <div class="feed-item"><span class="feed-dot" style="background:var(--blue)"></span><span style="color:var(--text-light)">Transfer → 0x7a2...f4d</span><span class="feed-time">2s ago</span></div>
+            <div class="feed-item"><span class="feed-dot" style="background:var(--purple)"></span><span style="color:var(--text-light)">DeFi Deposit ¥12M</span><span class="feed-time">5s ago</span></div>
           </div>
         </div>
       </div>
     </div>
-    <footer class="footer container">
-      <div class="content">
-        <div class="left">
-          <p>NexBridge is software from NexBridge Inc, not a regulated financial service, with features subject to change and users responsible for legal compliance.<br /> © 2025 NexBridge Inc.</p>
+  </div>
+</section>
+
+<!-- ===== STATS BAR ===== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stat-item fade-up">
+      <div class="stat-number grad-text" data-count="280">$280B</div>
+      <div class="stat-label" data-en="Global SC Market Cap (2025)" data-jp="グローバルSC時価総額（2025）">Global SC Market Cap (2025)</div>
+    </div>
+    <div class="stat-item fade-up d1">
+      <div class="stat-number" style="color:var(--cyan)">$1.9T+</div>
+      <div class="stat-label" data-en="Projected by 2030" data-jp="2030年予測">Projected by 2030</div>
+    </div>
+    <div class="stat-item fade-up d2">
+      <div class="stat-number" style="color:var(--purple)">¥300T+</div>
+      <div class="stat-label" data-en="Japan Domestic Payment Market" data-jp="日本国内決済市場">Japan Domestic Payment Market</div>
+    </div>
+    <div class="stat-item fade-up d3">
+      <div class="stat-number" style="color:var(--green)">15+</div>
+      <div class="stat-label" data-en="Team Members" data-jp="チーム規模">Team Members</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== PROBLEMS ===== -->
+<section class="problems" id="problems">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="section-label"><span class="line"></span>The Problem</div>
+      <h2 class="section-title" data-en="Legacy Finance is Structurally Broken" data-jp="既存金融インフラの構造的限界">Legacy Finance is<br>Structurally <span class="grad-text">Broken</span></h2>
+      <p class="section-desc" data-en="Legacy infrastructure can't keep up. Stablecoins are inevitable." data-jp="既存インフラは限界。ステーブルコインは不可避。">Legacy infrastructure can't keep up. Stablecoins are inevitable.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card fade-left">
+        <div class="icon" style="font-size:18px;font-weight:800;color:rgba(255,255,255,0.6)">⧖</div>
+        <h3 data-en="Cross-Border Delay" data-jp="国際送金の遅延">Cross-Border Delay</h3>
+        <p data-en="2–5 day SWIFT delays. Multiple intermediaries. Fees up to 6%." data-jp="SWIFT送金は2〜5日。多層的な仲介構造。手数料最大6%。">2–5 day SWIFT delays. Multiple intermediaries. Fees up to 6%.</p>
+      </div>
+      <div class="problem-card scale-in d1">
+        <div class="icon" style="font-size:18px;font-weight:800;color:rgba(255,255,255,0.5)">⬡</div>
+        <h3 data-en="Liquidity Fragmentation" data-jp="流動性の分断">Liquidity Fragmentation</h3>
+        <p data-en="Bank-issued tokens create isolated pools. No interoperability = no real digital money." data-jp="銀行発行トークンが流動性を分断。相互運用性なき電子マネーに価値なし。">Bank-issued tokens create isolated pools. No interoperability = no real digital money.</p>
+      </div>
+      <div class="problem-card fade-right d2">
+        <div class="icon" style="font-size:18px;font-weight:800;color:rgba(255,255,255,0.5)">⬢</div>
+        <h3 data-en="Institutional Gap" data-jp="機関レベルのインフラ不在">Institutional Gap</h3>
+        <p data-en="No platform in Japan combines HSM custody, ZK privacy, and full API integration." data-jp="HSMカストディ＋ZKプライバシー＋完全API統合を備えた基盤が日本に存在しない。">No platform in Japan combines HSM custody, ZK privacy, and full API integration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== SOLUTION ===== -->
+<section class="solution" id="solution">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="section-label"><span class="line"></span>Our Solution</div>
+      <h2 class="section-title" data-en="Four Core Modules. One Integrated Platform." data-jp="4つのコアモジュール。ひとつの統合基盤。">Four Core Modules.<br>One Integrated <span class="grad-text">Platform</span>.</h2>
+      <p class="section-desc" data-en="Full-stack stablecoin infrastructure for Japan's regulatory environment." data-jp="日本の規制環境に特化したフルスタックSC基盤。">Full-stack stablecoin infrastructure for Japan's regulatory environment.</p>
+    </div>
+    <div class="module-grid">
+      <div class="module-card fade-left">
+        <div class="module-num">01</div>
+        <h3 data-en="Issuance" data-jp="発行（Issuance）">Issuance</h3>
+        <p data-en="Trust-type JPY stablecoin issuance and redemption, fully API-driven." data-jp="信託型JPYステーブルコインの発行・償還。完全API駆動。">Trust-type JPY stablecoin issuance and redemption, fully API-driven.</p>
+        <!-- Issuance Flow Diagram -->
+        <div class="module-diagram">
+          <svg viewBox="0 0 500 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Step 1: JPY Deposit -->
+            <g transform="translate(55,15)">
+              <rect x="-42" y="0" width="84" height="54" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <text x="0" y="24" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="18" font-family="Inter" font-weight="700">¥</text>
+              <text x="0" y="42" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="Inter">JPY Deposit</text>
+              <text x="0" y="72" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Fiat Input</text>
+            </g>
+            <!-- Arrow 1 -->
+            <line x1="108" y1="42" x2="148" y2="42" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <polygon points="148,39 155,42 148,45" fill="rgba(255,255,255,0.2)"/>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="108;148" dur="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="42;42" dur="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Step 2: Trust Bank -->
+            <g transform="translate(195,15)">
+              <rect x="-42" y="0" width="84" height="54" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <path d="M-8,20 L0,12 L8,20 M-12,20 L12,20 M-10,20 L-10,30 M10,20 L10,30 M-12,30 L12,30" stroke="rgba(255,255,255,0.5)" fill="none" stroke-width="1.2" stroke-linecap="round"/>
+              <text x="0" y="44" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="Inter">Trust Bank</text>
+              <text x="0" y="72" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Reserve Lock</text>
+            </g>
+            <!-- Arrow 2 -->
+            <line x1="248" y1="42" x2="288" y2="42" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <polygon points="288,39 295,42 288,45" fill="rgba(255,255,255,0.2)"/>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="248;288" dur="1.8s" repeatCount="indefinite" begin="0.6s"/>
+              <animate attributeName="cy" values="42;42" dur="1.8s" repeatCount="indefinite" begin="0.6s"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0.6s"/>
+            </circle>
+            <!-- Step 3: Mint Contract -->
+            <g transform="translate(335,15)">
+              <rect x="-42" y="0" width="84" height="54" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <rect x="-10" y="10" width="20" height="16" rx="2" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+              <line x1="-6" y1="15" x2="6" y2="15" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+              <line x1="-6" y1="18" x2="4" y2="18" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+              <line x1="-6" y1="21" x2="6" y2="21" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+              <text x="0" y="44" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="Inter">Mint Contract</text>
+              <text x="0" y="72" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">ERC-20 Deploy</text>
+            </g>
+            <!-- Arrow 3 -->
+            <line x1="388" y1="42" x2="420" y2="42" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <polygon points="420,39 427,42 420,45" fill="rgba(255,255,255,0.2)"/>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="388;420" dur="1.8s" repeatCount="indefinite" begin="1.2s"/>
+              <animate attributeName="cy" values="42;42" dur="1.8s" repeatCount="indefinite" begin="1.2s"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="1.2s"/>
+            </circle>
+            <!-- Step 4: SC Token (circle) -->
+            <g transform="translate(455,15)">
+              <circle cx="0" cy="27" r="24" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+              <text x="0" y="24" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="13" font-weight="800" font-family="Inter">SC</text>
+              <text x="0" y="36" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7" font-family="Inter">JPYC</text>
+              <circle cx="0" cy="27" r="22" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" stroke-dasharray="3 3">
+                <animateTransform attributeName="transform" type="rotate" values="0;360" dur="20s" repeatCount="indefinite"/>
+              </circle>
+              <text x="0" y="72" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Live Token</text>
+            </g>
+          </svg>
         </div>
-        <div class="right">
-          <p class="contact">For any questions or assistance, please contact<br/> our support team.</p>
-          <div class="links">
-            <a href="mailto:support@nexbridge.xyz" class="email">
-              support@nexbridge.xyz
-            </a>
-            <a href="https://x.com/0xNexBridge" target="_blank" class="x"></a>
+      </div>
+      <div class="module-card fade-right d1">
+        <div class="module-num">02</div>
+        <h3 data-en="Custody" data-jp="保管（Custody）">Custody</h3>
+        <p data-en="HSM + MultiSig key management with policy-enforced approval workflows." data-jp="HSM＋MultiSig鍵管理。ポリシー制御の承認フロー。">HSM + MultiSig key management with policy-enforced approval workflows.</p>
+        <!-- Custody Shield Diagram -->
+        <div class="module-diagram">
+          <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Three security layers side by side -->
+            <!-- Layer 1: HSM -->
+            <g transform="translate(80,20)">
+              <rect x="-60" y="0" width="120" height="90" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <rect x="-60" y="0" width="120" height="24" rx="12" fill="rgba(255,255,255,0.04)"/>
+              <rect x="-60" y="12" width="120" height="12" fill="rgba(255,255,255,0.04)"/>
+              <text x="0" y="16" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" font-family="Inter" letter-spacing="1">HSM MODULE</text>
+              <!-- Key icon -->
+              <circle cx="-16" cy="55" r="10" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <circle cx="-16" cy="55" r="4" fill="rgba(255,255,255,0.15)"/>
+              <line x1="-6" y1="55" x2="20" y2="55" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+              <line x1="12" y1="55" x2="12" y2="62" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+              <line x1="20" y1="55" x2="20" y2="62" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+              <text x="0" y="80" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Hardware Secured</text>
+              <!-- Pulse -->
+              <rect x="-60" y="0" width="120" height="90" rx="12" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" opacity="0">
+                <animate attributeName="opacity" values="0;0.5;0" dur="3s" repeatCount="indefinite"/>
+              </rect>
+            </g>
+            <!-- Connector 1→2 -->
+            <line x1="150" y1="65" x2="180" y2="65" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3 3"/>
+            <circle r="2" fill="rgba(255,255,255,0.4)">
+              <animate attributeName="cx" values="150;180" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="65;65" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Layer 2: MultiSig -->
+            <g transform="translate(240,20)">
+              <rect x="-60" y="0" width="120" height="90" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <rect x="-60" y="0" width="120" height="24" rx="12" fill="rgba(255,255,255,0.04)"/>
+              <rect x="-60" y="12" width="120" height="12" fill="rgba(255,255,255,0.04)"/>
+              <text x="0" y="16" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" font-family="Inter" letter-spacing="1">MULTISIG</text>
+              <!-- 3 signer icons -->
+              <g transform="translate(-28,42)">
+                <circle cx="0" cy="0" r="8" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                <text x="0" y="3" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7" font-weight="600">1</text>
+              </g>
+              <g transform="translate(0,42)">
+                <circle cx="0" cy="0" r="8" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                <text x="0" y="3" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7" font-weight="600">2</text>
+              </g>
+              <g transform="translate(28,42)">
+                <circle cx="0" cy="0" r="8" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                <text x="0" y="3" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7" font-weight="600">3</text>
+              </g>
+              <text x="0" y="68" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Inter">2-of-3 Threshold</text>
+              <text x="0" y="80" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Approval Required</text>
+            </g>
+            <!-- Connector 2→3 -->
+            <line x1="310" y1="65" x2="340" y2="65" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3 3"/>
+            <circle r="2" fill="rgba(255,255,255,0.4)">
+              <animate attributeName="cx" values="310;340" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="cy" values="65;65" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+            </circle>
+            <!-- Layer 3: Policy Engine -->
+            <g transform="translate(400,20)">
+              <rect x="-60" y="0" width="120" height="90" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <rect x="-60" y="0" width="120" height="24" rx="12" fill="rgba(255,255,255,0.04)"/>
+              <rect x="-60" y="12" width="120" height="12" fill="rgba(255,255,255,0.04)"/>
+              <text x="0" y="16" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" font-family="Inter" letter-spacing="1">POLICY ENGINE</text>
+              <!-- Rule lines -->
+              <rect x="-40" y="34" width="80" height="8" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+              <rect x="-36" y="36" width="16" height="4" rx="1" fill="rgba(255,255,255,0.15)"/>
+              <rect x="-40" y="48" width="80" height="8" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+              <rect x="-36" y="50" width="30" height="4" rx="1" fill="rgba(255,255,255,0.1)"/>
+              <rect x="-40" y="62" width="80" height="8" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+              <rect x="-36" y="64" width="22" height="4" rx="1" fill="rgba(255,255,255,0.12)"/>
+              <text x="0" y="85" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Rule Enforcement</text>
+            </g>
+            <!-- Bottom label -->
+            <line x1="40" y1="130" x2="440" y2="130" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <text x="240" y="148" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8" font-family="Inter" letter-spacing="2">SECURITY PIPELINE</text>
+          </svg>
+        </div>
+      </div>
+      <div class="module-card fade-left d2">
+        <div class="module-num">03</div>
+        <h3 data-en="Transfer & Payment" data-jp="送金・決済（Transfer）">Transfer & Payment</h3>
+        <p data-en="Cross-border P2P settlement with ZK privacy and compliance audit." data-jp="ZKプライバシーとコンプライアンス監査付きクロスボーダーP2P決済。">Cross-border P2P settlement with ZK privacy and compliance audit.</p>
+        <!-- Transfer Network Diagram -->
+        <div class="module-diagram">
+          <svg viewBox="0 0 520 155" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Sender -->
+            <g transform="translate(65,40)">
+              <rect x="-50" y="-18" width="100" height="52" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <circle cx="0" cy="-2" r="8" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <circle cx="0" cy="-5" r="3" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+              <path d="M-8,6 Q0,2 8,6" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+              <text x="0" y="24" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-weight="600" font-family="Inter">Sender · Bank A</text>
+              <text x="0" y="52" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Tokyo, JP</text>
+            </g>
+            <!-- Arrow: Sender → ZK Pool -->
+            <line x1="125" y1="48" x2="178" y2="48" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <polygon points="178,45 184,48 178,51" fill="rgba(255,255,255,0.15)"/>
+            <text x="152" y="40" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">encrypt</text>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="125;178" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="48;48" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- ZK Privacy Pool (center) -->
+            <g transform="translate(260,20)">
+              <rect x="-70" y="-4" width="140" height="72" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+              <rect x="-70" y="-4" width="140" height="72" rx="12" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="6 4">
+                <animate attributeName="stroke-dashoffset" values="0;20" dur="4s" repeatCount="indefinite"/>
+              </rect>
+              <text x="0" y="14" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10" font-weight="700" font-family="Inter">ZK Privacy Pool</text>
+              <g transform="translate(-44,24)">
+                <rect width="28" height="16" rx="3" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                <text x="14" y="11" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="monospace">ZKP</text>
+              </g>
+              <g transform="translate(-10,24)">
+                <rect width="28" height="16" rx="3" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                <text x="14" y="11" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="monospace">TXN</text>
+              </g>
+              <g transform="translate(24,24)">
+                <rect width="28" height="16" rx="3" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                <text x="14" y="11" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="monospace">AML</text>
+              </g>
+              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Compliant + Private</text>
+            </g>
+            <!-- Arrow: ZK Pool → Receiver -->
+            <line x1="340" y1="48" x2="393" y2="48" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <polygon points="393,45 399,48 393,51" fill="rgba(255,255,255,0.15)"/>
+            <text x="367" y="40" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">settle</text>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="340;393" dur="2s" repeatCount="indefinite" begin="1s"/>
+              <animate attributeName="cy" values="48;48" dur="2s" repeatCount="indefinite" begin="1s"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite" begin="1s"/>
+            </circle>
+            <!-- Receiver -->
+            <g transform="translate(455,40)">
+              <rect x="-50" y="-18" width="100" height="52" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+              <circle cx="0" cy="-2" r="8" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <circle cx="0" cy="-5" r="3" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+              <path d="M-8,6 Q0,2 8,6" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+              <text x="0" y="24" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-weight="600" font-family="Inter">Receiver · Bank B</text>
+              <text x="0" y="52" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Singapore</text>
+            </g>
+            <!-- Bottom: Compliance label -->
+            <line x1="40" y1="120" x2="480" y2="120" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <text x="260" y="142" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-size="7" font-family="Inter" letter-spacing="2">ON-CHAIN SETTLEMENT · ZK PRIVACY · COMPLIANCE AUDIT</text>
+          </svg>
+        </div>
+      </div>
+      <div class="module-card fade-right d3">
+        <div class="module-num">04</div>
+        <h3 data-en="Connect (DeFi)" data-jp="接続（Connect）">Connect (DeFi)</h3>
+        <p data-en="DeFi protocol integration for institutional yield and liquidity management." data-jp="機関向けイールド・流動性管理のためのDeFiプロトコル連携。">DeFi protocol integration for institutional yield and liquidity management.</p>
+        <!-- DeFi Connection Graph -->
+        <div class="module-diagram">
+          <svg viewBox="0 0 480 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Center Hub -->
+            <g transform="translate(240,85)">
+              <rect x="-50" y="-28" width="100" height="56" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+              <text x="0" y="-8" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10" font-weight="700" font-family="Inter">NexBridge</text>
+              <text x="0" y="6" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Inter">Connect Layer</text>
+              <line x1="-30" y1="14" x2="30" y2="14" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+              <text x="0" y="24" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="6" font-family="monospace">API Gateway</text>
+            </g>
+            <!-- Protocol: Aave (top-left) -->
+            <g transform="translate(70,30)">
+              <rect x="-46" y="-16" width="92" height="38" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="0" y="-2" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600" font-family="Inter">Aave</text>
+              <text x="0" y="12" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Lending Pool</text>
+            </g>
+            <line x1="125" y1="35" x2="190" y2="68" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 3">
+              <animate attributeName="stroke-dashoffset" values="7;0" dur="1.2s" repeatCount="indefinite"/>
+            </line>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="125;190" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="35;68" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Protocol: Uniswap (top-right) -->
+            <g transform="translate(410,30)">
+              <rect x="-46" y="-16" width="92" height="38" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="0" y="-2" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600" font-family="Inter">Uniswap</text>
+              <text x="0" y="12" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">AMM / Swap</text>
+            </g>
+            <line x1="355" y1="35" x2="290" y2="68" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 3">
+              <animate attributeName="stroke-dashoffset" values="7;0" dur="1s" repeatCount="indefinite"/>
+            </line>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="290;355" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="cy" values="68;35" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+            </circle>
+            <!-- Protocol: Curve (bottom-left) -->
+            <g transform="translate(70,140)">
+              <rect x="-46" y="-16" width="92" height="38" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="0" y="-2" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600" font-family="Inter">Curve</text>
+              <text x="0" y="12" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Stable Swap</text>
+            </g>
+            <line x1="125" y1="135" x2="190" y2="102" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 3">
+              <animate attributeName="stroke-dashoffset" values="7;0" dur="1.4s" repeatCount="indefinite"/>
+            </line>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="190;125" dur="1.8s" repeatCount="indefinite" begin="0.8s"/>
+              <animate attributeName="cy" values="102;135" dur="1.8s" repeatCount="indefinite" begin="0.8s"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0.8s"/>
+            </circle>
+            <!-- Protocol: Compound (bottom-right) -->
+            <g transform="translate(410,140)">
+              <rect x="-46" y="-16" width="92" height="38" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="0" y="-2" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600" font-family="Inter">Compound</text>
+              <text x="0" y="12" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Yield / Supply</text>
+            </g>
+            <line x1="355" y1="135" x2="290" y2="102" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 3">
+              <animate attributeName="stroke-dashoffset" values="7;0" dur="1.6s" repeatCount="indefinite"/>
+            </line>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="355;290" dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
+              <animate attributeName="cy" values="135;102" dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
+            </circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== USE CASES ===== -->
+<section class="usecases" id="usecases">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="section-label"><span class="line"></span> <span data-en="Applications" data-jp="活用事例">Applications</span></div>
+      <h2 class="section-title" data-en="Use Cases" data-jp="ユースケース">Use Cases</h2>
+    </div>
+    <div class="usecase-grid">
+
+      <!-- Card 1: SC Issuance for Banks -->
+      <div class="usecase-card fade-up d1">
+        <div class="usecase-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="14" width="28" height="18" rx="2"/>
+            <path d="M20 8L30 14H10L20 8Z"/>
+            <line x1="13" y1="20" x2="13" y2="26"/>
+            <line x1="20" y1="20" x2="20" y2="26"/>
+            <line x1="27" y1="20" x2="27" y2="26"/>
+            <circle cx="20" cy="23" r="1.5" fill="rgba(255,255,255,0.5)" stroke="none"/>
+            <path d="M16 10L20 8L24 10" stroke-dasharray="1.5 1.5" opacity="0.4"/>
+          </svg>
+        </div>
+        <h3 data-en="SC Issuance for Banks" data-jp="銀行向けSC発行基盤">SC Issuance for Banks</h3>
+        <p data-en="White-label stablecoin issuance for trust banks and regional banks — end-to-end." data-jp="信託銀行・地方銀行向けホワイトラベルSC発行基盤。エンドツーエンド。">White-label stablecoin issuance for trust banks and regional banks — end-to-end.</p>
+        <div class="module-diagram" style="margin-top:16px">
+          <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Vertical pipeline: Bank Request → KYC/AML → Mint → Distribute -->
+            <!-- Step 1: Bank Request -->
+            <g transform="translate(200,18)">
+              <rect x="-120" y="-12" width="240" height="24" rx="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <path d="M-100,0 L-92,-6 L-84,0" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+              <text x="0" y="1" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.6)" font-size="9" font-family="Inter" font-weight="600">Bank Issuance Request</text>
+              <!-- Scanning bar -->
+              <rect x="-120" y="-12" width="4" height="24" rx="1" fill="rgba(255,255,255,0.15)">
+                <animate attributeName="x" values="-120;116" dur="3s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.3;0" dur="3s" repeatCount="indefinite"/>
+              </rect>
+            </g>
+            <!-- Down arrow 1 -->
+            <line x1="200" y1="32" x2="200" y2="48" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+            <polygon points="197,46 200,52 203,46" fill="rgba(255,255,255,0.25)"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cy" values="32;48" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="cx" values="200;200" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Step 2: KYC/AML + Compliance (split row) -->
+            <g transform="translate(200,64)">
+              <rect x="-120" y="-12" width="114" height="24" rx="5" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+              <text x="-63" y="1" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.45)" font-size="8" font-family="Inter" font-weight="600">KYC / AML Check</text>
+              <!-- Checkmark animation -->
+              <circle cx="-100" cy="0" r="5" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+              <path d="M-103,-1 L-100,2 L-96,-3" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1" opacity="0">
+                <animate attributeName="opacity" values="0;0;1;1" dur="2.5s" repeatCount="indefinite"/>
+              </path>
+              <rect x="6" y="-12" width="114" height="24" rx="5" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+              <text x="63" y="1" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.45)" font-size="8" font-family="Inter" font-weight="600">Reserve Lock</text>
+              <rect x="18" y="-5" width="18" height="10" rx="2" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+              <text x="27" y="2" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8">&#x1F512;</text>
+            </g>
+            <!-- Down arrow 2 -->
+            <line x1="200" y1="78" x2="200" y2="94" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+            <polygon points="197,92 200,98 203,92" fill="rgba(255,255,255,0.25)"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cy" values="78;94" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="cx" values="200;200" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+            </circle>
+            <!-- Step 3: Mint & Distribute (output row) -->
+            <g transform="translate(200,110)">
+              <rect x="-120" y="-12" width="240" height="24" rx="5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
+              <text x="0" y="1" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.7)" font-size="9" font-family="Inter" font-weight="700">Stablecoin Minted & Distributed</text>
+              <!-- Pulse glow -->
+              <rect x="-120" y="-12" width="240" height="24" rx="5" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2">
+                <animate attributeName="stroke-opacity" values="0.2;0.5;0.2" dur="2s" repeatCount="indefinite"/>
+              </rect>
+              <!-- Coins flying out -->
+              <circle cx="100" cy="0" r="3" fill="rgba(255,255,255,0.3)" opacity="0">
+                <animate attributeName="cx" values="100;135" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.6;0" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="100" cy="-4" r="2" fill="rgba(255,255,255,0.2)" opacity="0">
+                <animate attributeName="cx" values="100;140" dur="2.4s" repeatCount="indefinite" begin="0.3s"/>
+                <animate attributeName="cy" values="-4;-8" dur="2.4s" repeatCount="indefinite" begin="0.3s"/>
+                <animate attributeName="opacity" values="0;0.5;0" dur="2.4s" repeatCount="indefinite" begin="0.3s"/>
+              </circle>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Card 2: Cross-border Settlement -->
+      <div class="usecase-card fade-up d2">
+        <div class="usecase-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="20" r="9"/>
+            <circle cx="26" cy="20" r="9"/>
+            <text x="11" y="23" font-size="8" fill="rgba(255,255,255,0.6)" stroke="none" font-weight="600">¥</text>
+            <text x="24" y="23" font-size="8" fill="rgba(255,255,255,0.6)" stroke="none" font-weight="600">$</text>
+            <path d="M17 15L23 15" stroke-dasharray="1.5 1.5" opacity="0.5"/>
+            <path d="M17 25L23 25" stroke-dasharray="1.5 1.5" opacity="0.5"/>
+          </svg>
+        </div>
+        <h3 data-en="Cross-border Settlement" data-jp="クロスボーダー決済">Cross-border Settlement</h3>
+        <p data-en="Replace SWIFT with instant on-chain JPY↔USD settlement. Up to 80% cost reduction." data-jp="SWIFTをオンチェーン即時JPY↔USD決済に。コスト最大80%削減。">Replace SWIFT with instant on-chain JPY↔USD settlement. Up to 80% cost reduction.</p>
+        <div class="module-diagram" style="margin-top:16px">
+          <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Central globe -->
+            <g transform="translate(200,70)">
+              <!-- Globe outer ring -->
+              <circle cx="0" cy="0" r="40" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+              <!-- Horizontal ellipse (equator) -->
+              <ellipse cx="0" cy="0" rx="40" ry="12" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
+              <!-- Vertical meridian -->
+              <ellipse cx="0" cy="0" rx="14" ry="40" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
+              <!-- Rotating orbital ring -->
+              <ellipse cx="0" cy="0" rx="40" ry="20" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" stroke-dasharray="4 3">
+                <animateTransform attributeName="transform" type="rotate" values="0;360" dur="20s" repeatCount="indefinite"/>
+              </ellipse>
+              <!-- Center label -->
+              <text x="0" y="2" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter" font-weight="600">NexBridge</text>
+            </g>
+            <!-- JPY endpoint (left) -->
+            <g transform="translate(50,70)">
+              <rect x="-36" y="-22" width="72" height="44" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <text x="0" y="-4" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="16" font-family="Inter" font-weight="700">¥</text>
+              <text x="0" y="12" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter" font-weight="600">JPY</text>
+            </g>
+            <!-- USD endpoint (right) -->
+            <g transform="translate(350,70)">
+              <rect x="-36" y="-22" width="72" height="44" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <text x="0" y="-4" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="16" font-family="Inter" font-weight="700">$</text>
+              <text x="0" y="12" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter" font-weight="600">USD</text>
+            </g>
+            <!-- Curved path JPY→Globe (top arc) -->
+            <path d="M86,60 Q143,20 160,55" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3 3"/>
+            <!-- Animated dot along top arc -->
+            <circle r="3" fill="rgba(255,255,255,0.6)">
+              <animate attributeName="cx" values="86;143;160" dur="2.5s" repeatCount="indefinite" keyTimes="0;0.5;1"/>
+              <animate attributeName="cy" values="60;20;55" dur="2.5s" repeatCount="indefinite" keyTimes="0;0.5;1"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Curved path Globe→USD (bottom arc) -->
+            <path d="M240,85 Q257,120 314,78" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3 3"/>
+            <!-- Animated dot along bottom arc -->
+            <circle r="3" fill="rgba(255,255,255,0.6)">
+              <animate attributeName="cx" values="240;257;314" dur="2.5s" repeatCount="indefinite" begin="1s" keyTimes="0;0.5;1"/>
+              <animate attributeName="cy" values="85;120;78" dur="2.5s" repeatCount="indefinite" begin="1s" keyTimes="0;0.5;1"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="2.5s" repeatCount="indefinite" begin="1s"/>
+            </circle>
+            <!-- Time indicator -->
+            <g transform="translate(200,130)">
+              <text x="0" y="0" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Inter" font-weight="600">SWIFT: 2-5 days</text>
+              <line x1="-40" y1="-6" x2="40" y2="-6" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+            </g>
+            <g transform="translate(200,16)">
+              <text x="0" y="0" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="Inter" font-weight="700">On-Chain: ~30 sec</text>
+              <rect x="-50" y="-8" width="100" height="14" rx="3" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.8">
+                <animate attributeName="stroke-opacity" values="0.15;0.35;0.15" dur="2s" repeatCount="indefinite"/>
+              </rect>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Card 3: RWA Tokenization -->
+      <div class="usecase-card fade-up d3">
+        <div class="usecase-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="8" width="18" height="24" rx="2"/>
+            <line x1="11" y1="14" x2="21" y2="14"/>
+            <line x1="11" y1="18" x2="19" y2="18"/>
+            <line x1="11" y1="22" x2="17" y2="22"/>
+            <path d="M25 18L33 18L33 34H17V28" stroke-dasharray="2 1.5"/>
+            <circle cx="29" cy="26" r="4"/>
+            <path d="M27.5 26L29 27.5L31 24.5" stroke-width="1"/>
+          </svg>
+        </div>
+        <h3 data-en="RWA Tokenization for Securities" data-jp="証券会社向けRWAトークン化">RWA Tokenization for Securities</h3>
+        <p data-en="Tokenize bonds, ETFs, and funds on-chain. 24/7 trading. T+0 settlement." data-jp="国債・ETF・ファンドをオンチェーン化。24/7取引。即時決済。">Tokenize bonds, ETFs, and funds on-chain. 24/7 trading. T+0 settlement.</p>
+        <div class="module-diagram" style="margin-top:16px">
+          <svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Left side: Physical Assets (stacked cards) -->
+            <g transform="translate(100,70)">
+              <!-- Card stack (3 offset rectangles) -->
+              <rect x="-42" y="-28" width="84" height="56" rx="4" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" stroke-width="0.6" transform="translate(6,6)"/>
+              <rect x="-42" y="-28" width="84" height="56" rx="4" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="0.6" transform="translate(3,3)"/>
+              <rect x="-42" y="-28" width="84" height="56" rx="4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <!-- Asset lines -->
+              <text x="0" y="-14" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter" font-weight="700">Real-World Assets</text>
+              <line x1="-30" y1="-6" x2="30" y2="-6" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+              <!-- Mini items -->
+              <text x="-24" y="4" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Gov. Bonds</text>
+              <text x="-24" y="14" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">ETFs</text>
+              <text x="-24" y="24" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Funds</text>
+              <!-- Dots -->
+              <circle cx="28" cy="1" r="2" fill="rgba(255,255,255,0.15)"/>
+              <circle cx="28" cy="11" r="2" fill="rgba(255,255,255,0.15)"/>
+              <circle cx="28" cy="21" r="2" fill="rgba(255,255,255,0.15)"/>
+            </g>
+            <!-- Center transformation zone -->
+            <g transform="translate(200,70)">
+              <!-- Spinning hexagon -->
+              <polygon points="0,-18 16,-9 16,9 0,18 -16,9 -16,-9" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.25)" stroke-width="1.2">
+                <animateTransform attributeName="transform" type="rotate" values="0;60;60;120;120;180;180;240;240;300;300;360" dur="12s" repeatCount="indefinite"/>
+              </polygon>
+              <polygon points="0,-12 10,-6 10,6 0,12 -10,6 -10,-6" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.6">
+                <animateTransform attributeName="transform" type="rotate" values="360;0" dur="8s" repeatCount="indefinite"/>
+              </polygon>
+              <!-- Center icon -->
+              <text x="0" y="3" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10">&#x26D3;</text>
+            </g>
+            <!-- Particles flying from left to center -->
+            <circle r="2" fill="rgba(255,255,255,0.4)">
+              <animate attributeName="cx" values="142;185" dur="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="60;66" dur="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.7;0" dur="1.8s" repeatCount="indefinite"/>
+            </circle>
+            <circle r="1.5" fill="rgba(255,255,255,0.3)">
+              <animate attributeName="cx" values="142;185" dur="1.8s" repeatCount="indefinite" begin="0.4s"/>
+              <animate attributeName="cy" values="75;72" dur="1.8s" repeatCount="indefinite" begin="0.4s"/>
+              <animate attributeName="opacity" values="0;0.6;0" dur="1.8s" repeatCount="indefinite" begin="0.4s"/>
+            </circle>
+            <circle r="1.5" fill="rgba(255,255,255,0.3)">
+              <animate attributeName="cx" values="142;185" dur="1.8s" repeatCount="indefinite" begin="0.8s"/>
+              <animate attributeName="cy" values="84;76" dur="1.8s" repeatCount="indefinite" begin="0.8s"/>
+              <animate attributeName="opacity" values="0;0.6;0" dur="1.8s" repeatCount="indefinite" begin="0.8s"/>
+            </circle>
+            <!-- Right side: Tokenized output (grid of tokens) -->
+            <g transform="translate(300,70)">
+              <rect x="-42" y="-28" width="84" height="56" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <text x="0" y="-14" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter" font-weight="700">On-Chain Tokens</text>
+              <line x1="-30" y1="-6" x2="30" y2="-6" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+              <!-- Token grid (3x2) -->
+              <g>
+                <circle cx="-20" cy="4" r="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                <text x="-20" y="6" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="5" font-weight="700">T1</text>
+              </g>
+              <g>
+                <circle cx="0" cy="4" r="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                <text x="0" y="6" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="5" font-weight="700">T2</text>
+              </g>
+              <g>
+                <circle cx="20" cy="4" r="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                <text x="20" y="6" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="5" font-weight="700">T3</text>
+              </g>
+              <g>
+                <circle cx="-20" cy="20" r="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                <text x="-20" y="22" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="5" font-weight="700">T4</text>
+              </g>
+              <g>
+                <circle cx="0" cy="20" r="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                <text x="0" y="22" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="5" font-weight="700">T5</text>
+              </g>
+              <g>
+                <circle cx="20" cy="20" r="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+                <text x="20" y="22" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="5" font-weight="700">T6</text>
+              </g>
+              <!-- Pulsing glow on tokens -->
+              <circle cx="-20" cy="4" r="5" fill="none" stroke="rgba(255,255,255,0.15)">
+                <animate attributeName="r" values="5;8;5" dur="3s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="20" cy="20" r="5" fill="none" stroke="rgba(255,255,255,0.15)">
+                <animate attributeName="r" values="5;8;5" dur="3s" repeatCount="indefinite" begin="1s"/>
+                <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite" begin="1s"/>
+              </circle>
+            </g>
+            <!-- Particles flying from center to right -->
+            <circle r="2" fill="rgba(255,255,255,0.4)">
+              <animate attributeName="cx" values="216;258" dur="1.6s" repeatCount="indefinite" begin="0.3s"/>
+              <animate attributeName="cy" values="66;62" dur="1.6s" repeatCount="indefinite" begin="0.3s"/>
+              <animate attributeName="opacity" values="0;0.7;0" dur="1.6s" repeatCount="indefinite" begin="0.3s"/>
+            </circle>
+            <circle r="1.5" fill="rgba(255,255,255,0.3)">
+              <animate attributeName="cx" values="216;258" dur="1.6s" repeatCount="indefinite" begin="0.7s"/>
+              <animate attributeName="cy" values="72;74" dur="1.6s" repeatCount="indefinite" begin="0.7s"/>
+              <animate attributeName="opacity" values="0;0.6;0" dur="1.6s" repeatCount="indefinite" begin="0.7s"/>
+            </circle>
+            <!-- Labels -->
+            <text x="100" y="130" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Physical</text>
+            <text x="200" y="130" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter" font-weight="600">Tokenize</text>
+            <text x="300" y="130" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Digital</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Card 4: Institutional Yield & Liquidity -->
+      <div class="usecase-card fade-up d4">
+        <div class="usecase-icon">
+          <svg viewBox="0 0 40 40" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="20" cy="20" r="12"/>
+            <circle cx="20" cy="20" r="6" stroke-dasharray="2 1.5" opacity="0.5"/>
+            <line x1="20" y1="8" x2="20" y2="12"/>
+            <line x1="20" y1="28" x2="20" y2="32"/>
+            <line x1="8" y1="20" x2="12" y2="20"/>
+            <line x1="28" y1="20" x2="32" y2="20"/>
+            <path d="M15 20L18 17L22 22L25 19" stroke-width="1.4"/>
+            <circle cx="25" cy="19" r="1.5" fill="rgba(255,255,255,0.5)" stroke="none"/>
+          </svg>
+        </div>
+        <h3 data-en="Institutional Yield & Liquidity" data-jp="機関投資家向けイールド&流動性管理">Institutional Yield & Liquidity</h3>
+        <p data-en="Deploy idle reserves into DeFi yield — governed by Policy Engine guardrails." data-jp="遊休資産をDeFiイールドに展開。Policy Engineのガードレールで管理。">Deploy idle reserves into DeFi yield — governed by Policy Engine guardrails.</p>
+        <div class="module-diagram" style="margin-top:16px">
+          <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Central yield gauge -->
+            <g transform="translate(200,80)">
+              <!-- Outer arc (background) -->
+              <path d="M-50,0 A50,50 0 0,1 50,0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6" stroke-linecap="round"/>
+              <!-- Animated yield arc (fills up) -->
+              <path d="M-50,0 A50,50 0 0,1 50,0" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="6" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="157">
+                <animate attributeName="stroke-dashoffset" values="157;47;157" dur="5s" repeatCount="indefinite"/>
+              </path>
+              <!-- Inner circle -->
+              <circle cx="0" cy="0" r="32" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+              <!-- APY text -->
+              <text x="0" y="-10" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter" font-weight="600">Blended APY</text>
+              <text x="0" y="8" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="18" font-family="Inter" font-weight="800">4.2%</text>
+              <text x="0" y="20" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="Inter">Policy-governed</text>
+            </g>
+            <!-- Reserve input (left) -->
+            <g transform="translate(40,60)">
+              <rect x="-30" y="-16" width="60" height="32" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+              <text x="0" y="-2" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter" font-weight="700">Idle</text>
+              <text x="0" y="10" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Reserves</text>
+            </g>
+            <!-- Arrow from reserves to gauge -->
+            <path d="M70,60 Q110,60 148,68" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+            <polygon points="146,65 152,68 146,71" fill="rgba(255,255,255,0.25)"/>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="70;110;148" dur="2s" repeatCount="indefinite" keyTimes="0;0.5;1"/>
+              <animate attributeName="cy" values="60;60;68" dur="2s" repeatCount="indefinite" keyTimes="0;0.5;1"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Protocol allocation bars (right side) -->
+            <g transform="translate(310,30)">
+              <text x="0" y="0" fill="rgba(255,255,255,0.4)" font-size="8" font-family="Inter" font-weight="600">Allocation</text>
+              <!-- Aave bar -->
+              <g transform="translate(0,14)">
+                <text x="0" y="0" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Aave</text>
+                <rect x="40" y="-7" width="60" height="8" rx="2" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                <rect x="40" y="-7" width="0" height="8" rx="2" fill="rgba(255,255,255,0.2)">
+                  <animate attributeName="width" values="0;36;36;0" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                <text x="105" y="0" fill="rgba(255,255,255,0.3)" font-size="6" font-family="monospace">60%</text>
+              </g>
+              <!-- Curve bar -->
+              <g transform="translate(0,30)">
+                <text x="0" y="0" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Curve</text>
+                <rect x="40" y="-7" width="60" height="8" rx="2" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                <rect x="40" y="-7" width="0" height="8" rx="2" fill="rgba(255,255,255,0.15)">
+                  <animate attributeName="width" values="0;15;15;0" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                <text x="105" y="0" fill="rgba(255,255,255,0.3)" font-size="6" font-family="monospace">25%</text>
+              </g>
+              <!-- Compound bar -->
+              <g transform="translate(0,46)">
+                <text x="0" y="0" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Compound</text>
+                <rect x="40" y="-7" width="60" height="8" rx="2" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                <rect x="40" y="-7" width="0" height="8" rx="2" fill="rgba(255,255,255,0.12)">
+                  <animate attributeName="width" values="0;9;9;0" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                <text x="105" y="0" fill="rgba(255,255,255,0.3)" font-size="6" font-family="monospace">15%</text>
+              </g>
+            </g>
+            <!-- Connecting line from gauge to allocation -->
+            <path d="M252,72 Q270,55 305,44" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8" stroke-dasharray="3 2"/>
+            <path d="M252,80 Q275,80 305,60" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8" stroke-dasharray="3 2"/>
+            <path d="M252,85 Q280,100 305,76" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8" stroke-dasharray="3 2"/>
+            <!-- Shield icon (policy) -->
+            <g transform="translate(200,130)">
+              <path d="M-6,-5 L0,-8 L6,-5 L6,2 Q0,7 0,7 Q0,7 -6,2Z" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+              <text x="12" y="0" fill="rgba(255,255,255,0.3)" font-size="7" font-family="Inter">Risk-managed by Policy Engine</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== NEWS ===== -->
+<section class="news" id="news">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="section-label"><span class="line"></span> <span data-en="Press" data-jp="プレス">Press</span></div>
+      <h2 class="section-title" data-en="NexBridge in the News" data-jp="ニュース">NexBridge in the News</h2>
+    </div>
+    <div class="news-list">
+
+      <div class="news-item fade-up">
+        <span class="news-source">AWAJ / JFIIP</span>
+        <span class="news-title"><a href="https://x.com/AWAJ_official/status/2023896951557943304" target="_blank" rel="noopener" data-en="NexBridge Selected for JFIIP Best Innovative Startup Award — TOP 10" data-jp="NexBridge、JFIIP Best Innovative Startup Award TOP 10 に選出">NexBridge Selected for JFIIP Best Innovative Startup Award — TOP 10</a></span>
+        <span class="news-date">Feb 24, 2026</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECURITY ===== -->
+<section class="security" id="security" style="position:relative">
+  <!-- Network Background -->
+  <div class="network-bg">
+    <svg viewBox="0 0 1200 600">
+      <circle class="node-pulse" cx="100" cy="100" r="3" fill="rgba(255,255,255,0.7)" style="animation-delay:0s"/>
+      <circle class="node-pulse" cx="300" cy="200" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:0.5s"/>
+      <circle class="node-pulse" cx="500" cy="80" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:1s"/>
+      <circle class="node-pulse" cx="700" cy="300" r="3" fill="rgba(255,255,255,0.7)" style="animation-delay:1.5s"/>
+      <circle class="node-pulse" cx="900" cy="150" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:2s"/>
+      <circle class="node-pulse" cx="1100" cy="250" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:0.3s"/>
+      <circle class="node-pulse" cx="200" cy="400" r="3" fill="rgba(255,255,255,0.7)" style="animation-delay:0.8s"/>
+      <circle class="node-pulse" cx="600" cy="450" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:1.2s"/>
+      <circle class="node-pulse" cx="1000" cy="500" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:1.8s"/>
+      <circle class="node-pulse" cx="400" cy="350" r="3" fill="rgba(255,255,255,0.7)" style="animation-delay:2.2s"/>
+      <line class="line-draw" x1="100" y1="100" x2="300" y2="200" stroke="rgba(255,255,255,0.5)" stroke-width="0.5" style="animation-delay:0.2s"/>
+      <line class="line-draw" x1="300" y1="200" x2="500" y2="80" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" style="animation-delay:0.4s"/>
+      <line class="line-draw" x1="500" y1="80" x2="700" y2="300" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" style="animation-delay:0.6s"/>
+      <line class="line-draw" x1="700" y1="300" x2="900" y2="150" stroke="rgba(255,255,255,0.5)" stroke-width="0.5" style="animation-delay:0.8s"/>
+      <line class="line-draw" x1="900" y1="150" x2="1100" y2="250" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" style="animation-delay:1.0s"/>
+      <line class="line-draw" x1="200" y1="400" x2="400" y2="350" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" style="animation-delay:1.2s"/>
+      <line class="line-draw" x1="400" y1="350" x2="600" y2="450" stroke="rgba(255,255,255,0.5)" stroke-width="0.5" style="animation-delay:1.4s"/>
+      <line class="line-draw" x1="600" y1="450" x2="1000" y2="500" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" style="animation-delay:1.6s"/>
+      <line class="line-draw" x1="300" y1="200" x2="400" y2="350" stroke="rgba(255,255,255,0.15)" stroke-width="0.3" style="animation-delay:1.8s"/>
+      <line class="line-draw" x1="700" y1="300" x2="600" y2="450" stroke="rgba(255,255,255,0.12)" stroke-width="0.3" style="animation-delay:2.0s"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="security-grid">
+      <div>
+        <div class="section-header fade-left">
+          <div class="section-label"><span class="line"></span>Enterprise Security</div>
+          <h2 class="section-title" data-en="Japan's Only HSM-First Custody" data-jp="日本唯一のHSM-Firstカストディ">Japan's Only<br><span class="grad-text">HSM-First</span> Custody</h2>
+          <p class="section-desc" data-en="Private keys = ownership. NexBridge integrates HSM + MultiSig + Policy Engine in a single custody stack." data-jp="秘密鍵＝所有権。NexBridgeはHSM + MultiSig + Policy Engineを統合したカストディ基盤。">Private keys = ownership. NexBridge integrates HSM + MultiSig + Policy Engine in a single custody stack.</p>
+        </div>
+        <div class="security-features">
+          <div class="sec-feature fade-up">
+            <div class="sec-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+            <div>
+              <h4 data-en="Hardware Security Module (HSM)" data-jp="HSM（ハードウェアセキュリティモジュール）">Hardware Security Module (HSM)</h4>
+              <p data-en="Keys never leave tamper-resistant hardware." data-jp="耐タンパー性ハードウェア内で鍵を管理。">Keys never leave tamper-resistant hardware.</p>
+            </div>
+          </div>
+          <div class="sec-feature fade-up d1">
+            <div class="sec-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div>
+              <h4 data-en="M-of-N MultiSig" data-jp="M-of-N マルチシグ">M-of-N MultiSig</h4>
+              <p data-en="No single key can authorize transactions." data-jp="単一鍵では取引承認不可。">No single key can authorize transactions.</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="footer-logo"></div>
-    </footer>
-  </body>
+      <div class="security-visual fade-right d2">
+        <div class="arch-title" data-en="Custody Architecture" data-jp="カストディアーキテクチャ">Custody Architecture</div>
+        <div class="arch-svg-container">
+          <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gLayer" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.1"/><stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.03"/></linearGradient>
+              <filter id="glowS"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+
+            <!-- ===== LAYER 1: API & Compliance ===== -->
+            <g opacity="0"><animate attributeName="opacity" to="1" dur="0.5s" fill="freeze" begin="0.2s"/>
+              <rect x="20" y="10" width="440" height="50" rx="10" fill="url(#gLayer)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="240" y="40" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" font-family="Inter">API Gateway + Compliance Layer</text>
+              <!-- Flow dot -->
+              <circle r="2.5" fill="rgba(255,255,255,0.6)" filter="url(#glowS)">
+                <animate attributeName="cx" values="40;240;440" dur="3s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="35;35;35" dur="3s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
+              </circle>
+            </g>
+
+            <!-- Connector -->
+            <line x1="240" y1="60" x2="240" y2="90" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cy" values="60;90" dur="1.2s" repeatCount="indefinite"/>
+              <animate attributeName="cx" values="240;240" dur="1.2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- ===== LAYER 2: Signing & Key Management ===== -->
+            <g opacity="0"><animate attributeName="opacity" to="1" dur="0.5s" fill="freeze" begin="0.6s"/>
+              <rect x="20" y="90" width="440" height="100" rx="10" fill="url(#gLayer)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="240" y="115" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" font-family="Inter">Key Management & Signing</text>
+              <!-- 3 abstract boxes representing key layers -->
+              <rect x="50" y="128" width="110" height="46" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+              <text x="105" y="148" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-family="Inter" font-weight="600">HSM</text>
+              <text x="105" y="164" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Hardware Keys</text>
+              <rect x="185" y="128" width="110" height="46" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+              <text x="240" y="148" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-family="Inter" font-weight="600">MultiSig</text>
+              <text x="240" y="164" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">M-of-N Auth</text>
+              <rect x="320" y="128" width="110" height="46" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+              <text x="375" y="148" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-family="Inter" font-weight="600">Policy Engine</text>
+              <text x="375" y="164" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Guardrails</text>
+              <!-- Animated connection line between boxes -->
+              <line x1="160" y1="151" x2="185" y2="151" stroke="rgba(255,255,255,0.08)" stroke-width="0.8" stroke-dasharray="3 2"/>
+              <line x1="295" y1="151" x2="320" y2="151" stroke="rgba(255,255,255,0.08)" stroke-width="0.8" stroke-dasharray="3 2"/>
+              <circle r="2" fill="rgba(255,255,255,0.5)">
+                <animate attributeName="cx" values="105;240;375" dur="2.5s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="151;151;151" dur="2.5s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.8;0" dur="2.5s" repeatCount="indefinite"/>
+              </circle>
+            </g>
+
+            <!-- Connector -->
+            <line x1="240" y1="190" x2="240" y2="220" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cy" values="190;220" dur="1.3s" repeatCount="indefinite" begin="0.4s"/>
+              <animate attributeName="cx" values="240;240" dur="1.3s" repeatCount="indefinite" begin="0.4s"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="1.3s" repeatCount="indefinite" begin="0.4s"/>
+            </circle>
+
+            <!-- ===== LAYER 3: Cold Storage ===== -->
+            <g opacity="0"><animate attributeName="opacity" to="1" dur="0.5s" fill="freeze" begin="1s"/>
+              <rect x="20" y="220" width="440" height="50" rx="10" fill="url(#gLayer)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <text x="240" y="250" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" font-family="Inter">Air-Gapped Cold Storage</text>
+              <!-- Scanning line -->
+              <rect x="22" y="220" width="2" height="50" rx="1" fill="rgba(255,255,255,0.2)">
+                <animate attributeName="x" values="22;458" dur="4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.3;0" dur="4s" repeatCount="indefinite"/>
+              </rect>
+            </g>
+
+            <!-- Connector -->
+            <line x1="240" y1="270" x2="240" y2="300" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cy" values="270;300" dur="1.4s" repeatCount="indefinite" begin="0.7s"/>
+              <animate attributeName="cx" values="240;240" dur="1.4s" repeatCount="indefinite" begin="0.7s"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="1.4s" repeatCount="indefinite" begin="0.7s"/>
+            </circle>
+
+            <!-- ===== LAYER 4: Blockchain ===== -->
+            <g opacity="0"><animate attributeName="opacity" to="1" dur="0.5s" fill="freeze" begin="1.4s"/>
+              <rect x="20" y="300" width="440" height="60" rx="10" fill="url(#gLayer)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <text x="240" y="335" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" font-family="Inter">Blockchain Settlement Layer</text>
+              <!-- Simple chain visualization -->
+              <g>
+                <circle cx="60" cy="330" r="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+                <line x1="64" y1="330" x2="96" y2="330" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                <circle cx="100" cy="330" r="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+                <line x1="104" y1="330" x2="136" y2="330" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                <circle cx="140" cy="330" r="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+              </g>
+              <!-- Pulse along chain -->
+              <circle r="3" fill="rgba(255,255,255,0.5)" filter="url(#glowS)">
+                <animate attributeName="cx" values="60;100;140" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="330;330;330" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Status dot -->
+              <circle cx="420" cy="330" r="4" fill="rgba(255,255,255,0.1)">
+                <animate attributeName="fill" values="rgba(255,255,255,0.1);rgba(255,255,255,0.35);rgba(255,255,255,0.1)" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <text x="430" y="333" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Live</text>
+            </g>
+
+            <!-- Left side label: Request Flow -->
+            <text x="8" y="260" fill="rgba(255,255,255,0.15)" font-size="8" font-family="Inter" font-weight="600" transform="rotate(-90,8,260)" text-anchor="middle">REQUEST FLOW ↓</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <div class="section-header center fade-up" style="margin-bottom:40px">
+      <h2 class="section-title" data-en="Ready to Build the Future of Finance?" data-jp="金融の未来を共に構築しませんか？">Ready to Build the<br>Future of <span class="grad-text">Finance</span>?</h2>
+    </div>
+    <div class="cta-grid">
+      <div class="cta-card fade-left">
+        <div class="cta-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></div>
+        <h3 data-en="For Financial Institutions" data-jp="金融機関の方へ">For Financial Institutions</h3>
+        <p data-en="Explore how NexBridge can power your stablecoin strategy — from issuance to custody to DeFi connectivity." data-jp="ステーブルコイン戦略の実現を支援します — 発行からカストディ、DeFi接続まで。">Explore how NexBridge can power your stablecoin strategy — from issuance to custody to DeFi connectivity.</p>
+        <a href="mailto:support@nexbridge.xyz" class="btn btn-primary">Request a Demo →</a>
+      </div>
+      <div class="cta-card fade-right d1">
+        <div class="cta-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3 data-en="For Investors" data-jp="投資家の方へ">For Investors</h3>
+        <p data-en="Japan's only independent, full-stack SC infrastructure at pre-revenue stage. Current valuation: ¥5B." data-jp="日本唯一の独立系フルスタックSC基盤。Pre-Revenueステージ。現在のバリュエーション：¥50億。">Japan's only independent, full-stack SC infrastructure at pre-revenue stage. Current valuation: ¥5B.</p>
+        <a href="mailto:support@nexbridge.xyz" class="btn btn-outline">Contact for Deck →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="data:image/png;base64,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" alt="NexBridge" class="logo-img">
+        </div>
+        <p data-en="Japan-born digital financial infrastructure company building next-generation payment, transfer, and settlement systems powered by stablecoins." data-jp="ステーブルコインを基盤とする次世代決済・送金・精算インフラを構築する、日本発のデジタル金融インフラ企業。">Japan-born digital financial infrastructure company building next-generation payment, transfer, and settlement systems powered by stablecoins.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="#solution">Issuance</a></li>
+          <li><a href="#solution">Custody</a></li>
+          <li><a href="#solution">Transfer</a></li>
+          <li><a href="#solution">Connect</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#market">Market</a></li>
+          <li><a href="#">Litepaper</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:support@nexbridge.xyz">support@nexbridge.xyz</a></li>
+          <li><a href="https://x.com/0xNexBridge" target="_blank">X / Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 NexBridge Inc. All rights reserved.</span>
+      <div class="disclaimer" data-en="Software from NexBridge Inc. This is not a regulated financial service. Information provided as-is without warranty." data-jp="ネクスブリッジ株式会社のソフトウェアです。規制された金融サービスではありません。情報は現状有姿で提供されます。">Software from NexBridge Inc. This is not a regulated financial service. Information provided as-is without warranty.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== NAV SCROLL =====
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ===== SCROLL ANIMATIONS (supports fade-up, fade-left, fade-right, scale-in) =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up,.fade-left,.fade-right,.scale-in').forEach(el => observer.observe(el));
+
+// ===== PARTICLE CANVAS =====
+(function() {
+  const canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let w, h;
+  const PARTICLE_COUNT = 60;
+  const MAX_DIST = 150;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4;
+      this.r = Math.random() * 2 + 1;
+      this.color = '255,255,255';
+      this.alpha = Math.random() * 0.15 + 0.05;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > w) this.vx *= -1;
+      if (this.y < 0 || this.y > h) this.vy *= -1;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color},${this.alpha})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(255,255,255,${0.06 * (1 - dist / MAX_DIST)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ===== ANIMATED NUMBER COUNTERS =====
+(function() {
+  const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = 'true';
+        animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  statNumbers.forEach(el => counterObserver.observe(el));
+
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.count);
+    const prefix = el.textContent.match(/^[^0-9]*/)[0] || '';
+    const suffix = el.textContent.match(/[^0-9]*$/)[0] || '';
+    const duration = 2000;
+    const start = performance.now();
+
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+      const current = Math.floor(eased * target);
+      el.textContent = prefix + current + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = prefix + target + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+})();
+
+// ===== HERO DASHBOARD CHART ANIMATION =====
+(function() {
+  const chartPath = document.querySelector('.dash-chart path:last-child');
+  if (chartPath) {
+    const length = chartPath.getTotalLength ? chartPath.getTotalLength() : 800;
+    chartPath.style.strokeDasharray = length;
+    chartPath.style.strokeDashoffset = length;
+    chartPath.style.transition = 'none';
+    setTimeout(() => {
+      chartPath.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)';
+      chartPath.style.strokeDashoffset = '0';
+    }, 500);
+  }
+})();
+
+// ===== PARALLAX ON FLOATING ORBS =====
+window.addEventListener('mousemove', (e) => {
+  const orbs = document.querySelectorAll('.floating-orb');
+  const mx = (e.clientX / window.innerWidth - 0.5) * 2;
+  const my = (e.clientY / window.innerHeight - 0.5) * 2;
+  orbs.forEach((orb, i) => {
+    const speed = (i + 1) * 8;
+    orb.style.transform = `translate(${mx * speed}px, ${my * speed}px)`;
+  });
+});
+
+// ===== LANGUAGE SWITCHING =====
+let currentLang = 'en';
+function switchLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-switch button[onclick="switchLang('${lang}')"]`).classList.add('active');
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const text = el.getAttribute(`data-${lang}`);
+    if (text) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = text;
+      else el.innerHTML = text;
+    }
+  });
+  document.documentElement.lang = lang === 'jp' ? 'ja' : 'en';
+}
+
+// ===== MOBILE MENU =====
+function toggleMobileMenu() {
+  const links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  links.style.position = 'absolute';
+  links.style.top = '60px';
+  links.style.left = '0';
+  links.style.right = '0';
+  links.style.background = 'rgba(0,0,0,0.98)';
+  links.style.flexDirection = 'column';
+  links.style.padding = '20px';
+  links.style.gap = '16px';
+  links.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
+}
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ===== GLOW LINE ANIMATIONS ON SECTIONS =====
+document.querySelectorAll('.section-divider').forEach(div => {
+  const line = document.createElement('div');
+  line.className = 'glow-line';
+  line.style.top = '0';
+  div.style.position = 'relative';
+  div.style.overflow = 'hidden';
+  div.appendChild(line);
+});
+
+// ===== LIVE TRANSACTION FEED =====
+(function() {
+  const feed = document.getElementById('liveFeed');
+  if (!feed) return;
+  const txTypes = [
+    { text: 'Mint ¥{amount}M JPYC', color: 'rgba(255,255,255,0.6)' },
+    { text: 'Transfer → 0x{hash}', color: 'rgba(255,255,255,0.5)' },
+    { text: 'DeFi Deposit ¥{amount}M', color: 'rgba(255,255,255,0.4)' },
+    { text: 'Redeem ¥{amount}M JPYC', color: 'rgba(255,255,255,0.5)' },
+    { text: 'Cross-border ¥{amount}M', color: 'rgba(255,255,255,0.4)' },
+    { text: 'Custody Lock ¥{amount}M', color: 'rgba(255,255,255,0.5)' },
+    { text: 'Yield Harvest ¥{amount}M', color: 'rgba(255,255,255,0.4)' },
+  ];
+  const hashes = ['7a2f','3b8c','9d1e','5f4a','2c6b','8e3d','1a7f','4d9c'];
+
+  function addTx() {
+    const tx = txTypes[Math.floor(Math.random() * txTypes.length)];
+    const amount = (Math.random() * 80 + 5).toFixed(0);
+    const hash = hashes[Math.floor(Math.random() * hashes.length)];
+    let text = tx.text.replace('{amount}', amount).replace('{hash}', hash + '...' + hashes[(hashes.indexOf(hash)+3)%hashes.length]);
+
+    const item = document.createElement('div');
+    item.className = 'feed-item';
+    item.innerHTML = `<span class="feed-dot" style="background:${tx.color}"></span><span style="color:var(--text-light)">${text}</span><span class="feed-time">Just now</span>`;
+
+    feed.insertBefore(item, feed.firstChild);
+    if (feed.children.length > 3) feed.removeChild(feed.lastChild);
+
+    // Update times
+    Array.from(feed.children).forEach((child, i) => {
+      const time = child.querySelector('.feed-time');
+      if (time && i > 0) time.textContent = (i * 3) + 's ago';
+    });
+  }
+
+  setInterval(addTx, 3000);
+})();
+
+// ===== (Architecture animation is now inline SVG) =====
+
+// ===== PROBLEM CARD ICON PULSE RINGS =====
+(function() {
+  document.querySelectorAll('.problem-card .icon').forEach((icon, i) => {
+    const colors = ['rgba(255,255,255,0.1)','rgba(255,255,255,0.1)','rgba(255,255,255,0.1)'];
+    const ring = document.createElement('div');
+    ring.className = 'icon-ring';
+    ring.style.borderColor = colors[i];
+    ring.style.animationDelay = (i * 0.5) + 's';
+    icon.style.position = 'relative';
+    icon.appendChild(ring);
+  });
+})();
+
+// ===== HERO DASHBOARD STAT VALUE SHIMMER =====
+(function() {
+  const values = document.querySelectorAll('.dash-stat .value');
+  values.forEach(v => {
+    setInterval(() => {
+      v.style.transition = 'opacity 0.3s';
+      v.style.opacity = '0.6';
+      setTimeout(() => { v.style.opacity = '1'; }, 300);
+    }, 4000 + Math.random() * 3000);
+  });
+})();
+</script>
+
+<!-- ===== COOKIE CONSENT BANNER ===== -->
+<div class="cookie-overlay" id="cookieOverlay"></div>
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner-inner">
+    <!-- Tabs -->
+    <div class="cookie-tabs">
+      <button class="cookie-tab active" data-tab="consent">Consent</button>
+      <button class="cookie-tab" data-tab="details">Details</button>
+      <button class="cookie-tab" data-tab="about">About</button>
+    </div>
+
+    <!-- Consent Tab -->
+    <div class="cookie-tab-content active" id="tab-consent">
+      <p class="cookie-consent-text">
+        This website uses cookies to enhance user experience, analyze site traffic, and assist with marketing efforts. Some cookies are necessary for the website to function properly, while others help us understand how you interact with the site. You can choose which categories of cookies to allow below. For more information, please review our
+        <a href="https://www.cookiebot.com/en/privacy-policy/" target="_blank" rel="noopener">Cookie Policy</a>.
+      </p>
+    </div>
+
+    <!-- Details Tab -->
+    <div class="cookie-tab-content" id="tab-details">
+      <!-- Necessary -->
+      <div class="cookie-category" id="cat-necessary">
+        <div class="cookie-category-header" onclick="toggleCookieCategory('cat-necessary')">
+          <div class="cookie-category-left">
+            <span class="cookie-category-arrow">▼</span>
+            <span class="cookie-category-name">Necessary <span class="cookie-category-count">(6)</span></span>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" checked disabled>
+            <span class="cookie-toggle-slider"></span>
+          </label>
+        </div>
+        <div class="cookie-category-details">
+          <div class="cookie-provider">
+            <div class="cookie-provider-name">Cookiebot</div>
+            <div class="cookie-provider-desc">Stores the user's cookie consent state for the current domain.</div>
+            <div class="cookie-provider-link"><a href="https://www.cookiebot.com/en/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a></div>
+          </div>
+          <div class="cookie-provider">
+            <div class="cookie-provider-name">HubSpot</div>
+            <div class="cookie-provider-desc">Used to recognize visitors and optimize ad-relevance, and set a unique visitor ID.</div>
+            <div class="cookie-provider-link"><a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></div>
+          </div>
+          <div class="cookie-provider">
+            <div class="cookie-provider-name">cdn.ashbyhq.com</div>
+            <div class="cookie-provider-desc">Pending classification for cookies from this provider.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preferences -->
+      <div class="cookie-category" id="cat-preferences">
+        <div class="cookie-category-header" onclick="toggleCookieCategory('cat-preferences')">
+          <div class="cookie-category-left">
+            <span class="cookie-category-arrow">▼</span>
+            <span class="cookie-category-name">Preferences <span class="cookie-category-count">(0)</span></span>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="toggle-preferences">
+            <span class="cookie-toggle-slider"></span>
+          </label>
+        </div>
+        <div class="cookie-category-details">
+          <div class="cookie-provider">
+            <div class="cookie-provider-desc" style="color:rgba(255,255,255,0.3);font-style:italic">No cookies in this category.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statistics -->
+      <div class="cookie-category" id="cat-statistics">
+        <div class="cookie-category-header" onclick="toggleCookieCategory('cat-statistics')">
+          <div class="cookie-category-left">
+            <span class="cookie-category-arrow">▼</span>
+            <span class="cookie-category-name">Statistics <span class="cookie-category-count">(7)</span></span>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="toggle-statistics">
+            <span class="cookie-toggle-slider"></span>
+          </label>
+        </div>
+        <div class="cookie-category-details">
+          <div class="cookie-provider">
+            <div class="cookie-provider-name">HubSpot</div>
+            <div class="cookie-provider-desc">Collects data on the user's visits to the website, such as the number of visits, average time spent and what pages have been loaded, for generating reports and analytics.</div>
+            <div class="cookie-provider-link"><a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a></div>
+          </div>
+          <div class="cookie-provider">
+            <div class="cookie-provider-name">Google</div>
+            <div class="cookie-provider-desc">Registers a unique ID used to generate statistical data on how the visitor uses the website. Used by Google Analytics.</div>
+            <div class="cookie-provider-link"><a href="https://business.safety.google/privacy/" target="_blank" rel="noopener">Privacy Policy</a></div>
+          </div>
+          <div class="cookie-provider">
+            <div class="cookie-provider-name">cal.com</div>
+            <div class="cookie-provider-desc">Used for scheduling and calendar integration analytics.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marketing -->
+      <div class="cookie-category" id="cat-marketing">
+        <div class="cookie-category-header" onclick="toggleCookieCategory('cat-marketing')">
+          <div class="cookie-category-left">
+            <span class="cookie-category-arrow">▼</span>
+            <span class="cookie-category-name">Marketing <span class="cookie-category-count">(1)</span></span>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="toggle-marketing">
+            <span class="cookie-toggle-slider"></span>
+          </label>
+        </div>
+        <div class="cookie-category-details">
+          <div class="cookie-provider">
+            <div class="cookie-provider-name">Google</div>
+            <div class="cookie-provider-desc">Used to track visitors across websites to display relevant advertisements based on the visitor's preferences.</div>
+            <div class="cookie-provider-link"><a href="https://business.safety.google/privacy/" target="_blank" rel="noopener">Privacy Policy</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unclassified -->
+      <div class="cookie-category" id="cat-unclassified">
+        <div class="cookie-category-header" onclick="toggleCookieCategory('cat-unclassified')">
+          <div class="cookie-category-left">
+            <span class="cookie-category-arrow">▼</span>
+            <span class="cookie-category-name">Unclassified <span class="cookie-category-count">(1)</span></span>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="toggle-unclassified">
+            <span class="cookie-toggle-slider"></span>
+          </label>
+        </div>
+        <div class="cookie-category-details">
+          <div class="cookie-provider">
+            <div class="cookie-provider-name">Amazon</div>
+            <div class="cookie-provider-desc">Unclassified cookies from Amazon services.</div>
+            <div class="cookie-provider-link"><a href="https://www.amazon.com/gp/help/customer/display.html/ref=footer_privacy?ie=UTF8&nodeId=468496" target="_blank" rel="noopener">Privacy Policy</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Tab -->
+    <div class="cookie-tab-content" id="tab-about">
+      <div class="cookie-about-text">
+        <p style="margin-bottom:14px">This website uses cookies. Cookies are small text files that are placed on your computer by websites that you visit. They are widely used to make websites work more efficiently, as well as to provide information to the owners of the site.</p>
+        <p style="margin-bottom:14px">We use cookies to personalise content, to provide social media features, and to analyse our traffic. We also share information about your use of our site with our analytics and advertising partners.</p>
+        <p>Cookie consent is managed by <a href="https://www.cookiebot.com/en/privacy-policy/" target="_blank" rel="noopener">Cookiebot</a>. You can change or withdraw your consent at any time by clicking the cookie icon in the bottom left corner of the website.</p>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="cookie-actions">
+      <button class="cookie-btn cookie-btn-deny" onclick="cookieDenyAll()">Deny</button>
+      <button class="cookie-btn cookie-btn-allow-selection" onclick="cookieAllowSelection()">Allow selection</button>
+      <button class="cookie-btn cookie-btn-allow-all" onclick="cookieAllowAll()">Allow all</button>
+    </div>
+
+    <!-- Powered by -->
+    <div class="cookie-powered">
+      Powered by <a href="https://www.cookiebot.com" target="_blank" rel="noopener">Cookiebot</a>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Reopen Button -->
+<button class="cookie-reopen" id="cookieReopen" onclick="reopenCookieBanner()" title="Cookie settings">🍪</button>
+
+<!-- Cookie Consent JS -->
+<script>
+(function(){
+  const banner = document.getElementById('cookieBanner');
+  const overlay = document.getElementById('cookieOverlay');
+  const reopenBtn = document.getElementById('cookieReopen');
+  const tabs = document.querySelectorAll('.cookie-tab');
+  const tabContents = document.querySelectorAll('.cookie-tab-content');
+
+  // Show banner on load if no consent stored
+  if (!sessionStorage.getItem('nexbridge_cookie_consent')) {
+    setTimeout(() => {
+      banner.classList.add('active');
+      overlay.classList.add('active');
+    }, 800);
+  } else {
+    reopenBtn.classList.add('visible');
+  }
+
+  // Tab switching
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tabContents.forEach(tc => tc.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Close overlay click
+  overlay.addEventListener('click', () => {
+    closeBanner();
+  });
+
+  window.toggleCookieCategory = function(id) {
+    document.getElementById(id).classList.toggle('open');
+  };
+
+  function closeBanner() {
+    banner.classList.remove('active');
+    overlay.classList.remove('active');
+    reopenBtn.classList.add('visible');
+    sessionStorage.setItem('nexbridge_cookie_consent', 'true');
+  }
+
+  window.cookieAllowAll = function() {
+    document.querySelectorAll('.cookie-toggle input:not(:disabled)').forEach(cb => cb.checked = true);
+    closeBanner();
+  };
+
+  window.cookieAllowSelection = function() {
+    closeBanner();
+  };
+
+  window.cookieDenyAll = function() {
+    document.querySelectorAll('.cookie-toggle input:not(:disabled)').forEach(cb => cb.checked = false);
+    closeBanner();
+  };
+
+  window.reopenCookieBanner = function() {
+    banner.classList.add('active');
+    overlay.classList.add('active');
+    reopenBtn.classList.remove('visible');
+  };
+})();
+</script>
+
+</body>
 </html>
