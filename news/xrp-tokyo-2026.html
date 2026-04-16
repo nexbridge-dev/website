@@ -31,9 +31,11 @@
   --max-w:1200px;
   --transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
 }
+html,body{overflow-x:hidden;max-width:100vw;-webkit-overflow-scrolling:touch}
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--font);background:var(--navy);color:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:var(--navy);color:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 a{text-decoration:none;color:inherit;transition:var(--transition)}
+img{max-width:100%;height:auto;display:block}
 .container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
 .mono{font-family:var(--mono)}
 .grad-text{background:linear-gradient(135deg,#E0C992,#C8A96E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -52,8 +54,6 @@ a{text-decoration:none;color:inherit;transition:var(--transition)}
 .btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2)}
 .btn-primary{background:var(--gold);color:#000000;border-color:var(--gold)}
 .btn-primary:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 8px 25px rgba(200,169,110,0.2)}
-.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}
-.btn-outline:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.4)}
 
 /* ============ ARTICLE HERO ============ */
 .article-hero{position:relative;padding:160px 0 80px;overflow:hidden}
@@ -130,16 +130,81 @@ a{text-decoration:none;color:inherit;transition:var(--transition)}
 @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:24px}}
 
 /* ============ RESPONSIVE ============ */
-@media(max-width:768px){
-  .article-hero h1{font-size:28px}
-  .event-details{grid-template-columns:1fr}
-  .stats-row{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
-  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+
+/* ---- Tablet (iPad, Galaxy Tab, Surface) ---- */
+@media(max-width:1024px){
+  .article-content{max-width:100%}
+  .footer-grid{gap:40px}
 }
+
+/* ---- Mobile (≤768px) ---- */
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .nav-inner{gap:8px}
+  .nav-actions{gap:8px}
+  .nav-actions .btn{padding:8px 14px;font-size:12px;white-space:nowrap}
+  .lang-switch button{padding:5px 10px;font-size:12px}
+  .article-hero{padding:110px 0 50px}
+  .article-hero h1{font-size:28px;letter-spacing:-0.5px}
+  .article-hero .subtitle{font-size:15px}
+  .article-body{padding:40px 0 80px}
+  .article-content h2{font-size:20px;margin:36px 0 12px}
+  .event-details{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:12px}
+  .stat-card{padding:16px}
+  .stat-value{font-size:22px}
+  .article-image{margin:24px 0;border-radius:12px}
+  .image-caption{font-size:12px}
+  .event-card{padding:24px}
+  .quote-block{padding:20px 24px}
+  .article-cta{padding:28px 20px}
+
+  .footer{padding:40px 0 24px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+  .footer-brand p{max-width:100%}
+  .footer-company-info{flex-direction:column;gap:20px !important}
+  .footer-bottom{flex-direction:column;gap:12px;align-items:flex-start}
+  .footer-bottom .disclaimer{max-width:100%}
+}
+
+/* ---- Small mobile (≤480px) — iPhone SE, small Android ---- */
 @media(max-width:480px){
+  .container{padding:0 16px}
+  .nav-actions .btn{padding:6px 10px;font-size:11px}
+  .lang-switch button{padding:4px 8px;font-size:11px}
+  .article-hero{padding:100px 0 40px}
+  .article-hero h1{font-size:24px}
+  .article-hero .subtitle{font-size:14px}
   .stats-row{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}
+  .stat-card{padding:14px}
+  .stat-value{font-size:20px}
+  .event-card{padding:20px}
+  .quote-block{padding:16px 20px}
+  .article-cta{padding:24px 16px}
+  .article-cta h3{font-size:18px}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+}
+
+/* ---- Very small (≤360px) — Galaxy S, older iPhones ---- */
+@media(max-width:360px){
+  .container{padding:0 12px}
+  .article-hero h1{font-size:22px}
+  .nav-actions .btn{padding:5px 8px;font-size:10px}
+}
+
+/* ---- Safe area support (notch/dynamic island) ---- */
+@supports(padding:env(safe-area-inset-top)){
+  .nav{padding-top:max(16px,env(safe-area-inset-top))}
+  .footer{padding-bottom:max(40px,env(safe-area-inset-bottom))}
+}
+
+/* ---- Touch target sizing ---- */
+@media(hover:none) and (pointer:coarse){
+  .btn{min-height:44px}
+  .lang-switch button{min-height:36px}
+  .nav-logo{min-height:44px}
 }
 
 /* ============ ANIMATIONS ============ */
@@ -310,7 +375,7 @@ a{text-decoration:none;color:inherit;transition:var(--transition)}
         <p data-en="Building Japan's enterprise-grade stablecoin infrastructure." data-jp="日本のエンタープライズ向けステーブルコインインフラを構築。">Building Japan's enterprise-grade stablecoin infrastructure.</p>
         <div class="cta-buttons">
           <a href="../index.html" class="btn btn-primary" data-en="Visit Homepage" data-jp="ホームページへ">Visit Homepage</a>
-          <a href="mailto:support@nexbridge.xyz" class="btn btn-outline" data-en="Contact Us" data-jp="お問い合わせ">Contact Us</a>
+          <a href="mailto:support@nexbridge.xyz" class="btn btn-ghost" data-en="Contact Us" data-jp="お問い合わせ">Contact Us</a>
         </div>
       </div>
 
