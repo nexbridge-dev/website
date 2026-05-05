@@ -1,0 +1,22 @@
+<svg viewBox="0 0 1200 600">
+      <circle class="node-pulse" cx="100" cy="100" r="3" fill="rgba(255,255,255,0.7)" style="animation-delay:0s"/>
+      <circle class="node-pulse" cx="300" cy="200" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:0.5s"/>
+      <circle class="node-pulse" cx="500" cy="80" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:1s"/>
+      <circle class="node-pulse" cx="700" cy="300" r="3" fill="rgba(255,255,255,0.7)" style="animation-delay:1.5s"/>
+      <circle class="node-pulse" cx="900" cy="150" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:2s"/>
+      <circle class="node-pulse" cx="1100" cy="250" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:0.3s"/>
+      <circle class="node-pulse" cx="200" cy="400" r="3" fill="rgba(255,255,255,0.7)" style="animation-delay:0.8s"/>
+      <circle class="node-pulse" cx="600" cy="450" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:1.2s"/>
+      <circle class="node-pulse" cx="1000" cy="500" r="3" fill="rgba(255,255,255,0.5)" style="animation-delay:1.8s"/>
+      <circle class="node-pulse" cx="400" cy="350" r="3" fill="rgba(255,255,255,0.7)" style="animation-delay:2.2s"/>
+      <line class="line-draw" x1="100" y1="100" x2="300" y2="200" stroke="rgba(255,255,255,0.5)" stroke-width="0.5" style="animation-delay:0.2s"/>
+      <line class="line-draw" x1="300" y1="200" x2="500" y2="80" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" style="animation-delay:0.4s"/>
+      <line class="line-draw" x1="500" y1="80" x2="700" y2="300" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" style="animation-delay:0.6s"/>
+      <line class="line-draw" x1="700" y1="300" x2="900" y2="150" stroke="rgba(255,255,255,0.5)" stroke-width="0.5" style="animation-delay:0.8s"/>
+      <line class="line-draw" x1="900" y1="150" x2="1100" y2="250" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" style="animation-delay:1.0s"/>
+      <line class="line-draw" x1="200" y1="400" x2="400" y2="350" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" style="animation-delay:1.2s"/>
+      <line class="line-draw" x1="400" y1="350" x2="600" y2="450" stroke="rgba(255,255,255,0.5)" stroke-width="0.5" style="animation-delay:1.4s"/>
+      <line class="line-draw" x1="600" y1="450" x2="1000" y2="500" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" style="animation-delay:1.6s"/>
+      <line class="line-draw" x1="300" y1="200" x2="400" y2="350" stroke="rgba(255,255,255,0.15)" stroke-width="0.3" style="animation-delay:1.8s"/>
+      <line class="line-draw" x1="700" y1="300" x2="600" y2="450" stroke="rgba(255,255,255,0.12)" stroke-width="0.3" style="animation-delay:2.0s"/>
+    </svg>

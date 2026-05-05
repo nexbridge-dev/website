@@ -1,0 +1,80 @@
+<svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Central yield gauge -->
+            <g transform="translate(200,80)">
+              <!-- Outer arc (background) -->
+              <path d="M-50,0 A50,50 0 0,1 50,0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6" stroke-linecap="round"/>
+              <!-- Animated yield arc (fills up) -->
+              <path d="M-50,0 A50,50 0 0,1 50,0" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="6" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="157">
+                <animate attributeName="stroke-dashoffset" values="157;47;157" dur="5s" repeatCount="indefinite"/>
+              </path>
+              <!-- Inner circle -->
+              <circle cx="0" cy="0" r="32" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+              <!-- APY text -->
+              <text x="0" y="-8" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="7" font-family="Inter" font-weight="600">Blended APY</text>
+              <text x="0" y="8" text-anchor="middle" fill="rgba(255,255,255,0.75)" font-size="14" font-family="Inter" font-weight="800">4.2%</text>
+              <text x="0" y="19" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="6" font-family="Inter">Policy-governed</text>
+            </g>
+            <!-- Reserve input (left) -->
+            <g transform="translate(40,80)">
+              <rect x="-30" y="-16" width="60" height="32" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+              <text x="0" y="-2" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter" font-weight="700">Idle</text>
+              <text x="0" y="10" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Reserves</text>
+            </g>
+            <!-- Arrow from reserves (right edge x=70) to gauge, stops before arc stroke -->
+            <path d="M70,80 L132,80" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.2"/>
+            <polygon points="132,77 138,80 132,83" fill="rgba(255,255,255,0.3)"/>
+            <circle r="2.5" fill="rgba(255,255,255,0.55)">
+              <animate attributeName="cx" values="70;132" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="80;80" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Protocol allocation bars (right side) -->
+            <g transform="translate(310,30)">
+              <text x="0" y="0" fill="rgba(255,255,255,0.4)" font-size="8" font-family="Inter" font-weight="600">Allocation</text>
+              <!-- Aave bar -->
+              <g transform="translate(0,14)">
+                <text x="0" y="0" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Aave</text>
+                <rect x="40" y="-7" width="60" height="8" rx="2" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                <rect x="40" y="-7" width="0" height="8" rx="2" fill="rgba(255,255,255,0.2)">
+                  <animate attributeName="width" values="0;36;36;0" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                <text x="105" y="0" fill="rgba(255,255,255,0.3)" font-size="6" font-family="monospace">60%</text>
+              </g>
+              <!-- Curve bar -->
+              <g transform="translate(0,30)">
+                <text x="0" y="0" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Curve</text>
+                <rect x="40" y="-7" width="60" height="8" rx="2" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                <rect x="40" y="-7" width="0" height="8" rx="2" fill="rgba(255,255,255,0.15)">
+                  <animate attributeName="width" values="0;15;15;0" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                <text x="105" y="0" fill="rgba(255,255,255,0.3)" font-size="6" font-family="monospace">25%</text>
+              </g>
+              <!-- Compound bar -->
+              <g transform="translate(0,46)">
+                <text x="0" y="0" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Compound</text>
+                <rect x="40" y="-7" width="60" height="8" rx="2" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                <rect x="40" y="-7" width="0" height="8" rx="2" fill="rgba(255,255,255,0.12)">
+                  <animate attributeName="width" values="0;9;9;0" dur="5s" repeatCount="indefinite"/>
+                </rect>
+                <text x="105" y="0" fill="rgba(255,255,255,0.3)" font-size="6" font-family="monospace">15%</text>
+              </g>
+            </g>
+            <!-- Connecting line from gauge to allocation -->
+            <path d="M252,72 Q270,55 305,44" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8" stroke-dasharray="3 2"/>
+            <path d="M252,80 Q275,80 305,60" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8" stroke-dasharray="3 2"/>
+            <path d="M252,85 Q280,100 305,76" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8" stroke-dasharray="3 2"/>
+            <!-- Shield icon + label (centered) -->
+            <g transform="translate(200,132)">
+              <!-- Centered group: shield left, text right, total width ~148 -->
+              <g transform="translate(-74,0)">
+                <!-- Animated shield -->
+                <path d="M0,-7 L6,-4.5 L6,1 C6,4.5 3.5,6.5 0,7.5 C-3.5,6.5 -6,4.5 -6,1 L-6,-4.5 Z" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.35)" stroke-width="0.9" stroke-linejoin="round">
+                  <animate attributeName="fill" values="rgba(255,255,255,0.04);rgba(255,255,255,0.2);rgba(255,255,255,0.04)" dur="2.4s" repeatCount="indefinite"/>
+                </path>
+                <path d="M-2.5,-0.5 L-0.5,1.5 L3,-2.5" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="10" stroke-dashoffset="10">
+                  <animate attributeName="stroke-dashoffset" values="10;0;0;10" dur="2.4s" repeatCount="indefinite"/>
+                </path>
+              </g>
+              <text x="-62" y="1" dominant-baseline="central" fill="rgba(255,255,255,0.4)" font-size="8" font-family="Inter" font-weight="500">Risk-managed by Policy Engine</text>
+            </g>
+          </svg>

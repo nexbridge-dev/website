@@ -1,0 +1,66 @@
+<svg viewBox="0 0 480 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Center Hub -->
+            <g transform="translate(240,85)">
+              <rect x="-50" y="-28" width="100" height="56" rx="12" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+              <text x="0" y="-8" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="10" font-weight="700" font-family="Inter">NexBridge</text>
+              <text x="0" y="6" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Inter">Connect Layer</text>
+              <line x1="-30" y1="14" x2="30" y2="14" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+              <text x="0" y="24" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="6" font-family="monospace">API Gateway</text>
+            </g>
+            <!-- Protocol: Aave (top-left) -->
+            <g transform="translate(70,30)">
+              <rect x="-46" y="-16" width="92" height="38" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="0" y="2" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600" font-family="Inter">Aave</text>
+              <text x="0" y="16" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Lending Pool</text>
+            </g>
+            <line x1="125" y1="35" x2="190" y2="68" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 3">
+              <animate attributeName="stroke-dashoffset" values="7;0" dur="1.2s" repeatCount="indefinite"/>
+            </line>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="125;190" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="35;68" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Protocol: Uniswap (top-right) -->
+            <g transform="translate(410,30)">
+              <rect x="-46" y="-16" width="92" height="38" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="0" y="2" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600" font-family="Inter">Uniswap</text>
+              <text x="0" y="16" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">AMM / Swap</text>
+            </g>
+            <line x1="355" y1="35" x2="290" y2="68" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 3">
+              <animate attributeName="stroke-dashoffset" values="7;0" dur="1s" repeatCount="indefinite"/>
+            </line>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="290;355" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="cy" values="68;35" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="2.2s" repeatCount="indefinite" begin="0.5s"/>
+            </circle>
+            <!-- Protocol: Curve (bottom-left) -->
+            <g transform="translate(70,140)">
+              <rect x="-46" y="-16" width="92" height="38" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="0" y="2" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600" font-family="Inter">Curve</text>
+              <text x="0" y="16" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Stable Swap</text>
+            </g>
+            <line x1="125" y1="135" x2="190" y2="102" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 3">
+              <animate attributeName="stroke-dashoffset" values="7;0" dur="1.4s" repeatCount="indefinite"/>
+            </line>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="190;125" dur="1.8s" repeatCount="indefinite" begin="0.8s"/>
+              <animate attributeName="cy" values="102;135" dur="1.8s" repeatCount="indefinite" begin="0.8s"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="1.8s" repeatCount="indefinite" begin="0.8s"/>
+            </circle>
+            <!-- Protocol: Compound (bottom-right) -->
+            <g transform="translate(410,140)">
+              <rect x="-46" y="-16" width="92" height="38" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="0" y="2" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="9" font-weight="600" font-family="Inter">Compound</text>
+              <text x="0" y="16" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="7" font-family="Inter">Yield / Supply</text>
+            </g>
+            <line x1="355" y1="135" x2="290" y2="102" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 3">
+              <animate attributeName="stroke-dashoffset" values="7;0" dur="1.6s" repeatCount="indefinite"/>
+            </line>
+            <circle r="2.5" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="355;290" dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
+              <animate attributeName="cy" values="135;102" dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
+              <animate attributeName="opacity" values="0;1;1;0" dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
+            </circle>
+          </svg>

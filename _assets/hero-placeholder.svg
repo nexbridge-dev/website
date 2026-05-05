@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <rect width="1920" height="1080" fill="#FFFFFF"/>
+  <line x1="200" y1="540" x2="1720" y2="540" stroke="#7B1E2A" stroke-width="2" opacity="0.6"/>
+  <line x1="600" y1="540" x2="1320" y2="540" stroke="#C8A96E" stroke-width="1" opacity="0.4"/>
+  <text x="100" y="100" font-family="ui-monospace,monospace" font-size="14" fill="#000000" opacity="0.4">[hero placeholder · awaiting gpt-image-2 + seedance 2.0]</text>
+</svg>

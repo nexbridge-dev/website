@@ -1,0 +1,104 @@
+<svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:480px">
+            <defs>
+              <linearGradient id="gLayer" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.1"/><stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.03"/></linearGradient>
+              <filter id="glowS"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+
+            <!-- ===== LAYER 1: API & Compliance ===== -->
+            <g opacity="0"><animate attributeName="opacity" to="1" dur="0.5s" fill="freeze" begin="0.2s"/>
+              <rect x="20" y="10" width="440" height="50" rx="10" fill="url(#gLayer)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="240" y="40" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" font-family="Inter">API Gateway + Compliance Layer</text>
+            </g>
+
+            <!-- Connector -->
+            <line x1="240" y1="60" x2="240" y2="90" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cy" values="60;90" dur="1.2s" repeatCount="indefinite"/>
+              <animate attributeName="cx" values="240;240" dur="1.2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="1.2s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- ===== LAYER 2: Signing & Key Management ===== -->
+            <g opacity="0"><animate attributeName="opacity" to="1" dur="0.5s" fill="freeze" begin="0.6s"/>
+              <rect x="20" y="90" width="440" height="100" rx="10" fill="url(#gLayer)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <text x="240" y="115" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" font-family="Inter">Key Management & Signing</text>
+              <!-- 3 abstract boxes representing key layers -->
+              <rect x="50" y="128" width="110" height="46" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+              <text x="105" y="148" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-family="Inter" font-weight="600">HSM</text>
+              <text x="105" y="164" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Hardware Keys</text>
+              <rect x="185" y="128" width="110" height="46" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+              <text x="240" y="148" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-family="Inter" font-weight="600">MultiSig</text>
+              <text x="240" y="164" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">M-of-N Auth</text>
+              <rect x="320" y="128" width="110" height="46" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+              <text x="375" y="148" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="9" font-family="Inter" font-weight="600">Policy Engine</text>
+              <text x="375" y="164" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Guardrails</text>
+              <!-- Animated connection line between boxes -->
+              <line x1="160" y1="151" x2="185" y2="151" stroke="rgba(255,255,255,0.08)" stroke-width="0.8" stroke-dasharray="3 2"/>
+              <line x1="295" y1="151" x2="320" y2="151" stroke="rgba(255,255,255,0.08)" stroke-width="0.8" stroke-dasharray="3 2"/>
+              <!-- Particle on first dashed connector (HSM → MultiSig) -->
+              <circle r="1.8" cy="151" fill="rgba(255,255,255,0.6)">
+                <animate attributeName="cx" values="160;185" dur="1.3s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.9;0" dur="1.3s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Particle on second dashed connector (MultiSig → Policy) -->
+              <circle r="1.8" cy="151" fill="rgba(255,255,255,0.6)">
+                <animate attributeName="cx" values="295;320" dur="1.3s" repeatCount="indefinite" begin="0.65s"/>
+                <animate attributeName="opacity" values="0;0.9;0" dur="1.3s" repeatCount="indefinite" begin="0.65s"/>
+              </circle>
+            </g>
+
+            <!-- Connector -->
+            <line x1="240" y1="190" x2="240" y2="220" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cy" values="190;220" dur="1.3s" repeatCount="indefinite" begin="0.4s"/>
+              <animate attributeName="cx" values="240;240" dur="1.3s" repeatCount="indefinite" begin="0.4s"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="1.3s" repeatCount="indefinite" begin="0.4s"/>
+            </circle>
+
+            <!-- ===== LAYER 3: Cold Storage ===== -->
+            <g opacity="0"><animate attributeName="opacity" to="1" dur="0.5s" fill="freeze" begin="1s"/>
+              <rect x="20" y="220" width="440" height="50" rx="10" fill="url(#gLayer)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <text x="240" y="250" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" font-family="Inter">Air-Gapped Cold Storage</text>
+              <!-- Scanning line -->
+              <rect x="22" y="220" width="2" height="50" rx="1" fill="rgba(255,255,255,0.2)">
+                <animate attributeName="x" values="22;458" dur="4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.3;0" dur="4s" repeatCount="indefinite"/>
+              </rect>
+            </g>
+
+            <!-- Connector -->
+            <line x1="240" y1="270" x2="240" y2="300" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cy" values="270;300" dur="1.4s" repeatCount="indefinite" begin="0.7s"/>
+              <animate attributeName="cx" values="240;240" dur="1.4s" repeatCount="indefinite" begin="0.7s"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="1.4s" repeatCount="indefinite" begin="0.7s"/>
+            </circle>
+
+            <!-- ===== LAYER 4: Blockchain ===== -->
+            <g opacity="0"><animate attributeName="opacity" to="1" dur="0.5s" fill="freeze" begin="1.4s"/>
+              <rect x="20" y="300" width="440" height="60" rx="10" fill="url(#gLayer)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+              <text x="240" y="335" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="11" font-weight="600" font-family="Inter">Blockchain Settlement Layer</text>
+              <!-- Simple chain visualization -->
+              <g>
+                <circle cx="60" cy="330" r="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+                <line x1="64" y1="330" x2="96" y2="330" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                <circle cx="100" cy="330" r="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+                <line x1="104" y1="330" x2="136" y2="330" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+                <circle cx="140" cy="330" r="4" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="0.6"/>
+              </g>
+              <!-- Pulse along chain -->
+              <circle r="3" fill="rgba(255,255,255,0.5)" filter="url(#glowS)">
+                <animate attributeName="cx" values="60;100;140" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="cy" values="330;330;330" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Status dot -->
+              <circle cx="420" cy="330" r="4" fill="rgba(255,255,255,0.1)">
+                <animate attributeName="fill" values="rgba(255,255,255,0.1);rgba(255,255,255,0.35);rgba(255,255,255,0.1)" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <text x="430" y="333" fill="rgba(255,255,255,0.35)" font-size="7" font-family="Inter">Live</text>
+            </g>
+
+            <!-- Left side label: Request Flow -->
+            <text x="8" y="260" fill="rgba(255,255,255,0.15)" font-size="8" font-family="Inter" font-weight="600" transform="rotate(-90,8,260)" text-anchor="middle">REQUEST FLOW ↓</text>
+          </svg>

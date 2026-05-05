@@ -1,0 +1,111 @@
+<svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Three security layers side by side -->
+            <!-- Layer 1: HSM -->
+            <g transform="translate(80,20)">
+              <rect x="-60" y="0" width="120" height="90" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <rect x="-60" y="0" width="120" height="24" rx="12" fill="rgba(255,255,255,0.04)"/>
+              <rect x="-60" y="12" width="120" height="12" fill="rgba(255,255,255,0.04)"/>
+              <text x="0" y="16" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" font-family="Inter" letter-spacing="1">HSM MODULE</text>
+              <!-- Refined HSM key + chip icon, centered in lower region -->
+              <g transform="translate(0,50)">
+                <!-- Key bow -->
+                <circle cx="-18" cy="0" r="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.55)" stroke-width="1.2"/>
+                <circle cx="-18" cy="0" r="3" fill="rgba(255,255,255,0.55)"/>
+                <!-- Key shaft -->
+                <path d="M-10,0 L18,0" stroke="rgba(255,255,255,0.55)" stroke-width="1.6" stroke-linecap="round"/>
+                <!-- Key teeth -->
+                <path d="M10,0 L10,5 M14,0 L14,6 M18,0 L18,4" stroke="rgba(255,255,255,0.55)" stroke-width="1.4" stroke-linecap="round"/>
+                <!-- Small chip beside -->
+                <g transform="translate(30,-6)" opacity="0.45">
+                  <rect x="0" y="0" width="10" height="12" rx="1.5" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.9"/>
+                  <line x1="-2" y1="3" x2="0" y2="3" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+                  <line x1="-2" y1="6" x2="0" y2="6" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+                  <line x1="-2" y1="9" x2="0" y2="9" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+                  <line x1="10" y1="3" x2="12" y2="3" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+                  <line x1="10" y1="6" x2="12" y2="6" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+                  <line x1="10" y1="9" x2="12" y2="9" stroke="rgba(255,255,255,0.4)" stroke-width="0.8"/>
+                </g>
+              </g>
+              <text x="0" y="78" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="Inter" letter-spacing="0.5">Hardware Secured</text>
+              <!-- Pulse -->
+              <rect x="-60" y="0" width="120" height="90" rx="12" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" opacity="0">
+                <animate attributeName="opacity" values="0;0.5;0" dur="3s" repeatCount="indefinite"/>
+              </rect>
+            </g>
+            <!-- Connector 1→2 -->
+            <!-- Connector 1→2 (spans full gap, arrow stops before box) -->
+            <line x1="140" y1="65" x2="174" y2="65" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="3 3"/>
+            <polygon points="174,62 179,65 174,68" fill="rgba(255,255,255,0.3)"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="140;174" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="cy" values="65;65" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Layer 2: MultiSig -->
+            <g transform="translate(240,20)">
+              <rect x="-60" y="0" width="120" height="90" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <rect x="-60" y="0" width="120" height="24" rx="12" fill="rgba(255,255,255,0.04)"/>
+              <rect x="-60" y="12" width="120" height="12" fill="rgba(255,255,255,0.04)"/>
+              <text x="0" y="16" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" font-family="Inter" letter-spacing="1">MULTISIG</text>
+              <!-- 3 signer icons (sequential approval pulse) -->
+              <g transform="translate(-28,42)">
+                <circle cx="0" cy="0" r="8" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1">
+                  <animate attributeName="fill" values="rgba(255,255,255,0.08);rgba(255,255,255,0.28);rgba(255,255,255,0.08)" dur="3s" repeatCount="indefinite" begin="0s"/>
+                  <animate attributeName="stroke" values="rgba(255,255,255,0.15);rgba(255,255,255,0.5);rgba(255,255,255,0.15)" dur="3s" repeatCount="indefinite" begin="0s"/>
+                </circle>
+                <text x="0" y="3" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7" font-weight="600">1</text>
+              </g>
+              <g transform="translate(0,42)">
+                <circle cx="0" cy="0" r="8" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1">
+                  <animate attributeName="fill" values="rgba(255,255,255,0.08);rgba(255,255,255,0.28);rgba(255,255,255,0.08)" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+                  <animate attributeName="stroke" values="rgba(255,255,255,0.15);rgba(255,255,255,0.5);rgba(255,255,255,0.15)" dur="3s" repeatCount="indefinite" begin="0.6s"/>
+                </circle>
+                <text x="0" y="3" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7" font-weight="600">2</text>
+              </g>
+              <g transform="translate(28,42)">
+                <circle cx="0" cy="0" r="8" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1">
+                  <animate attributeName="fill" values="rgba(255,255,255,0.08);rgba(255,255,255,0.2);rgba(255,255,255,0.08)" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+                  <animate attributeName="stroke" values="rgba(255,255,255,0.15);rgba(255,255,255,0.35);rgba(255,255,255,0.15)" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+                </circle>
+                <text x="0" y="3" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="7" font-weight="600">3</text>
+              </g>
+              <text x="0" y="68" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8" font-family="Inter">2-of-3 Threshold</text>
+              <text x="0" y="80" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Approval Required</text>
+            </g>
+            <!-- Connector 2→3 -->
+            <!-- Connector 2→3 (spans full gap, arrow stops before box) -->
+            <line x1="300" y1="65" x2="334" y2="65" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="3 3"/>
+            <polygon points="334,62 339,65 334,68" fill="rgba(255,255,255,0.3)"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cx" values="300;334" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="cy" values="65;65" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+            </circle>
+            <!-- Layer 3: Policy Engine -->
+            <g transform="translate(400,20)">
+              <rect x="-60" y="0" width="120" height="90" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+              <rect x="-60" y="0" width="120" height="24" rx="12" fill="rgba(255,255,255,0.04)"/>
+              <rect x="-60" y="12" width="120" height="12" fill="rgba(255,255,255,0.04)"/>
+              <text x="0" y="16" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-weight="600" font-family="Inter" letter-spacing="1">POLICY ENGINE</text>
+              <!-- Rule lines (animated fill widths) -->
+              <rect x="-40" y="34" width="80" height="8" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+              <rect x="-36" y="36" width="16" height="4" rx="1" fill="rgba(255,255,255,0.25)">
+                <animate attributeName="width" values="6;60;6" dur="3.5s" repeatCount="indefinite" begin="0s"/>
+                <animate attributeName="opacity" values="0.3;0.55;0.3" dur="3.5s" repeatCount="indefinite" begin="0s"/>
+              </rect>
+              <rect x="-40" y="48" width="80" height="8" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+              <rect x="-36" y="50" width="30" height="4" rx="1" fill="rgba(255,255,255,0.2)">
+                <animate attributeName="width" values="14;48;14" dur="3.5s" repeatCount="indefinite" begin="0.6s"/>
+                <animate attributeName="opacity" values="0.25;0.5;0.25" dur="3.5s" repeatCount="indefinite" begin="0.6s"/>
+              </rect>
+              <rect x="-40" y="62" width="80" height="8" rx="2" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
+              <rect x="-36" y="64" width="22" height="4" rx="1" fill="rgba(255,255,255,0.22)">
+                <animate attributeName="width" values="10;54;10" dur="3.5s" repeatCount="indefinite" begin="1.2s"/>
+                <animate attributeName="opacity" values="0.28;0.5;0.28" dur="3.5s" repeatCount="indefinite" begin="1.2s"/>
+              </rect>
+              <text x="0" y="85" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="Inter">Rule Enforcement</text>
+            </g>
+            <!-- Bottom label -->
+            <line x1="40" y1="130" x2="440" y2="130" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+            <text x="240" y="148" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8" font-family="Inter" letter-spacing="2">SECURITY PIPELINE</text>
+          </svg>

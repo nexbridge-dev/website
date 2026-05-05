@@ -1,0 +1,70 @@
+<svg viewBox="0 0 400 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+            <!-- Vertical pipeline: Bank Request → KYC/AML → Mint → Distribute -->
+            <!-- Step 1: Bank Request -->
+            <g transform="translate(200,18)">
+              <rect x="-120" y="-12" width="240" height="24" rx="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <text x="0" y="1" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.6)" font-size="9" font-family="Inter" font-weight="600">Bank Issuance Request</text>
+              <!-- Scanning bar -->
+              <rect x="-120" y="-12" width="4" height="24" rx="1" fill="rgba(255,255,255,0.15)">
+                <animate attributeName="x" values="-120;116" dur="3s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.3;0" dur="3s" repeatCount="indefinite"/>
+              </rect>
+            </g>
+            <!-- Down arrow 1 -->
+            <line x1="200" y1="32" x2="200" y2="48" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+            <polygon points="197,46 200,52 203,46" fill="rgba(255,255,255,0.25)"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cy" values="32;48" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="cx" values="200;200" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Step 2: KYC/AML + Compliance (split row) -->
+            <g transform="translate(200,64)">
+              <rect x="-120" y="-12" width="114" height="24" rx="5" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+              <text x="-55" y="1" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.45)" font-size="8" font-family="Inter" font-weight="600">KYC / AML Check</text>
+              <!-- Checkmark animation -->
+              <circle cx="-108" cy="0" r="4.5" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+              <path d="M-110.5,-0.5 L-108,2 L-105,-2.5" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0">
+                <animate attributeName="opacity" values="0;0;1;1" dur="2.5s" repeatCount="indefinite"/>
+              </path>
+              <rect x="6" y="-12" width="114" height="24" rx="5" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+              <text x="71" y="1" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.45)" font-size="8" font-family="Inter" font-weight="600">Reserve Lock</text>
+              <!-- Animated shield icon -->
+              <g transform="translate(20,0)">
+                <path d="M0,-7 L6,-4.5 L6,1 C6,4.5 3.5,6.5 0,7.5 C-3.5,6.5 -6,4.5 -6,1 L-6,-4.5 Z" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1" stroke-linejoin="round"/>
+                <path d="M0,-7 L6,-4.5 L6,1 C6,4.5 3.5,6.5 0,7.5 C-3.5,6.5 -6,4.5 -6,1 L-6,-4.5 Z" fill="rgba(255,255,255,0.15)" stroke="none">
+                  <animate attributeName="fill" values="rgba(255,255,255,0.05);rgba(255,255,255,0.25);rgba(255,255,255,0.05)" dur="2.2s" repeatCount="indefinite"/>
+                </path>
+                <path d="M-2.5,-0.5 L-0.5,1.5 L3,-2.5" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="10" stroke-dashoffset="10">
+                  <animate attributeName="stroke-dashoffset" values="10;0;0;10" dur="2.2s" repeatCount="indefinite"/>
+                </path>
+              </g>
+            </g>
+            <!-- Down arrow 2 -->
+            <line x1="200" y1="78" x2="200" y2="94" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+            <polygon points="197,92 200,98 203,92" fill="rgba(255,255,255,0.25)"/>
+            <circle r="2" fill="rgba(255,255,255,0.5)">
+              <animate attributeName="cy" values="78;94" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="cx" values="200;200" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+              <animate attributeName="opacity" values="0;0.8;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+            </circle>
+            <!-- Step 3: Mint & Distribute (output row) -->
+            <g transform="translate(200,110)">
+              <rect x="-120" y="-12" width="240" height="24" rx="5" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
+              <text x="0" y="1" text-anchor="middle" dominant-baseline="central" fill="rgba(255,255,255,0.7)" font-size="9" font-family="Inter" font-weight="700">Stablecoin Minted & Distributed</text>
+              <!-- Pulse glow -->
+              <rect x="-120" y="-12" width="240" height="24" rx="5" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2">
+                <animate attributeName="stroke-opacity" values="0.2;0.5;0.2" dur="2s" repeatCount="indefinite"/>
+              </rect>
+              <!-- Coins flying out -->
+              <circle cx="100" cy="0" r="3" fill="rgba(255,255,255,0.3)" opacity="0">
+                <animate attributeName="cx" values="100;135" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.6;0" dur="2s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="100" cy="-4" r="2" fill="rgba(255,255,255,0.2)" opacity="0">
+                <animate attributeName="cx" values="100;140" dur="2.4s" repeatCount="indefinite" begin="0.3s"/>
+                <animate attributeName="cy" values="-4;-8" dur="2.4s" repeatCount="indefinite" begin="0.3s"/>
+                <animate attributeName="opacity" values="0;0.5;0" dur="2.4s" repeatCount="indefinite" begin="0.3s"/>
+              </circle>
+            </g>
+          </svg>

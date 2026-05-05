@@ -1,0 +1,8 @@
+<svg viewBox="0 0 40 40" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="14" cy="20" r="9"/>
+            <circle cx="26" cy="20" r="9"/>
+            <text x="11" y="23" font-size="8" fill="rgba(255,255,255,0.6)" stroke="none" font-weight="600">¥</text>
+            <text x="24" y="23" font-size="8" fill="rgba(255,255,255,0.6)" stroke="none" font-weight="600">$</text>
+            <path d="M17 15L23 15" stroke-dasharray="1.5 1.5" opacity="0.5"/>
+            <path d="M17 25L23 25" stroke-dasharray="1.5 1.5" opacity="0.5"/>
+          </svg>
